@@ -60,10 +60,10 @@
                   </div>
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../pages/admin.html">SIGN UP</a>
+                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../pages/admin.php">SIGN UP</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="../pages/login.html" class="text-primary">Login</a>
+                  Already have an account? <a href="../pages/login.php" class="text-primary">Login</a>
                 </div>
               </form>
             </div>
