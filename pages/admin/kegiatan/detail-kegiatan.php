@@ -2,7 +2,7 @@
 require '../../php/functions.php';
 
 // Query SPP
-$Kegiatan = query("SELECT * FROM Kegiatan");
+$Kegiatan = query("SELECT * FROM kegiatan");
 
 ?>
 
@@ -135,7 +135,7 @@ $Kegiatan = query("SELECT * FROM Kegiatan");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi.php">
+            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>

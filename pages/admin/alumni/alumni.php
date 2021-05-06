@@ -127,7 +127,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi.php">
+            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
@@ -175,7 +175,7 @@
                           <td>20202010</td>
                           <td>Jajang</td>
                           <td>2015</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.html">Profil Lengkap</a></button></td>
+                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.php">Profil Lengkap</a></button></td>
                         </tr>
                         <tr>
                           <td>2</td>
@@ -183,7 +183,7 @@
                           <td>20201010</td>
                           <td>Esih</td>
                           <td>2016</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.html">Profil Lengkap</a></button></td>
+                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.php">Profil Lengkap</a></button></td>
                         </tr>
                         <tr>
                           <td>3</td>
@@ -191,7 +191,7 @@
                           <td>20201010</td>
                           <td>Esih</td>
                           <td>2016</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.html">Profil Lengkap</a></button></td>
+                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.php">Profil Lengkap</a></button></td>
                         </tr>
                       </tbody>
                     </table>

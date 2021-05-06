@@ -144,7 +144,7 @@ $guru = query("SELECT * FROM guru WHERE mapel = $id")
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi.php">
+            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
