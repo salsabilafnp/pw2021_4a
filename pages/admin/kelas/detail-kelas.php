@@ -1,5 +1,19 @@
 <?php
+//mengecek kode_kelas, jika tidak ada dikembalikan ke kelas.php
+if (!isset($_GET['kode'])) {
+  header("location: kelas.php");
+  exit;
+}
 
+require '../../php/functions.php';
+
+// Mengambil id dari url
+$kode = $_GET['kode'];
+
+// Melakukan Query
+$kelas = query("SELECT * FROM kelas WHERE kode_kelas = '$kode'")[0];
+//$walikelas = query("SELECT 'nama_lengkap' FROM guru INNER JOIN guru.NIP = kelas.walikelas");
+$siswa = query("SELECT * FROM siswa WHERE kelas = '$kode'");
 
 ?>
 
@@ -28,8 +42,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -50,7 +64,7 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -79,13 +93,13 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../pages/admin.php">
+            <a class="nav-link" href="../../../pages/admin.php">
               <i class="menu-icon mdi mdi-home"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/admin/guru/guru.php">
+            <a class="nav-link" href="../../../pages/admin/guru/guru.php">
               <i class="menu-icon mdi mdi-account"></i>
               <span class="menu-title">Guru</span>
             </a>
@@ -98,9 +112,9 @@
             </a>
             <div class="collapse" id="siswa">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
-                <li class="nav-item"><a class="nav-link" href="../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
-                <li class="nav-item"><a class="nav-link" href="../pages/admin/alumni/alumni.php">Alumni</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/alumni.php">Alumni</a></li>
               </ul>
             </div>
           </li>
@@ -112,32 +126,32 @@
             </a>
             <div class="collapse" id="kelas">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../pages/admin/kelas/kelas.php">Kelas</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../pages/admin/kelas/ujian.php">Ujian</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kelas.php">Kelas</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/ujian.php">Ujian</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/admin/kegiatan/kegiatan.php">
+            <a class="nav-link" href="../../../pages/admin/kegiatan/kegiatan.php">
               <i class="menu-icon mdi mdi-checkbox-multiple-marked-circle"></i>
               <span class="menu-title">Kegiatan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/admin/ekskul/ekskul.php">
+            <a class="nav-link" href="../../../pages/admin/ekskul/ekskul.php">
               <i class="menu-icon icon-grid"></i>
               <span class="menu-title">Ekstrakurikuler</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/admin/prestasi.php">
+            <a class="nav-link" href="../../../pages/admin/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/admin/spp/spp.php">
+            <a class="nav-link" href="../../../pages/admin/spp/spp.php">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">SPP</span>
             </a>
@@ -151,7 +165,7 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 my-3 mb-xl-0">
-                  <h3 class="font-weight-bold">Kelas IPA - 1</h3>
+                  <h3 class="font-weight-bold">Kelas <?= $kelas["kode_kelas"]; ?></h3>
                 </div>
               </div>
             </div>
@@ -163,7 +177,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">Wali kelas</p>
-                      <p class="fs-30 mb-2">Dewi Siska, S.Pd, M.Pd</p>
+                      <p class="fs-30 mb-2"></p>
                     </div>
                   </div>
                 </div>
@@ -183,70 +197,8 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title mb-0">Jadwal Pelajaran</p>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>Hari</th>
-                              <th>Jam Pelajaran</th>
-                              <th>Mata Pelajaran</th>
-                              <th>Guru</th>
-                            </tr>  
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Senin</td>
-                              <td>07.00 - 09.00</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">Sejarah</a></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Senin</td>
-                              <td>07.00 - 09.00</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">Sejarah</a></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Senin</td>
-                              <td>07.00 - 09.00</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">Sejarah</a></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Senin</td>
-                              <td>07.00 - 09.00</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">Sejarah</a></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Senin</td>
-                              <td>07.00 - 09.00</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">Sejarah</a></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Senin</td>
-                              <td>07.00 - 09.00</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">Sejarah</a></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                         </tbody>
-                      </table>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-0">Daftar Siswa</p>
+                  <p class="card-title mb-3">Daftar Siswa</p>
+                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -254,47 +206,27 @@
                           <thead>
                             <tr>
                               <th>No.</th>
+                              <th></th>
                               <th>NIS</th>
-                              <th>Nama Lengkap</th>
-                            </tr>  
+                              <th>Nama Siswa</th>
+                              <th></th>
+                            </tr>
                           </thead>
                           <tbody>
+                          <?php foreach($siswa as $stud) : ?>
                             <tr>
-                              <td>1</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">203040104</a></td>
-                              <td>Salsabila FNP</td>
+                              <td>
+                                <i class="mdi mdi-tooltip-edit"></i>
+                                <i class="mdi mdi-delete"></i>
+                              </td>
+                              <td class="font-weight-bold"><?= $stud["NIS"]; ?></td>
+                              <td><?= $stud["nama_lengkap"]; ?></td>
+                              <td>
+                                <a href="../../../pages/admin/siswa/detail-siswa.php?NIS=<?= $stud["NIS"]; ?>"><button class="btn btn-sm btn-info">Lihat Siswa</button></a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td>1</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">203040104</a></td>
-                              <td>Salsabila FNP</td>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">203040104</a></td>
-                              <td>Salsabila FNP</td>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">203040104</a></td>
-                              <td>Salsabila FNP</td>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">203040104</a></td>
-                              <td>Salsabila FNP</td>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">203040104</a></td>
-                              <td>Salsabila FNP</td>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td class="font-weight-bold"><a class="text-dark" href="mapel.html">203040104</a></td>
-                              <td>Salsabila FNP</td>
-                            </tr>
-                         </tbody>
+                          <?php endforeach; ?>
+                          </tbody>
                       </table>
                       </div>
                     </div>

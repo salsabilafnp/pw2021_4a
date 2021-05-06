@@ -203,9 +203,91 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
                               </td>
                               <td class="font-weight-bold"><?= $kls10["kode_kelas"]; ?></td>
                               <td><?= $kls10["walikelas"]; ?></td>
-                              <td><button class="btn btn-sm btn-info">
-                                <a href=""></a>
-                              </button></td>
+                              <td>
+                                <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls10["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
+                              </td>
+                            </tr>
+                          <?php endforeach; ?>
+                          </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-3">Kelas 11</p>
+                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Kelas</th>
+                              <th>Wali Kelas</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          <?php foreach($kelas11 as $kls11) : ?>
+                            <tr>
+                              <td>
+                                <i class="mdi mdi-tooltip-edit"></i>
+                                <i class="mdi mdi-delete"></i>
+                              </td>
+                              <td class="font-weight-bold"><?= $kls11["kode_kelas"]; ?></td>
+                              <td><?= $kls11["walikelas"]; ?></td>
+                              <td>
+                                <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls11["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
+                              </td>
+                            </tr>
+                          <?php endforeach; ?>
+                          </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-3">Kelas 12</p>
+                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Kelas</th>
+                              <th>Wali Kelas</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          <?php foreach($kelas12 as $kls12) : ?>
+                            <tr>
+                              <td>
+                                <i class="mdi mdi-tooltip-edit"></i>
+                                <i class="mdi mdi-delete"></i>
+                              </td>
+                              <td class="font-weight-bold"><?= $kls12["kode_kelas"]; ?></td>
+                              <td><?= $kls12["walikelas"]; ?></td>
+                              <td>
+                                <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls12["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
+                              </td>
                             </tr>
                           <?php endforeach; ?>
                           </tbody>
