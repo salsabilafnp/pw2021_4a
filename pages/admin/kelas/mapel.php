@@ -1,3 +1,11 @@
+<?php
+require '../../php/functions.php';
+
+// Query Mapel
+$matapel = query("SELECT * FROM mata_pelajaran");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,191 +163,33 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title mb-0">Kelas 10</p>
-                  <small>untuk lihat detail mata pelajaran, silakan klik nama mata pelajaran</small>
+                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
                         <table class="display expandable-table" style="width:100%">
                           <thead>
                             <tr>
+                              <th></th>
+                              <th>Kode Mapel</th>
                               <th>Mata Pelajaran</th>
-                              <th>Guru Mata Pelajaran</th>
+                              <th></th>
                             </tr>  
                           </thead>
                           <tbody>
+                          <?php foreach($matapel as $mapel) : ?>
                             <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
+                              <td>
+                                <i class="mdi mdi-tooltip-edit"></i>
+                                <i class="mdi mdi-delete"></i>
+                              </td>
+                              <td><?= $mapel["id"]; ?></td>
+                              <td><?= $mapel["nama_mapel"]; ?></td>
+                              <td>
+                                <a href="../../../pages/admin/kelas/detail-mapel.php?id=<?= $mapel["id"]; ?>"><button class="btn btn-sm btn-info">Lihat Mapel</button></a>
+                              </td>
                             </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                          </tbody>
-                      </table>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-0">Kelas 11</p>
-                  <small>untuk lihat detail mata pelajaran, silakan klik nama mata pelajaran</small>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>Mata Pelajaran</th>
-                              <th>Guru Mata Pelajaran</th>
-                            </tr>  
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                          </tbody>
-                      </table>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-0">Kelas 12</p>
-                  <small>untuk lihat detail mata pelajaran, silakan klik nama mata pelajaran</small>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>Mata Pelajaran</th>
-                              <th>Guru Mata Pelajaran</th>
-                            </tr>  
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                            <tr>
-                              <td>Sejarah</td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
+                          <?php endforeach; ?>
                           </tbody>
                       </table>
                       </div>
