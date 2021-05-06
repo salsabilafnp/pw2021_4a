@@ -1,3 +1,11 @@
+<?php
+
+require 'functions.php';
+$siswa = query("SELECT * FROM siswa");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +17,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -19,13 +27,14 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -46,7 +55,7 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -168,20 +177,17 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>203040101</td>
-                          <td>Yudha Permana</td>
-                          <td>Laki-laki</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-siswa.html">Profil Lengkap</a></button></td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>203040101</td>
-                          <td>Yudha Permana</td>
-                          <td>Laki-laki</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-siswa.html">Profil Lengkap</a></button></td>
-                        </tr>
+                        <?php $i = 1 ?>
+                        <?php foreach ($siswa as $swa) : ?>
+                          <tr>
+                            <td><?= $i ?></td>
+                            <td><?= $swa['NIS']; ?></td>
+                            <td class="text-capitalize"><?= $swa['nama_siswa']; ?></td>
+                            <td class="text-capitalize"><?= $swa['jenis_kelamin']; ?></td>
+                            <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-siswa.php?NIS=<?= $swa['NIS'] ?>">Profil Lengkap</a></button></td>
+                          </tr>
+                          <?php $i++ ?>
+                        <?php endforeach;  ?>
                       </tbody>
                     </table>
                   </div>
@@ -207,7 +213,7 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Kelompok 4A<i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>

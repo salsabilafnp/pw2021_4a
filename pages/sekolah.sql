@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Bulan Mei 2021 pada 20.29
+-- Waktu pembuatan: 06 Bulan Mei 2021 pada 04.54
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -45,7 +45,7 @@ CREATE TABLE `guru` (
   `foto` varchar(200) NOT NULL,
   `nama_lengkap` varchar(200) NOT NULL,
   `tempat_lahir` varchar(200) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
+  `tanggal_lahir` varchar(200) NOT NULL,
   `jenis_kelamin` varchar(200) NOT NULL,
   `alamat_jalan` varchar(200) NOT NULL,
   `alamat_rt` varchar(200) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`NIP`, `foto`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat_jalan`, `alamat_rt`, `alamat_rw`, `no_rumah`, `alamat_kecamatan`, `alamat_kab_kota`, `alamat_provinsi`, `kode_pos`, `no_hp`, `email`, `agama`, `jabatan`, `mapel`, `tingkat_pendidikan_terakhir`, `kampus_pendidikan_terakhir`, `tahun_lulus_pendidikan_terakhir`) VALUES
-('198005122008021001', 'face1.jpg', 'saepul cahya', 'Bandung', '1980-05-12', 'laki-laki', 'ciwastra', '03', '07', '25', 'buahbatu', 'kota bandung', 'jawa barat', '40287', '081553976064', 'saepulcahya21@gmail.com', 'islam', 'guru', 'PAI', 'S1', 'UPI', '2004');
+('198005122008021001', 'face1.jpg', 'saepul cahya', 'Bandung', '12 - 05 - 1980', 'laki-laki', 'ciwastra', '03', '07', '25', 'buahbatu', 'kota bandung', 'jawa barat', '40287', '081553976064', 'saepulcahya21@gmail.com', 'islam', 'guru', 'PAI', 'S1', 'UPI', '2004');
 
 -- --------------------------------------------------------
 
@@ -149,14 +149,17 @@ CREATE TABLE `prestasi` (
 --
 
 CREATE TABLE `siswa` (
-  `NIS` int(11) NOT NULL,
+  `NIS` varchar(50) NOT NULL,
+  `foto` varchar(100) NOT NULL,
   `nama_siswa` varchar(200) NOT NULL,
   `tempat_lahir` varchar(200) NOT NULL,
   `tanggal_lahir` varchar(200) NOT NULL,
+  `umur` varchar(200) NOT NULL,
   `jenis_kelamin` varchar(200) NOT NULL,
   `alamat_jalan` varchar(200) NOT NULL,
   `alamat_rt` varchar(200) NOT NULL,
   `alamat_rw` varchar(200) NOT NULL,
+  `no_rumah` varchar(100) NOT NULL,
   `alamat_kecamatan` varchar(200) NOT NULL,
   `alamat_kab_kota` varchar(200) NOT NULL,
   `alamat_provinsi` varchar(200) NOT NULL,
@@ -176,6 +179,13 @@ CREATE TABLE `siswa` (
   `alamat_ibu` varchar(200) NOT NULL,
   `pekerjaan_ibu` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `siswa`
+--
+
+INSERT INTO `siswa` (`NIS`, `foto`, `nama_siswa`, `tempat_lahir`, `tanggal_lahir`, `umur`, `jenis_kelamin`, `alamat_jalan`, `alamat_rt`, `alamat_rw`, `no_rumah`, `alamat_kecamatan`, `alamat_kab_kota`, `alamat_provinsi`, `kode_pos`, `no_hp`, `email`, `agama`, `asal_sekolah`, `no_ijazah`, `tanggal_masuk`, `nama_ayah`, `tanggal_lahir_ayah`, `alamat_ayah`, `pekerjaan_ayah`, `nama_ibu`, `tanggal_lahir_ibu`, `alamat_ibu`, `pekerjaan_ibu`) VALUES
+('0012345678', 'face15.jpg', 'asep munawar', 'jakarta', '13 - 06 - 2003', '17', 'laki - laki', 'peta', '04', '05', '19', 'sukasuka', 'kota jakarta', 'DKI jakarta', '40065', '089663875619', 'munawar12@gmail.com', 'islam', 'SMP PGRI 3 Jakarta', 'DN-03 DI-0223874', '02 - 07 - 2019', 'nawar', '18 - 11 - 1968', 'Jl. Peta', 'PNS', 'mawar', '15 - 12 - 1970', 'Jl. Peta RT/RW. 04/05 No.19 ', 'ibu rumah tangga');
 
 -- --------------------------------------------------------
 
@@ -307,12 +317,6 @@ ALTER TABLE `mata pelajaran`
 --
 ALTER TABLE `prestasi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `siswa`
---
-ALTER TABLE `siswa`
-  MODIFY `NIS` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `spp`
