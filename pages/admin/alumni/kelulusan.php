@@ -1,3 +1,11 @@
+<?php
+
+require 'functions.php';
+$kelulusan = query("SELECT * FROM kelulusan");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,68 +152,64 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-12 grid-margin">
-                <div class="row">
-                  <div class="col-12 col-xl-8 mb-3 mb-xl-0">
-                    <h3 class="font-weight-bold mt-3">Daftar Kelulusan</h3>
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-3 mb-xl-0">
+                  <h3 class="font-weight-bold mt-3">Daftar Kelulusan</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="display expandable-table" style="width: 100%;">
+                      <thead style="font-size: 5px;">
+                        <tr>
+                          <th>#</th>
+                          <th>NIS</th>
+                          <th>No Ijazah</th>
+                          <th>No SKHUN</th>
+                          <th>Nilai Ijazah</th>
+                          <th>Nilai SKHUN</th>
+                          <th>Nilai Akhir</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php $i = 1 ?>
+                        <?php foreach ($kelulusan as $lulus) : ?>
+                          <tr>
+                            <td><?= $i; ?></td>
+                            <td><?= $lulus['NIS']; ?></td>
+                            <td><?= $lulus['no_ijazah']; ?></td>
+                            <td><?= $lulus['no_skhun']; ?></td>
+                            <td><?= $lulus['nilai_ijazah']; ?></td>
+                            <td><?= $lulus['nilai_skhun']; ?></td>
+                            <td><?= $lulus['nilai_akhir']; ?></td>
+                          </tr>
+                          <?php $i++ ?>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="display expandable-table" style="width: 100%;">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>No Ijazah</th>
-                            <th>No SKHUN</th>
-                            <th>Nilai Ijazah</th>
-                            <th>Nilai SKHUN</th>
-                            <th>Nilai Akhir</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>203040101</td>
-                            <td>231841294</td>
-                            <td>90</td>
-                            <td>95</td>
-                            <td>92</td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>203040101</td>
-                            <td>231841294</td>
-                            <td>90</td>
-                            <td>95</td>
-                            <td>92</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 grid-margin">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                  </ul>
-                </nav>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>

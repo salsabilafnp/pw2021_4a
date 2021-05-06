@@ -3,7 +3,6 @@
 require 'functions.php';
 $guru = query("SELECT * FROM guru");
 
-
 ?>
 
 <!DOCTYPE html>

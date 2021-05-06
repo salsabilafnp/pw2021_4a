@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Bulan Mei 2021 pada 05.55
+-- Waktu pembuatan: 06 Bulan Mei 2021 pada 07.16
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -114,7 +114,6 @@ INSERT INTO `kelas` (`kode_kelas`, `tingkat`, `jurusan`, `rombel`, `walikelas`) 
 --
 
 CREATE TABLE `kelulusan` (
-  `id` int(11) NOT NULL,
   `NIS` int(11) NOT NULL,
   `no_ijazah` varchar(200) NOT NULL,
   `no_skhun` varchar(200) NOT NULL,
@@ -122,6 +121,13 @@ CREATE TABLE `kelulusan` (
   `nilai_skhun` varchar(200) NOT NULL,
   `nilai_akhir` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kelulusan`
+--
+
+INSERT INTO `kelulusan` (`NIS`, `no_ijazah`, `no_skhun`, `nilai_ijazah`, `nilai_skhun`, `nilai_akhir`) VALUES
+(15090293, 'BCD-098755', '123-232-4330-12', '95', '90', '93');
 
 -- --------------------------------------------------------
 
@@ -296,7 +302,7 @@ ALTER TABLE `kelas`
 -- Indeks untuk tabel `kelulusan`
 --
 ALTER TABLE `kelulusan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`NIS`);
 
 --
 -- Indeks untuk tabel `mata pelajaran`
@@ -356,12 +362,6 @@ ALTER TABLE `guru`
 -- AUTO_INCREMENT untuk tabel `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `kelulusan`
---
-ALTER TABLE `kelulusan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
