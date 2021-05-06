@@ -1,3 +1,11 @@
+<?php
+require '../../php/functions.php';
+
+// Query Ujian
+$ujian = query("SELECT * FROM ujian");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,7 +160,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-7 grid-margin stretch-card">
+            <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-2 text-center">Jadwal Ujian Semester Genap - 2020/2021</p>
@@ -196,84 +204,7 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title mb-0">Kelas 10</p>
-                  <small>untuk lihat detail kelas, silakan klik nama kelas</small>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>Tanggal</th>
-                              <th>Waktu</th>
-                              <th>Kelas</th>
-                              <th>Mata Pelajaran</th>
-                              <th>Ruangan</th>
-                              <th>Pengawas</th>
-                            </tr>  
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                          </tbody>
-                      </table>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-0">Kelas 11</p>
-                  <small>untuk lihat detail kelas, silakan klik nama kelas</small>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>Tanggal</th>
-                              <th>Waktu</th>
-                              <th>Kelas</th>
-                              <th>Mata Pelajaran</th>
-                              <th>Ruangan</th>
-                              <th>Pengawas</th>
-                            </tr>  
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
-                            </tr>
-                          </tbody>
-                      </table>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-0">Kelas 12</p>
-                  <small>untuk lihat detail kelas, silakan klik nama kelas</small>
+                  <p class="card-title mb-0">UTS Genap 2020/2021</p>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
