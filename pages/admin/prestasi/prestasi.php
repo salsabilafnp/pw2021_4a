@@ -2,7 +2,7 @@
 require '../../php/functions.php';
 
 // Query SPP
-$Kegiatan = query("SELECT * FROM Kegiatan");
+$prestasi = query("SELECT * FROM prestasi");
 
 ?>
 
@@ -13,7 +13,7 @@ $Kegiatan = query("SELECT * FROM Kegiatan");
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Prestasi</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
@@ -32,8 +32,8 @@ $Kegiatan = query("SELECT * FROM Kegiatan");
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../../images/logo.svg" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../../images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -135,7 +135,7 @@ $Kegiatan = query("SELECT * FROM Kegiatan");
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi.php">
+            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
@@ -155,7 +155,7 @@ $Kegiatan = query("SELECT * FROM Kegiatan");
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Detail Kegiatan Sekolah</h3>
+                  <h3 class="font-weight-bold">Prestasi</h3>
                   <h6 class="font-weight-normal mb-0">Silakan cek notifikasi, kamu memiliki <span class="text-primary">3 pemberitahuan belum terbaca!</span></h6>
                 </div>
                 <div class="col-12 col-xl-4">
@@ -176,55 +176,69 @@ $Kegiatan = query("SELECT * FROM Kegiatan");
               </div>
             </div>
           </div>
-          
-          <button class="btn  mb-3 btn-sm btn-outline-primary" ><a>Tambah Data</a></button>
-          <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
+          <div class="row">
+            <button class="btn  mb-3 btn-sm btn-outline-primary" ><a>Tambah Data</a></button>
+            <br>
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card mb-3">
                 
-                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>
-                          No.
-                        </th>
-                        <th>
-                          Nama Kegiatan
-                        </th>
-                        <th>
-                          Ketua Pelaksana
-                        </th>
-                        <th>
-                          Tanggal Pelaksanaan
-                        </th>
-                        <th>
-                          Jenis Kegiatan
-                        </th>
-                        <th>
-                          Penyelenggara
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php foreach($Kegiatan as $keg) : ?>
-                      <tr>
-                        <td><?= $keg["id"]; ?></td>
-                        <td><?= $keg["nama_kegiatan"]; ?></td>
-                        <td><?= $keg["ketua_pelaksana"]; ?></td>
-                        <td><?= $keg["tanggal_pelaksanaan"]; ?></td>
-                        <td><?= $keg["jenis_kegiatan"]; ?></td>
-                        <td><?= $keg["penyelenggara"]; ?></td>
-
-                      </tr>
+                <div class="card-body pt-0">
+                  <div class=" card card-outline-primary">  
+                    <div class="row">
+                      <?php foreach($prestasi as $pre) : ?>
+                      <div class="col-md-4 pl-5 m-auto" >
+                        <div class="card-body text-center">
+                          <img src="../prestasi/img/<?= $pre["img"];?>" alt="" style="width: 300px;">
+                        </div>
+                      </div>
+                      <div class="col-md-8" style="margin:auto;">
+                        <div class="card-body">
+                          <div class="table-responsive" style="border-radius: 15px;">
+                            <table class="expandable-table table-primary" style="width: 100%;">
+                              <tr>
+                                <td style="width: 40%;">id</td>
+                                <td>:</td>
+                                <td><?= $pre["id"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Acara</td>
+                                <td>:</td>
+                                <td><?= $pre["nama_acara"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Waktu</td>
+                                <td>:</td>
+                                <td><?= $pre["tahun_acara"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Peringkat</td>
+                                <td>:</td>
+                                <td><?= $pre["peringkat"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Jenis Prestasi</td>
+                                <td>:</td>
+                                <td><?= $pre["jenis_prestasi"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Penyelenggara</td>
+                                <td>: </td>
+                                <td><?= $pre["penyelenggara"];?></td>
+                              </tr>
+                            </table>
+                            
+                          </div> 
+                        </div>
+                        
+                      </div>
+                      
                       <?php endforeach; ?>
-                    </tbody>
-                  </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-         
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->

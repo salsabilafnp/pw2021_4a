@@ -175,7 +175,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">PRAMUKA (Praja Muda Karana)</p>
-                      <a href="detail-ekskul.html">
+                      <a href="detail-ekskul.php">
                         <button class="btn btn-inverse-primary">More Info</button>
                       </a>
                     </div>
@@ -185,7 +185,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">PMR (Palang Merah Remaja)</p>
-                      <a href="detail-ekskul.html">
+                      <a href="detail-ekskul.php">
                         <button class="btn btn-inverse-primary">More Info</button>
                       </a>
                     </div>
@@ -195,7 +195,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">KIR (Karya Ilmiah Remaja)</p>
-                      <a href="detail-ekskul.html">
+                      <a href="detail-ekskul.php">
                         <button class="btn btn-inverse-primary">More Info</button>
                       </a>
                     </div>
@@ -211,7 +211,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">PASKIBRA (Pasukan Pengibar Bendera Pusaka)</p>
-                      <a href="detail-ekskul.html">
+                      <a href="detail-ekskul.php">
                         <button class="btn btn-inverse-primary">More Info</button>
                       </a>
                     </div>
@@ -221,7 +221,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">ROHIS (Rohani Islam)</p>
-                      <a href="detail-ekskul.html">
+                      <a href="detail-ekskul.php">
                         <button class="btn btn-inverse-primary">More Info</button>
                       </a>
                     </div>
@@ -231,7 +231,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">Kesenian</p>
-                      <a href="detail-ekskul.html">
+                      <a href="detail-ekskul.php">
                         <button class="btn btn-inverse-primary">More Info</button>
                       </a>
                     </div>

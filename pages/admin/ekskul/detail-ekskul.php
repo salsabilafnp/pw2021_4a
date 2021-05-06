@@ -1,3 +1,12 @@
+<?php
+require '../../php/functions.php';
+
+// Query SPP
+$ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,7 +136,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi.php">
+            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
@@ -171,7 +180,7 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
                 <div class="card-people mt-auto">
-                  <img src="../../../images/dashboard/people.svg" alt="people">
+                  <img src="../ekskul/img/pramuka.jpeg"  style="width: 100%;" >
                   <div class="card-body">
                     <h4 class="card-title">RFOFIL</h4>
                     <h4 class="fs-30 mb-6">PRAMUKA </h4>
@@ -228,159 +237,43 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
-              <h4 class="card-title">DATA ANGGOTA</h4>
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>
-                      ID Anggota
-                    </th>
-                    <th>
-                      Nama Anggota
-                    </th>
-                    <th>
-                      Jabatan Kepengurusan
-                    </th>
-                    <th>
-                      Nomor Induk
-                    </th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      Herman Beck M.pd.i
-                    </td>
-                    <td>
-                      Kamabigus
-                    </td>
-                    <td>
-                      NIP : 0088821
-                    </td>
-                    
-                  </tr>
-                  <tr>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      anggel sijabat M.pd.si
-                    </td>
-                    <td>
-                      Pembina Putri
-                    </td>
-                    <td>
-                      NIP : 0002133
-                    </td>
-                    
-                  </tr>
-                  <tr>
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      Rudi Beck S.p.Fis
-                    </td>
-                    <td>
-                      Pembina Putra
-                    </td>
-                    <td>
-                      NIP : 0066521
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      5
-                    </td>
-                    <td>
-                      syahrijal
-                    </td>
-                    <td>
-                      Ketua umum
-                    </td>
-                    <td>
-                      NISN : 0987669
-                    </td>
-                  <tr>
-                    <td>
-                        6
-                    </td>
-                    <td>
-                        vina A
-                      </td>
-                      <td>
-                        Bendahara I
-                    </td>
-                    <td>
-                     NISN : 0001234
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                        7
-                    </td>
-                    <td>
-                       Rivan alamsyah
-                    </td>
-                    <td>
-                      Bendahara II
-                    </td>
-                    <td>
-                      NISN : 0123321
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                     8
-                    </td>
-                    <td>
-                      Aldi
-                    </td>
-                    <td>
-                      Sekertaris I
-                    </td>  
-                    <td>
-                     NISN : 0099887
-                    </td>    
-                  </tr>
-                  <tr>
-                    <td>
-                      9
-                    </td>
-                    <td>
-                      Indra
-                    </td>
-                    <td>
-                      Sekertaris II
-                    </td>
-                    <td>
-                      NISN : 0088543
-                    </td>
-                    
-                  </tr>
-                  <tr>
-                    <td>
-                      10
-                    </td>
-                    <td>
-                      Nugraha
-                    </td>
-                    <td>
-                      Anggota
-                    </td>
-                    <td>
-                      NISN : 0088554
-                    </td>
-                  </tr>
-           
-                </tbody>
-              </table>
-            </div>
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Id Anggota</th>
+                              <th>Nama Anggota</th>
+                              <th>Jabatan Kepengurusan</th>
+                              <th>Jadwal Latihan</th>
+                              <th>Nomor Induk</th>
+                              <th></th>
+                            </tr>  
+                          </thead>
+                          <tbody>
+                          <?php foreach($ekstrakurikuler as $ekskul) : ?>
+                            <tr>
+                              <td><?= $ekskul["id"]; ?></td>
+                              <td><?= $ekskul["nama_anggota"]; ?></td>
+                              <td><?= $ekskul["jabatan"]; ?></td>
+                              <td><?= $ekskul["jadwal_ekskul"]; ?></td>
+                              <td><?= $ekskul["no_induk"]; ?></td>
+                              
+                            </tr>
+                          <?php endforeach; ?>
+                          </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
         <!-- content-wrapper ends -->
