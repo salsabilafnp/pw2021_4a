@@ -166,7 +166,7 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
             </div>
           </div>
           <div class="row">
-            <div class="col-md-7 grid-margin">
+            <div class="col-md-8 grid-margin">
               <div class="card py-1">
                 <div class="card-body">
                   <img src="../../../images/faces/<?= $guru["foto"]; ?>" alt="" style="width: 125px; margin-left: px; border-radius:15%;">
@@ -197,7 +197,7 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
                       <tr>
                         <td>Alamat</td>
                         <td>:</td>
-                        <td class="text-capitalize">Jalan <?= $guru['alamat_jalan']; ?>, RT/RW <?= $guru['alamat_rt']; ?>/<?= $guru['alamat_rw']; ?> No.<?= $guru['no_rumah']; ?></td>
+                        <td class="text-capitalize"><?= $guru['alamat_jalan']; ?>, RT/RW <?= $guru['alamat_rt']; ?>/<?= $guru['alamat_rw']; ?></td>
                       </tr>
                       <tr>
                         <td>Kecamatan</td>
@@ -233,11 +233,6 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
                         <td>Agama</td>
                         <td>:</td>
                         <td class="text-capitalize"><?= $guru['agama']; ?></td>
-                      </tr>
-                      <tr>
-                        <td>Jabatan</td>
-                        <td>:</td>
-                        <td class="text-capitalize"><?= $guru['jabatan']; ?></td>
                       </tr>
                       <tr>
                         <td>Mapel yang dipegang </td>

@@ -167,7 +167,7 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
             </div>
           </div>
           <div class="row">
-            <div class="col-md-7 grid-margin">
+            <div class="col-md-8 grid-margin">
               <div class="card py-1">
                 <div class="card-body">
                   <img src="../../../images/faces/<?= $siswa["foto"]; ?>" alt="" style="width: 125px; margin-left: px; border-radius:15%;">
@@ -198,7 +198,7 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
                       <tr>
                         <td>Alamat</td>
                         <td>:</td>
-                        <td class="text-capitalize">Jalan <?= $siswa['alamat_jalan']; ?>, RT/RW <?= $siswa['alamat_rt']; ?>/<?= $siswa['alamat_rw']; ?> No.<?= $siswa['no_rumah']; ?></td>
+                        <td class="text-capitalize">Jalan <?= $siswa['alamat_jalan']; ?>, RT/RW <?= $siswa['alamat_rt']; ?>/<?= $siswa['alamat_rw']; ?></td>
                       </tr>
                       <tr>
                         <td>Kecamatan</td>
