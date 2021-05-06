@@ -1,3 +1,11 @@
+<?php
+require '../../php/functions.php';
+
+// Query SPP
+$Kegiatan = query("SELECT * FROM kegiatan");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,7 +135,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi.php">
+            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
@@ -147,7 +155,7 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Detail Kegiatan Antar Kelas</h3>
+                  <h3 class="font-weight-bold">Detail Kegiatan Sekolah</h3>
                   <h6 class="font-weight-normal mb-0">Silakan cek notifikasi, kamu memiliki <span class="text-primary">3 pemberitahuan belum terbaca!</span></h6>
                 </div>
                 <div class="col-12 col-xl-4">
@@ -168,10 +176,12 @@
               </div>
             </div>
           </div>
+          
+          <button class="btn  mb-3 btn-sm btn-outline-primary" ><a>Tambah Data</a></button>
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-               
+                
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -182,63 +192,39 @@
                         <th>
                           Nama Kegiatan
                         </th>
-                        
                         <th>
                           Ketua Pelaksana
                         </th>
                         <th>
-                          Penanggung Jawab
+                          Tanggal Pelaksanaan
                         </th>
                         <th>
-                          Jadwal
+                          Jenis Kegiatan
+                        </th>
+                        <th>
+                          Penyelenggara
                         </th>
                       </tr>
                     </thead>
                     <tbody>
+                      <?php foreach($Kegiatan as $keg) : ?>
                       <tr>
-                        <td>
-                          01
-                        </td>
-                        <td>
-                          GEBYAR RAMADHAN 2021
-                        </td>
-                        <td>
-                          amelia lia
-                        </td>
-                        <td>
-                          wakasek SMA ABC
-                        </td>
-                        <td>
-                          kamis, 23 April 2021
-                        </td>
+                        <td><?= $keg["id"]; ?></td>
+                        <td><?= $keg["nama_kegiatan"]; ?></td>
+                        <td><?= $keg["ketua_pelaksana"]; ?></td>
+                        <td><?= $keg["tanggal_pelaksanaan"]; ?></td>
+                        <td><?= $keg["jenis_kegiatan"]; ?></td>
+                        <td><?= $keg["penyelenggara"]; ?></td>
 
                       </tr>
-                      <tr>
-                        
-                        <td>
-                          02
-                        </td>
-                        <td>
-                          PKS 2021
-                        </td>
-                        
-                        <td>
-                         Syafrudin umay
-                        </td>
-                        <td>
-                          Herman Beck M.pd.i
-                        </td>
-                        <td>
-                          kamis, 29 April 2021
-                        </td>
-
-                      </tr>
+                      <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
+         
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->

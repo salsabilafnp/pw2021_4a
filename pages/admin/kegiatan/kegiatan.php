@@ -128,7 +128,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi.php">
+            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
@@ -175,7 +175,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">EKSTRAKURIKULER</p>
-                      <a href="../../../pages/admin/ekskul/detail-ekskul.html">
+                      <a href="../../../pages/admin/ekskul/detail-ekskul.php">
                         <button class="btn btn-inverse-primary">Detail Kegiatan</button>
                       </a>
                     </div>
@@ -184,8 +184,8 @@
                 <div class="col-md-4 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4">KEGIATAN ANTAR SISWA</p>
-                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.html">
+                      <p class="mb-4">KEGIATAN SEKOLAH</p>
+                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.php">
                         <button class="btn btn-inverse-primary">Detail Kegiatan</button>
                       </a>
                     </div>
@@ -195,7 +195,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">KEGIATAN ANTAR KELAS</p>
-                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.html">
+                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.php">
                         <button class="btn btn-inverse-primary">Detail Kegiatan</button>
                       </a>
                     </div>
@@ -204,8 +204,8 @@
                 <div class="col-md-4 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4">GEBYAR RAMADHAN 2021</p>
-                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.html">
+                      <p class="mb-4">kEGIATAN ANTAR SISWA</p>
+                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.php">
                         <button class="btn btn-inverse-primary">Detail Kegiatan</button>
                       </a>
                     </div>
@@ -215,7 +215,7 @@
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">KEGIATAN ANTAR LUAR SEKOLAH</p>
-                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.html">
+                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.php">
                         <button class="btn btn-inverse-primary">Detail Kegiatan</button>
                       </a>
                     </div>

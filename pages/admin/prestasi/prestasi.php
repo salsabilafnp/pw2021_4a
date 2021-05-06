@@ -1,3 +1,11 @@
+<?php
+require '../../php/functions.php';
+
+// Query SPP
+$prestasi = query("SELECT * FROM prestasi");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +13,11 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Prestasi</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -75,28 +83,33 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin.html">
-              <i class="icon-grid menu-icon"></i>
+            <a class="nav-link" href="../../../pages/admin.php">
+              <i class="menu-icon mdi mdi-home"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD:pages/admin/alumni/detail-alumni.html
             <a class="nav-link" href="../../../pages/admin/guru/guru.html">
               <i class="icon-grid menu-icon"></i>
+=======
+            <a class="nav-link" href="../../../pages/admin/guru/guru.php">
+              <i class="menu-icon mdi mdi-account"></i>
+>>>>>>> 56302801224b4394d34ff9334f382d623abbe40e:pages/admin/prestasi/prestasi.php
               <span class="menu-title">Guru</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#siswa" aria-expanded="false" aria-controls="siswa">
-              <i class="icon-grid menu-icon"></i>
+              <i class="menu-icon mdi mdi-account-multiple"></i>
               <span class="menu-title">Siswa</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="siswa">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/siswa/siswa.html">Siswa Aktif</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/alumni/kelulusan.html">Kelulusan</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/alumni/alumni.html">Alumni</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/alumni.php">Alumni</a></li>
               </ul>
             </div>
           </li>
@@ -108,32 +121,32 @@
             </a>
             <div class="collapse" id="kelas">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kelas.html">Kelas</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/mapel.html">Mata Pelajaran</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/ujian.html">Ujian</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kelas.php">Kelas</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/ujian.php">Ujian</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/kegiatan/kegiatan.html">
-              <i class="icon-bar-graph menu-icon"></i>
+            <a class="nav-link" href="../../../pages/admin/kegiatan/kegiatan.php">
+              <i class="menu-icon mdi mdi-checkbox-multiple-marked-circle"></i>
               <span class="menu-title">Kegiatan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/ekskul/ekskul.html">
-              <i class="icon-paper menu-icon"></i>
+            <a class="nav-link" href="../../../pages/admin/ekskul/ekskul.php">
+              <i class="menu-icon icon-grid"></i>
               <span class="menu-title">Ekstrakurikuler</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi.html">
-              <i class="icon-paper menu-icon"></i>
+            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
+              <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/spp.html">
+            <a class="nav-link" href="../../../pages/admin/spp/spp.php">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">SPP</span>
             </a>
@@ -146,55 +159,91 @@
           <div class="row">
             <div class="col-md-12 grid-margin">
               <div class="row">
-                <div class="col-12 col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Daftar Guru</h3>
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Prestasi</h3>
+                  <h6 class="font-weight-normal mb-0">Silakan cek notifikasi, kamu memiliki <span class="text-primary">3 pemberitahuan belum terbaca!</span></h6>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                     <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                      <a class="dropdown-item" href="#">Last Month</a>
+                      <a class="dropdown-item" href="#">Last Week</a>
+                      <a class="dropdown-item" href="#">Yesterday</a>
+                      <a class="dropdown-item" href="#">Today</a>
+                    </div>
+                  </div>
+                 </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="display expandable-table" style="width: 100%;">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Foto</th>
-                          <th>NIP</th>
-                          <th>Nama</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td><img src="../../../images/faces/face1.jpg" alt="" style="width: 55px; height: auto;"></td>
-                          <td>20202010</td>
-                          <td class="text-capitalize">Jajang</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-guru.html">Profil Lengkap</a></button></td>
-                        </tr>
-                      </tbody>
-                    </table>
+            <button class="btn  mb-3 btn-sm btn-outline-primary" ><a>Tambah Data</a></button>
+            <br>
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card mb-3">
+                
+                <div class="card-body pt-0">
+                  <div class=" card card-outline-primary">  
+                    <div class="row">
+                      <?php foreach($prestasi as $pre) : ?>
+                      <div class="col-md-4 pl-5 m-auto" >
+                        <div class="card-body text-center">
+                          <img src="../prestasi/img/<?= $pre["img"];?>" alt="" style="width: 300px;">
+                        </div>
+                      </div>
+                      <div class="col-md-8" style="margin:auto;">
+                        <div class="card-body">
+                          <div class="table-responsive" style="border-radius: 15px;">
+                            <table class="expandable-table table-primary" style="width: 100%;">
+                              <tr>
+                                <td style="width: 40%;">id</td>
+                                <td>:</td>
+                                <td><?= $pre["id"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Acara</td>
+                                <td>:</td>
+                                <td><?= $pre["nama_acara"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Waktu</td>
+                                <td>:</td>
+                                <td><?= $pre["tahun_acara"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Peringkat</td>
+                                <td>:</td>
+                                <td><?= $pre["peringkat"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Jenis Prestasi</td>
+                                <td>:</td>
+                                <td><?= $pre["jenis_prestasi"];?></td>
+                              </tr>
+                              <tr>
+                                <td>Penyelenggara</td>
+                                <td>: </td>
+                                <td><?= $pre["penyelenggara"];?></td>
+                              </tr>
+                            </table>
+                            
+                          </div> 
+                        </div>
+                        
+                      </div>
+                      
+                      <?php endforeach; ?>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>     
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>       
+          </div>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
