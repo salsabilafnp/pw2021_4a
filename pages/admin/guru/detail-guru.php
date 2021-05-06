@@ -1,3 +1,15 @@
+<?php
+
+if (!isset($_GET['NIP'])) {
+  header("location: guru.php");
+}
+require 'functions.php';
+$NIP = $_GET['NIP'];
+
+$guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +21,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -19,13 +31,14 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -46,7 +59,7 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -144,62 +157,109 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="card-body">
-                      <h3 class="font-weight-bold pt-2 pl-4">Profil Guru</h3>
-                    </div>
-                  </div>
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-3 mb-xl-0">
+                  <h3 class="font-weight-bold mt-3">Profil Guru</h3>
                 </div>
-                <div class="card-body pt-0">
-                  <div class=" card card-outline-primary">  
-                    <div class="row">
-                      <div class="col-md-4 pl-5 m-auto" >
-                        <div class="card-body text-center">
-                          <img src="../../../images/faces/face1.jpg" alt="" style="width: 200px;">
-                        </div>
-                      </div>
-                      <div class="col-md-8" style="margin:auto;">
-                        <div class="card-body">
-                          <div class="table-responsive" style="border-radius: 15px;">
-                            <table class="expandable-table table-primary" style="width: 100%;">
-                              <tr>
-                                <td style="width: 40%;">NIP</td>
-                                <td>:</td>
-                                <td>1122334455</td>
-                              </tr>
-                              <tr>
-                                <td>Nama</td>
-                                <td>:</td>
-                                <td>Jajang</td>
-                              </tr>
-                              <tr>
-                                <td>TTL (Tempat, Tanggal, Lahir)</td>
-                                <td>:</td>
-                                <td>Bandung, 1 Juni 1975</td>
-                              </tr>
-                              <tr>
-                                <td>Alamat</td>
-                                <td>:</td>
-                                <td>Jalan Ciwastra, RT/03 RW/10 No.1</td>
-                              </tr>
-                              <tr>
-                                <td>Jabatan</td>
-                                <td>:</td>
-                                <td>Guru</td>
-                              </tr>
-                              <tr>
-                                <td>Mapel yang dipegang </td>
-                                <td>: </td>
-                                <td>Agama</td>
-                              </tr>
-                            </table>
-                          </div> 
-                        </div>
-                      </div>
-                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-7 grid-margin">
+              <div class="card py-1">
+                <div class="card-body">
+                  <img src="../../../images/faces/<?= $guru["foto"]; ?>" alt="" style="width: 125px; margin-left: px; border-radius:15%;">
+                </div>
+                <div class="card-body pt-1">
+                  <div class="table-responsive" style="border-radius: 15px;">
+                    <table class="expandable" style="width: 100%; font-size:14px;">
+                      <tr>
+                        <td style="width: 40%;">NIP</td>
+                        <td style="width: 6%;">:</td>
+                        <td><?= $guru['NIP']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Nama</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['nama_lengkap']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>TTL (Tempat, Tanggal, Lahir)</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['tempat_lahir']; ?>, <?= $guru['tanggal_lahir']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Jenis Kelamin</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['jenis_kelamin']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td class="text-capitalize">Jalan <?= $guru['alamat_jalan']; ?>, RT/RW <?= $guru['alamat_rt']; ?>/<?= $guru['alamat_rw']; ?> No.<?= $guru['no_rumah']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Kecamatan</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['alamat_kecamatan']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Kab/Kota</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['alamat_kab_kota']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Provinsi</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['alamat_provinsi']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Kode Pos</td>
+                        <td>:</td>
+                        <td><?= $guru['kode_pos']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>No Hp</td>
+                        <td>:</td>
+                        <td><?= $guru['no_hp']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td><?= $guru['email']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Agama</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['agama']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Jabatan</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['jabatan']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Mapel yang dipegang </td>
+                        <td>: </td>
+                        <td class="text-capitalize"><?= $guru['mapel']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Tingkat Pendidikan Terakhir</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['tingkat_pendidikan_terakhir']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Kampus Pendidikan Terkahir</td>
+                        <td>:</td>
+                        <td><?= $guru['kampus_pendidikan_terakhir']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Tahun Lulus Pendidikan Terakhir</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $guru['tahun_lulus_pendidikan_terakhir']; ?></td>
+                      </tr>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -210,7 +270,7 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Kelompok 4A<i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>
