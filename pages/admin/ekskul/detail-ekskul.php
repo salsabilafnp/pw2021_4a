@@ -1,11 +1,20 @@
 <?php
+//mengecek kode_kelas, jika tidak ada dikembalikan ke kelas.php
+if (!isset($_GET['id'])) {
+  header("location: kelas.php");
+  exit;
+}
+
 require '../../php/functions.php';
 
-// Query SPP
-$ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
+// Mengambil id dari url
+$id = $_GET['id'];
+
+// Query Ekskul
+$ekskul = query("SELECT * FROM ekstrakurikuler WHERE id = $id")[0];
+$ang_ekskul = query("SELECT * FROM anggota_ekskul");
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -182,8 +191,8 @@ $ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
                 <div class="card-people mt-auto">
                   <img src="../ekskul/img/pramuka.jpeg"  style="width: 100%;" >
                   <div class="card-body">
-                    <h4 class="card-title">RFOFIL</h4>
-                    <h4 class="fs-30 mb-6">PRAMUKA </h4>
+                    <h4 class="card-title">PROFIL</h4>
+                    <h4 class="fs-30 mb-6"><?= $ekskul["nama_ekskul"]; ?></h4>
                     <h5 class="my-3">VISI :</h5>
                     <h5 class="my-3">Gerakan pramuka sebagai wadah pilihan utama dan solusi handal masalah kaum muda</p>
                     <h5 class="my-3">MISI :</h5>
@@ -194,8 +203,6 @@ $ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
                         <button type="button" class="btn btn-social-icon btn-outline-youtube"><i class="ti-youtube"></i></button>
                       </h5>
                     </h5>
-
-                    
                   </div>
                 </div>
               </div>
@@ -250,20 +257,16 @@ $ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
                               <th>Id Anggota</th>
                               <th>Nama Anggota</th>
                               <th>Jabatan Kepengurusan</th>
-                              <th>Jadwal Latihan</th>
-                              <th>Nomor Induk</th>
                               <th></th>
-                            </tr>  
+                            </tr>
                           </thead>
                           <tbody>
-                          <?php foreach($ekstrakurikuler as $ekskul) : ?>
+                          <?php foreach($ang_ekskul as $anggota) : ?>
                             <tr>
-                              <td><?= $ekskul["id"]; ?></td>
-                              <td><?= $ekskul["nama_anggota"]; ?></td>
-                              <td><?= $ekskul["jabatan"]; ?></td>
-                              <td><?= $ekskul["jadwal_ekskul"]; ?></td>
-                              <td><?= $ekskul["no_induk"]; ?></td>
-                              
+                              <td><?= $anggota["no_induk"]; ?></td>
+                              <td><?= $anggota["nama_anggota"]; ?></td>
+                              <td><?= $anggota["jabatan"]; ?></td>
+                              <td></td>
                             </tr>
                           <?php endforeach; ?>
                           </tbody>

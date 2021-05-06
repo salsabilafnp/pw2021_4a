@@ -1,6 +1,12 @@
+<?php
+require '../../php/functions.php';
+
+// Query Ekskul
+$ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -147,8 +153,7 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Ekstrakurikuler</h3>
-                  <h6 class="font-weight-normal mb-0">Silakan cek notifikasi, kamu memiliki <span class="text-primary">3 pemberitahuan belum terbaca!</span></h6>
+                  <h3 class="font-weight-bold my-3">Ekstrakurikuler</h3>
                 </div>
                 <div class="col-12 col-xl-4">
                  <div class="justify-content-end d-flex">
@@ -171,76 +176,21 @@
           <div class="row">
             <div class="col-md-12 grid-margin transparent">
               <div class="row">
+              <?php foreach($ekstrakurikuler as $ekskul) : ?>
                 <div class="col-md-4 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4">PRAMUKA (Praja Muda Karana)</p>
-                      <a href="detail-ekskul.php">
+                      <p class="mb-4"><?= $ekskul["nama_ekskul"]; ?></p>
+                      <a href="../../../pages/admin/ekskul/detail-ekskul.php?id=<?= $ekskul["id"]; ?>">
                         <button class="btn btn-inverse-primary">More Info</button>
                       </a>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">PMR (Palang Merah Remaja)</p>
-                      <a href="detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">More Info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">KIR (Karya Ilmiah Remaja)</p>
-                      <a href="detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">More Info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              <?php endforeach; ?>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin transparent">
-              <div class="row">
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">PASKIBRA (Pasukan Pengibar Bendera Pusaka)</p>
-                      <a href="detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">More Info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">ROHIS (Rohani Islam)</p>
-                      <a href="detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">More Info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">Kesenian</p>
-                      <a href="detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">More Info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
+          </div>          
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
