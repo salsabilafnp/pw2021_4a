@@ -236,6 +236,7 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
                         <td>Agama</td>
                         <td>:</td>
                         <td class="text-capitalize"><?= $siswa['agama']; ?></td>
+                        <hr>
                       </tr>
                       <tr>
                         <td>Asal Sekolah</td>
