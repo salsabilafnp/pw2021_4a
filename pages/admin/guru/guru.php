@@ -32,8 +32,8 @@ $guru = query("SELECT * FROM guru");
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -54,7 +54,7 @@ $guru = query("SELECT * FROM guru");
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -164,11 +164,12 @@ $guru = query("SELECT * FROM guru");
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                  <a href="tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
                   <div class="table-responsive">
                     <table class="display expandable-table" style="width: 100%;">
                       <thead>
                         <tr>
-                          <th>#</th>
+                          <th></th>
                           <th>Foto</th>
                           <th>NIP</th>
                           <th>Nama</th>
@@ -176,16 +177,19 @@ $guru = query("SELECT * FROM guru");
                         </tr>
                       </thead>
                       <tbody>
-                        <?php $i = 1 ?>
                         <?php foreach ($guru as $gru) : ?>
                           <tr>
-                            <td><?= $i ?></td>
-                            <td><img src="../../../images/faces/<?= $gru["foto"]; ?>" alt="" style="width: 55px; height: auto;"></td>
+                            <td>
+                              <a href="edit.php"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
+                              <a href="hapus.php"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                            </td>
+                            <td><img src="../../../images/faces/<?= $gru["foto"]; ?>" alt="" style="width: 50px; height: auto;"></td>
                             <td><?= $gru["NIP"]; ?></td>
-                            <td class="text-capitalize"><?= $gru["nama_lengkap"]; ?></td>
-                            <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-guru.php?NIP=<?= $gru['NIP'] ?>">Profil Lengkap</a></button></td>
+                            <td class="text-capitalize"><?= $gru["nama"]; ?></td>
+                            <td>
+                              <a class="text-light" href="detail-guru.php?NIP=<?= $gru['NIP'] ?>"><button type="button" class="btn btn-sm btn-info">Profil Lengkap</button></a>
+                            </td>
                           </tr>
-                          <?php $i++ ?>
                         <?php endforeach; ?>
                       </tbody>
                     </table>

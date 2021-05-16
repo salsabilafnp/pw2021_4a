@@ -1,10 +1,21 @@
 <?php
+
 require '../../php/functions.php';
 
-// Query Kelas
-$kelas10 = query("SELECT * FROM kelas WHERE tingkat = 10");
-$kelas11 = query("SELECT * FROM kelas WHERE tingkat = 11");
-$kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
+if (isset($_POST['tambahguru'])) {
+  if (tambahguru($_POST) > 0) {
+    echo
+    "<script>
+      alert('Data Berhasil Ditambahkan');
+      document.location.href = 'guru.php';
+    </script>";
+  } else {
+    "<script>
+      alert('Data Gagal Ditambahkan');
+      document.location.href = 'guru.php';
+    </script>";
+  }
+}
 
 ?>
 
@@ -15,7 +26,7 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Daftar Kelas</title>
+  <title>Skydash Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
@@ -157,146 +168,145 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
           <div class="row">
             <div class="col-md-12 grid-margin">
               <div class="row">
-                <div class="col-12 col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Daftar Kelas</h3>
-                </div>
-                <div class="col-12 col-xl-4">
-                  <div class="justify-content-end d-flex">
-                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                      <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i class="mdi mdi-calendar"></i>Today (10 Jan 2021)
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="#">Last Month</a>
-                        <a class="dropdown-item" href="#">Last Week</a>
-                        <a class="dropdown-item" href="#">Yesterday</a>
-                        <a class="dropdown-item" href="#">Today</a>
-                      </div>
-                    </div>
-                  </div>
+                <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
+                  <h3 class="font-weight-bold mt-3">Tambah Data Guru</h3>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+            <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title mb-3">Kelas 10</p>
-                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>Kelas</th>
-                              <th>Wali Kelas</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php foreach ($kelas10 as $kls10) : ?>
-                              <tr>
-                                <td>
-                                  <i class="mdi mdi-tooltip-edit"></i>
-                                  <i class="mdi mdi-delete"></i>
-                                </td>
-                                <td class="font-weight-bold"><?= $kls10["kode_kelas"]; ?></td>
-                                <td><?= $kls10["walikelas"]; ?></td>
-                                <td>
-                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls10["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
-                                </td>
-                              </tr>
-                            <?php endforeach; ?>
-                          </tbody>
-                        </table>
+                  <form class="forms" action="" method="post">
+                    <div class="form-group row">
+                      <label for="NIP" class="col-sm-2 col-form-label">NIP</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="NIP" name="NIP" required>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-3">Kelas 11</p>
-                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>Kelas</th>
-                              <th>Wali Kelas</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php foreach ($kelas11 as $kls11) : ?>
-                              <tr>
-                                <td>
-                                  <i class="mdi mdi-tooltip-edit"></i>
-                                  <i class="mdi mdi-delete"></i>
-                                </td>
-                                <td class="font-weight-bold"><?= $kls11["kode_kelas"]; ?></td>
-                                <td><?= $kls11["walikelas"]; ?></td>
-                                <td>
-                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls11["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
-                                </td>
-                              </tr>
-                            <?php endforeach; ?>
-                          </tbody>
-                        </table>
+                    <div class="form-group row">
+                      <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap">
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-3">Kelas 12</p>
-                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>Kelas</th>
-                              <th>Wali Kelas</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php foreach ($kelas12 as $kls12) : ?>
-                              <tr>
-                                <td>
-                                  <i class="mdi mdi-tooltip-edit"></i>
-                                  <i class="mdi mdi-delete"></i>
-                                </td>
-                                <td class="font-weight-bold"><?= $kls12["kode_kelas"]; ?></td>
-                                <td><?= $kls12["walikelas"]; ?></td>
-                                <td>
-                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls12["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
-                                </td>
-                              </tr>
-                            <?php endforeach; ?>
-                          </tbody>
-                        </table>
+                    <div class="form-group">
+                      <div class="row">
+                        <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Bandung" required>
+                        </div>
+                        <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
+                        <div class="col-sm-3">
+                          <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                    <div class="form-group row">
+                      <label for="jenis_kelamin" class="col-sm-2 col-form-label">Kelamin</label>
+                      <div class="col-sm-3">
+                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
+                          <option value="perempuan">Perempuan</option>
+                          <option value="laki-laki">Laki-laki</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="agama" class="col-sm-2 col-form-label">Agama</label>
+                      <div class="col-sm-10">
+                        <input type="agama" class="form-control" id="agama" name="agama" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="email" class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="no_hp" class="col-sm-2 col-form-label">No HP</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="no_hp" name="no_hp" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="foto" class="col-sm-2 col-form-label">foto</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="foto" name="foto" required>
+                      </div>
+                    </div>
+                    <p class="card-title">Alamat</p>
+                    <div class="form-group">
+                      <div class="row">
+                        <label for="alamat_jalan" class="col-sm-2 col-form-label">Jalan</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="alamat_jalan" name="alamat_jalan" required>
+                        </div>
+                        <label for="alamat_rt" class="col-form-label">RT</label>
+                        <div class="col-sm-2">
+                          <input type="text" class="form-control" name="alamat_rt" id="alamat_rt" required>
+                        </div>
+                        <label for="alamat_rw" class="col-form-label">RW</label>
+                        <div class="col-sm-2">
+                          <input type="text" class="form-control" name="alamat_rw" id="alamat_rw" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="alamat_kecamatan" class="col-sm-2 col-form-label">Kecamatan</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" name="alamat_kecamatan" id="alamat_kecamatan" placeholder="Buahbatu" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="alamat_kab_kota" class="col-sm-2 col-form-label">Kab/Kota</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" name="alamat_kab_kota" id="alamat_kab_kota" placeholder="Kota Bandung" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="alamat_provinsi" class="col-sm-2 col-form-label">Provinsi</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" name="alamat_provinsi" id="alamat_provinsi" placeholder="Jawa Barat" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="kode_pos" class="col-sm-2 col-form-label">Kode Pos</label>
+                      <div class="col-sm-2">
+                        <input type="text" class="form-control" name="kode_pos" id="kode_pos" required>
+                      </div>
+                    </div>
+                    <p class="card-title">Pendidikan</p>
+                    <div class="form-group row">
+                      <label for="mapel" class="col-sm-4 col-form-label">Mapel yang dipegang</label>
+                      <div class="col-sm-8">
+                        <input type="number" class="form-control" name="mapel" id="mapel" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="tingkat_pendidikan_terakhir" class="col-sm-4 col-form-label">Tingkat Pendidikan Terakhir</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="tingkat_pendidikan_terakhir" id="tingkat_pendidikan_terakhir" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="kampus_pendidikan_terakhir" class="col-sm-4 col-form-label">Kampus Pendidikan Terakhir</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="kampus_pendidikan_terakhir" id="kampus_pendidikan_terakhir" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="tahun_lulus_pendidikan_terakhir" class="col-sm-4 col-form-label">Tahun Lulus Pendidikan Terakhir</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="tahun_lulus_pendidikan_terakhir" id="tahun_lulus_pendidikan_terakhir" required>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2" name="tambahguru">Simpan</button>
+                    <button type="submit" class="btn btn-light">
+                      <a href="guru.php">Batal</a>
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
