@@ -1,18 +1,20 @@
 <?php
 
 require '../../php/functions.php';
+$id = $_GET['id'];
+$gru = query("SELECT * FROM guru WHERE id = $id")[0];
 
-if (isset($_POST['tambahguru'])) {
-  if (tambahguru($_POST) > 0) {
+if (isset($_POST['ubah'])) {
+  if (ubahguru($_POST) > 0) {
     echo
     "<script>
-      alert('Data Berhasil Ditambahkan');
+      alert('Data Berhasil Diubah');
       document.location.href = 'guru.php';
     </script>";
   } else {
     echo
     "<script>
-      alert('Data Gagal Ditambahkan');
+      alert('Data Gagal Diubah');
       document.location.href = 'guru.php';
     </script>";
   }
@@ -170,7 +172,7 @@ if (isset($_POST['tambahguru'])) {
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Tambah Data Guru</h3>
+                  <h3 class="font-weight-bold mt-3">Ubah Data Guru</h3>
                 </div>
               </div>
             </div>
@@ -180,61 +182,62 @@ if (isset($_POST['tambahguru'])) {
               <div class="card">
                 <div class="card-body">
                   <form class="forms" action="" method="post">
+                    <input type="hidden" name="id" id="id" value="<?= $gru['id']; ?>">
                     <div class="form-group row">
                       <label for="NIP" class="col-sm-2 col-form-label">NIP</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="NIP" name="NIP" required>
+                        <input type="text" class="form-control" id="NIP" name="NIP" required value="<?= $gru['NIP']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= $gru['nama']; ?>">
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
                         <div class="col-sm-4">
-                          <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Bandung" required>
+                          <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Bandung" required value="<?= $gru['tempat_lahir']; ?>">
                         </div>
                         <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-3">
-                          <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                          <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="yyyy/mm/d" required value="<?= $gru['tanggal_lahir']; ?>">
                         </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="jenis_kelamin" class="col-sm-2 col-form-label">Kelamin</label>
                       <div class="col-sm-3">
-                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
-                          <option value="perempuan">Perempuan</option>
+                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required value="<?= $gru['jenis_kelamin']; ?>">
                           <option value="laki-laki">Laki-laki</option>
+                          <option value="perempuan">Perempuan</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="agama" class="col-sm-2 col-form-label">Agama</label>
                       <div class="col-sm-10">
-                        <input type="agama" class="form-control" id="agama" name="agama" required>
+                        <input type="agama" class="form-control" id="agama" name="agama" required value="<?= $gru['agama']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="email" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" value="<?= $gru['email']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="no_hp" class="col-sm-2 col-form-label">No HP</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_hp" name="no_hp" required>
+                        <input type="text" class="form-control" id="no_hp" name="no_hp" required value="<?= $gru['no_hp']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="foto" class="col-sm-2 col-form-label">foto</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="foto" name="foto" required>
+                        <input type="text" class="form-control" id="foto" name="foto" required value="<?= $gru['foto']; ?>">
                       </div>
                     </div>
                     <p class="card-title">Alamat</p>
@@ -242,68 +245,68 @@ if (isset($_POST['tambahguru'])) {
                       <div class="row">
                         <label for="alamat_jalan" class="col-sm-2 col-form-label">Jalan</label>
                         <div class="col-sm-4">
-                          <input type="text" class="form-control" id="alamat_jalan" name="alamat_jalan" required>
+                          <input type="text" class="form-control" id="alamat_jalan" name="alamat_jalan" required value="<?= $gru['alamat_jalan']; ?>">
                         </div>
                         <label for="alamat_rt" class="col-form-label">RT</label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" name="alamat_rt" id="alamat_rt" required>
+                          <input type="text" class="form-control" name="alamat_rt" id="alamat_rt" required value="<?= $gru['alamat_rt']; ?>">
                         </div>
                         <label for="alamat_rw" class="col-form-label">RW</label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" name="alamat_rw" id="alamat_rw" required>
+                          <input type="text" class="form-control" name="alamat_rw" id="alamat_rw" required value="<?= $gru['alamat_rw']; ?>">
                         </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="alamat_kecamatan" class="col-sm-2 col-form-label">Kecamatan</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" name="alamat_kecamatan" id="alamat_kecamatan" placeholder="Buahbatu" required>
+                        <input type="text" class="form-control" name="alamat_kecamatan" id="alamat_kecamatan" placeholder="Buahbatu" required value="<?= $gru['alamat_kecamatan']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="alamat_kab_kota" class="col-sm-2 col-form-label">Kab/Kota</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" name="alamat_kab_kota" id="alamat_kab_kota" placeholder="Kota Bandung" required>
+                        <input type="text" class="form-control" name="alamat_kab_kota" id="alamat_kab_kota" placeholder="Kota Bandung" required value="<?= $gru['alamat_kab_kota']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="alamat_provinsi" class="col-sm-2 col-form-label">Provinsi</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" name="alamat_provinsi" id="alamat_provinsi" placeholder="Jawa Barat" required>
+                        <input type="text" class="form-control" name="alamat_provinsi" id="alamat_provinsi" placeholder="Jawa Barat" required value="<?= $gru['alamat_provinsi']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="kode_pos" class="col-sm-2 col-form-label">Kode Pos</label>
                       <div class="col-sm-2">
-                        <input type="text" class="form-control" name="kode_pos" id="kode_pos" required>
+                        <input type="text" class="form-control" name="kode_pos" id="kode_pos" required value="<?= $gru['kode_pos']; ?>">
                       </div>
                     </div>
                     <p class="card-title">Pendidikan</p>
                     <div class="form-group row">
                       <label for="mapel" class="col-sm-4 col-form-label">Mapel yang dipegang</label>
                       <div class="col-sm-8">
-                        <input type="number" class="form-control" name="mapel" id="mapel" required>
+                        <input type="number" class="form-control" name="mapel" id="mapel" value="<?= $gru['mapel']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="tingkat_pendidikan_terakhir" class="col-sm-4 col-form-label">Tingkat Pendidikan Terakhir</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="tingkat_pendidikan_terakhir" id="tingkat_pendidikan_terakhir" required>
+                        <input type="text" class="form-control" name="tingkat_pendidikan_terakhir" id="tingkat_pendidikan_terakhir" required value="<?= $gru['tingkat_pendidikan_terakhir']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="kampus_pendidikan_terakhir" class="col-sm-4 col-form-label">Kampus Pendidikan Terakhir</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="kampus_pendidikan_terakhir" id="kampus_pendidikan_terakhir" required>
+                        <input type="text" class="form-control" name="kampus_pendidikan_terakhir" id="kampus_pendidikan_terakhir" value="<?= $gru['kampus_pendidikan_terakhir']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="tahun_lulus_pendidikan_terakhir" class="col-sm-4 col-form-label">Tahun Lulus Pendidikan Terakhir</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="tahun_lulus_pendidikan_terakhir" id="tahun_lulus_pendidikan_terakhir" required>
+                        <input type="text" class="form-control" name="tahun_lulus_pendidikan_terakhir" id="tahun_lulus_pendidikan_terakhir" required value="<?= $gru['tahun_lulus_pendidikan_terakhir']; ?>">
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="tambahguru">Simpan</button>
+                    <button type="submit" class="btn btn-primary mr-2" name="ubah">Simpan</button>
                     <a href="guru.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>

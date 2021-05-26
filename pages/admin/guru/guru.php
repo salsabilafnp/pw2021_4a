@@ -180,8 +180,8 @@ $guru = query("SELECT * FROM guru");
                         <?php foreach ($guru as $gru) : ?>
                           <tr>
                             <td>
-                              <a href="edit.php"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
-                              <a href="hapus.php"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                              <a href="ubah.php?id=<?= $gru['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
+                              <a href="hapus.php?id=<?= $gru['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
                             </td>
                             <td><img src="../../../images/faces/<?= $gru["foto"]; ?>" alt="" style="width: 50px; height: auto;"></td>
                             <td><?= $gru["NIP"]; ?></td>

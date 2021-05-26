@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2021 at 07:59 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Waktu pembuatan: 26 Bulan Mei 2021 pada 17.09
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ekstrakurikuler`
+-- Struktur dari tabel `ekstrakurikuler`
 --
 
 CREATE TABLE `ekstrakurikuler` (
@@ -34,7 +34,7 @@ CREATE TABLE `ekstrakurikuler` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ekstrakurikuler`
+-- Dumping data untuk tabel `ekstrakurikuler`
 --
 
 INSERT INTO `ekstrakurikuler` (`id`, `nama_ekskul`, `jadwal_ekskul`) VALUES
@@ -48,13 +48,14 @@ INSERT INTO `ekstrakurikuler` (`id`, `nama_ekskul`, `jadwal_ekskul`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `guru`
+-- Struktur dari tabel `guru`
 --
 
 CREATE TABLE `guru` (
+  `id` int(11) NOT NULL,
   `NIP` int(11) NOT NULL,
   `foto` varchar(100) NOT NULL,
-  `nama_lengkap` varchar(200) NOT NULL,
+  `nama` varchar(200) NOT NULL,
   `tempat_lahir` varchar(200) NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `jenis_kelamin` varchar(200) NOT NULL,
@@ -75,17 +76,17 @@ CREATE TABLE `guru` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `guru`
+-- Dumping data untuk tabel `guru`
 --
 
-INSERT INTO `guru` (`NIP`, `foto`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat_jalan`, `alamat_rt`, `alamat_rw`, `alamat_kecamatan`, `alamat_kab_kota`, `alamat_provinsi`, `kode_pos`, `no_hp`, `email`, `agama`, `tingkat_pendidikan_terakhir`, `kampus_pendidikan_terakhir`, `tahun_lulus_pendidikan_terakhir`, `mapel`) VALUES
-(123456789, 'face2.jpg', 'Dewi Siska, S.Pd, M.Pd', 'Garut', '1980-06-06', 'Perempuan', 'Jl. Dr. Setiabudi No.193', '010', '001', 'Sukasari', 'Kota Bandung', 'Jawa Barat', 40153, '081123456789', 'dewisiska@mail.com', 'Islam', 'S2', 'Universitas XYZ', 2015, 2),
-(987654321, 'face1.jpg', 'Budi Setiawan, S.IP, M.Pd', 'Sukabumi', '1975-10-10', 'Laki-laki', 'Jl. Dr. Setiabudi No.193', '012', '002', 'Sukasari', 'Kota Bandung', 'Jawa Barat', 40153, '084123456789', 'budisetiawan@mail.com', 'Islam', 'S2', 'Universitas PQR', 2012, 1);
+INSERT INTO `guru` (`id`, `NIP`, `foto`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat_jalan`, `alamat_rt`, `alamat_rw`, `alamat_kecamatan`, `alamat_kab_kota`, `alamat_provinsi`, `kode_pos`, `no_hp`, `email`, `agama`, `tingkat_pendidikan_terakhir`, `kampus_pendidikan_terakhir`, `tahun_lulus_pendidikan_terakhir`, `mapel`) VALUES
+(1, 123456789, 'face16.jpg', 'sulaya bagja, S.Pd, M.Pd', 'Garut', '1980-06-06', 'laki-laki', 'Jl. Dr. Setiabudi No.193', '010', '001', 'Sukasari', 'Kota Bandung', 'Jawa Barat', 40153, '081123456789', 'sulayabagja@mail.com', 'Islam', 'S2', 'Universitas XYZ', 2015, 2),
+(2, 987654321, 'face21.jpg', 'Budi Setiawan, S.IP, M.Pd', 'Sukabumi', '1975-10-10', 'Laki-laki', 'Jl. Dr. Setiabudi No.193', '012', '002', 'Sukasari', 'Kota Bandung', 'Jawa Barat', 40153, '084123456789', 'budisetiawan@mail.com', 'Islam', 'S2', 'Universitas PQR', 2012, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kegiatan`
+-- Struktur dari tabel `kegiatan`
 --
 
 CREATE TABLE `kegiatan` (
@@ -98,7 +99,7 @@ CREATE TABLE `kegiatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kegiatan`
+-- Dumping data untuk tabel `kegiatan`
 --
 
 INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `ketua_pelaksana`, `tanggal_pelaksanaan`, `jenis_kegiatan`, `penyelenggara`) VALUES
@@ -112,7 +113,7 @@ INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `ketua_pelaksana`, `tanggal_pelak
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelas`
+-- Struktur dari tabel `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -124,7 +125,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kelas`
+-- Dumping data untuk tabel `kelas`
 --
 
 INSERT INTO `kelas` (`kode_kelas`, `tingkat`, `jurusan`, `rombel`, `walikelas`) VALUES
@@ -138,7 +139,7 @@ INSERT INTO `kelas` (`kode_kelas`, `tingkat`, `jurusan`, `rombel`, `walikelas`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelulusan`
+-- Struktur dari tabel `kelulusan`
 --
 
 CREATE TABLE `kelulusan` (
@@ -152,7 +153,7 @@ CREATE TABLE `kelulusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kelulusan`
+-- Dumping data untuk tabel `kelulusan`
 --
 
 INSERT INTO `kelulusan` (`id`, `NIS`, `no_ijazah`, `no_skhun`, `nilai_ijazah`, `nilai_skhun`, `nilai_akhir`) VALUES
@@ -161,7 +162,7 @@ INSERT INTO `kelulusan` (`id`, `NIS`, `no_ijazah`, `no_skhun`, `nilai_ijazah`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembayaran_spp`
+-- Struktur dari tabel `pembayaran_spp`
 --
 
 CREATE TABLE `pembayaran_spp` (
@@ -174,7 +175,7 @@ CREATE TABLE `pembayaran_spp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pembayaran_spp`
+-- Dumping data untuk tabel `pembayaran_spp`
 --
 
 INSERT INTO `pembayaran_spp` (`NIS`, `tahun_masuk`, `kode_struk`, `tgl_bayar`, `total_bayar`, `sisa_bayar`) VALUES
@@ -185,7 +186,7 @@ INSERT INTO `pembayaran_spp` (`NIS`, `tahun_masuk`, `kode_struk`, `tgl_bayar`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prestasi`
+-- Struktur dari tabel `prestasi`
 --
 
 CREATE TABLE `prestasi` (
@@ -199,7 +200,7 @@ CREATE TABLE `prestasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `prestasi`
+-- Dumping data untuk tabel `prestasi`
 --
 
 INSERT INTO `prestasi` (`id`, `img`, `nama_acara`, `tahun_acara`, `peringkat`, `jenis_prestasi`, `penyelenggara`) VALUES
@@ -209,7 +210,7 @@ INSERT INTO `prestasi` (`id`, `img`, `nama_acara`, `tahun_acara`, `peringkat`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `siswa`
+-- Struktur dari tabel `siswa`
 --
 
 CREATE TABLE `siswa` (
@@ -243,7 +244,7 @@ CREATE TABLE `siswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `siswa`
+-- Dumping data untuk tabel `siswa`
 --
 
 INSERT INTO `siswa` (`NIS`, `nama_siswa`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat_jalan`, `alamat_rt`, `alamat_rw`, `alamat_kecamatan`, `alamat_kab_kota`, `alamat_provinsi`, `kode_pos`, `no_hp`, `email`, `agama`, `asal_sekolah`, `no_ijazah`, `tanggal_masuk`, `nama_ayah`, `tanggal_lahir_ayah`, `alamat_ayah`, `pekerjaan_ayah`, `nama_ibu`, `tanggal_lahir_ibu`, `alamat_ibu`, `pekerjaan_ibu`, `kelas`) VALUES
@@ -254,7 +255,7 @@ INSERT INTO `siswa` (`NIS`, `nama_siswa`, `tempat_lahir`, `tanggal_lahir`, `jeni
 -- --------------------------------------------------------
 
 --
--- Table structure for table `spp`
+-- Struktur dari tabel `spp`
 --
 
 CREATE TABLE `spp` (
@@ -263,7 +264,7 @@ CREATE TABLE `spp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `spp`
+-- Dumping data untuk tabel `spp`
 --
 
 INSERT INTO `spp` (`tahun_masuk`, `total_spp`) VALUES
@@ -274,7 +275,7 @@ INSERT INTO `spp` (`tahun_masuk`, `total_spp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ujian`
+-- Struktur dari tabel `ujian`
 --
 
 CREATE TABLE `ujian` (
@@ -292,31 +293,31 @@ CREATE TABLE `ujian` (
 --
 
 --
--- Indexes for table `ekstrakurikuler`
+-- Indeks untuk tabel `ekstrakurikuler`
 --
 ALTER TABLE `ekstrakurikuler`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `guru`
+-- Indeks untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  ADD PRIMARY KEY (`NIP`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kelas`
+-- Indeks untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`kode_kelas`);
 
 --
--- Indexes for table `kelulusan`
+-- Indeks untuk tabel `kelulusan`
 --
 ALTER TABLE `kelulusan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pembayaran_spp`
+-- Indeks untuk tabel `pembayaran_spp`
 --
 ALTER TABLE `pembayaran_spp`
   ADD PRIMARY KEY (`kode_struk`),
@@ -324,57 +325,57 @@ ALTER TABLE `pembayaran_spp`
   ADD KEY `spp` (`tahun_masuk`);
 
 --
--- Indexes for table `siswa`
+-- Indeks untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`NIS`);
 
 --
--- Indexes for table `spp`
+-- Indeks untuk tabel `spp`
 --
 ALTER TABLE `spp`
   ADD PRIMARY KEY (`tahun_masuk`);
 
 --
--- Indexes for table `ujian`
+-- Indeks untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
   ADD PRIMARY KEY (`kode_ujian`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `ekstrakurikuler`
+-- AUTO_INCREMENT untuk tabel `ekstrakurikuler`
 --
 ALTER TABLE `ekstrakurikuler`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `guru`
+-- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `NIP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=987654322;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `kelulusan`
+-- AUTO_INCREMENT untuk tabel `kelulusan`
 --
 ALTER TABLE `kelulusan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `ujian`
+-- AUTO_INCREMENT untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
   MODIFY `kode_ujian` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `pembayaran_spp`
+-- Ketidakleluasaan untuk tabel `pembayaran_spp`
 --
 ALTER TABLE `pembayaran_spp`
   ADD CONSTRAINT `siswa.spp` FOREIGN KEY (`NIS`) REFERENCES `siswa` (`NIS`),
