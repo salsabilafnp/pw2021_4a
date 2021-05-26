@@ -164,7 +164,7 @@ $guru = query("SELECT * FROM guru");
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <a href="tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
+                  <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
                   <div class="table-responsive">
                     <table class="display expandable-table" style="width: 100%;">
                       <thead>
@@ -180,8 +180,8 @@ $guru = query("SELECT * FROM guru");
                         <?php foreach ($guru as $gru) : ?>
                           <tr>
                             <td>
-                              <a href="ubah.php?id=<?= $gru['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
-                              <a href="hapus.php?id=<?= $gru['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                              <a href="php/ubah.php?id=<?= $gru['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
+                              <a href="php/hapus.php?id=<?= $gru['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
                             </td>
                             <td><img src="../../../images/faces/<?= $gru["foto"]; ?>" alt="" style="width: 50px; height: auto;"></td>
                             <td><?= $gru["NIP"]; ?></td>

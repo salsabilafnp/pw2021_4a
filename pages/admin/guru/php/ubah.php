@@ -1,19 +1,21 @@
 <?php
 
-require '../../php/functions.php';
+require 'functions.php';
+$id = $_GET['id'];
+$gru = query("SELECT * FROM guru WHERE id = $id")[0];
 
-if (isset($_POST['tambahguru'])) {
-  if (tambahguru($_POST) > 0) {
+if (isset($_POST['ubah'])) {
+  if (ubahguru($_POST) > 0) {
     echo
     "<script>
-      alert('Data Berhasil Ditambahkan');
-      document.location.href = 'guru.php';
+      alert('Data Berhasil Diubah');
+      document.location.href = '../guru.php';
     </script>";
   } else {
     echo
     "<script>
-      alert('Data Gagal Ditambahkan');
-      document.location.href = 'guru.php';
+      alert('Data Gagal Diubah');
+      document.location.href = '../guru.php';
     </script>";
   }
 }
@@ -29,17 +31,17 @@ if (isset($_POST['tambahguru'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Skydash Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../../../../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../../../../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../../../vendors/mdi/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../../css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../../images/favicon.png" />
+  <link rel="shortcut icon" href="../../../../images/favicon.png" />
 </head>
 
 <body>
@@ -47,8 +49,8 @@ if (isset($_POST['tambahguru'])) {
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -69,7 +71,7 @@ if (isset($_POST['tambahguru'])) {
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile" />
+              <img src="../../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -98,13 +100,13 @@ if (isset($_POST['tambahguru'])) {
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin.php">
+            <a class="nav-link" href="../../../../pages/admin.php">
               <i class="menu-icon mdi mdi-home"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/guru/guru.php">
+            <a class="nav-link" href="../../../../pages/admin/guru/guru.php">
               <i class="menu-icon mdi mdi-account"></i>
               <span class="menu-title">Guru</span>
             </a>
@@ -117,9 +119,9 @@ if (isset($_POST['tambahguru'])) {
             </a>
             <div class="collapse" id="siswa">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/alumni.php">Alumni</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/alumni/alumni.php">Alumni</a></li>
               </ul>
             </div>
           </li>
@@ -131,32 +133,32 @@ if (isset($_POST['tambahguru'])) {
             </a>
             <div class="collapse" id="kelas">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kelas.php">Kelas</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/ujian.php">Ujian</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/kelas.php">Kelas</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/ujian.php">Ujian</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/kegiatan/kegiatan.php">
+            <a class="nav-link" href="../../../../pages/admin/kegiatan/kegiatan.php">
               <i class="menu-icon mdi mdi-checkbox-multiple-marked-circle"></i>
               <span class="menu-title">Kegiatan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/ekskul/ekskul.php">
+            <a class="nav-link" href="../../../../pages/admin/ekskul/ekskul.php">
               <i class="menu-icon icon-grid"></i>
               <span class="menu-title">Ekstrakurikuler</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
+            <a class="nav-link" href="../../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/spp/spp.php">
+            <a class="nav-link" href="../../../../pages/admin/spp/spp.php">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">SPP</span>
             </a>
@@ -170,7 +172,7 @@ if (isset($_POST['tambahguru'])) {
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Tambah Data Guru</h3>
+                  <h3 class="font-weight-bold mt-3">Ubah Data Guru</h3>
                 </div>
               </div>
             </div>
@@ -180,61 +182,62 @@ if (isset($_POST['tambahguru'])) {
               <div class="card">
                 <div class="card-body">
                   <form class="forms" action="" method="post">
+                    <input type="hidden" name="id" id="id" value="<?= $gru['id']; ?>">
                     <div class="form-group row">
                       <label for="NIP" class="col-sm-2 col-form-label">NIP</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="NIP" name="NIP" required>
+                        <input type="text" class="form-control" id="NIP" name="NIP" required value="<?= $gru['NIP']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= $gru['nama']; ?>">
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
                         <div class="col-sm-4">
-                          <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Bandung" required>
+                          <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Bandung" required value="<?= $gru['tempat_lahir']; ?>">
                         </div>
                         <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-3">
-                          <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                          <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="yyyy/mm/d" required value="<?= $gru['tanggal_lahir']; ?>">
                         </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="jenis_kelamin" class="col-sm-2 col-form-label">Kelamin</label>
                       <div class="col-sm-3">
-                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
-                          <option value="perempuan">Perempuan</option>
+                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required value="<?= $gru['jenis_kelamin']; ?>">
                           <option value="laki-laki">Laki-laki</option>
+                          <option value="perempuan">Perempuan</option>
                         </select>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="agama" class="col-sm-2 col-form-label">Agama</label>
                       <div class="col-sm-10">
-                        <input type="agama" class="form-control" id="agama" name="agama" required>
+                        <input type="agama" class="form-control" id="agama" name="agama" required value="<?= $gru['agama']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="email" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" value="<?= $gru['email']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="no_hp" class="col-sm-2 col-form-label">No HP</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_hp" name="no_hp" required>
+                        <input type="text" class="form-control" id="no_hp" name="no_hp" required value="<?= $gru['no_hp']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="foto" class="col-sm-2 col-form-label">foto</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="foto" name="foto" required>
+                        <input type="text" class="form-control" id="foto" name="foto" required value="<?= $gru['foto']; ?>">
                       </div>
                     </div>
                     <p class="card-title">Alamat</p>
@@ -242,69 +245,69 @@ if (isset($_POST['tambahguru'])) {
                       <div class="row">
                         <label for="alamat_jalan" class="col-sm-2 col-form-label">Jalan</label>
                         <div class="col-sm-4">
-                          <input type="text" class="form-control" id="alamat_jalan" name="alamat_jalan" required>
+                          <input type="text" class="form-control" id="alamat_jalan" name="alamat_jalan" required value="<?= $gru['alamat_jalan']; ?>">
                         </div>
                         <label for="alamat_rt" class="col-form-label">RT</label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" name="alamat_rt" id="alamat_rt" required>
+                          <input type="text" class="form-control" name="alamat_rt" id="alamat_rt" required value="<?= $gru['alamat_rt']; ?>">
                         </div>
                         <label for="alamat_rw" class="col-form-label">RW</label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" name="alamat_rw" id="alamat_rw" required>
+                          <input type="text" class="form-control" name="alamat_rw" id="alamat_rw" required value="<?= $gru['alamat_rw']; ?>">
                         </div>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="alamat_kecamatan" class="col-sm-2 col-form-label">Kecamatan</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" name="alamat_kecamatan" id="alamat_kecamatan" placeholder="Buahbatu" required>
+                        <input type="text" class="form-control" name="alamat_kecamatan" id="alamat_kecamatan" placeholder="Buahbatu" required value="<?= $gru['alamat_kecamatan']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="alamat_kab_kota" class="col-sm-2 col-form-label">Kab/Kota</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" name="alamat_kab_kota" id="alamat_kab_kota" placeholder="Kota Bandung" required>
+                        <input type="text" class="form-control" name="alamat_kab_kota" id="alamat_kab_kota" placeholder="Kota Bandung" required value="<?= $gru['alamat_kab_kota']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="alamat_provinsi" class="col-sm-2 col-form-label">Provinsi</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" name="alamat_provinsi" id="alamat_provinsi" placeholder="Jawa Barat" required>
+                        <input type="text" class="form-control" name="alamat_provinsi" id="alamat_provinsi" placeholder="Jawa Barat" required value="<?= $gru['alamat_provinsi']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="kode_pos" class="col-sm-2 col-form-label">Kode Pos</label>
                       <div class="col-sm-2">
-                        <input type="text" class="form-control" name="kode_pos" id="kode_pos" required>
+                        <input type="text" class="form-control" name="kode_pos" id="kode_pos" required value="<?= $gru['kode_pos']; ?>">
                       </div>
                     </div>
                     <p class="card-title">Pendidikan</p>
                     <div class="form-group row">
                       <label for="mapel" class="col-sm-4 col-form-label">Mapel yang dipegang</label>
                       <div class="col-sm-8">
-                        <input type="number" class="form-control" name="mapel" id="mapel" required>
+                        <input type="number" class="form-control" name="mapel" id="mapel" value="<?= $gru['mapel']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="tingkat_pendidikan_terakhir" class="col-sm-4 col-form-label">Tingkat Pendidikan Terakhir</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="tingkat_pendidikan_terakhir" id="tingkat_pendidikan_terakhir" required>
+                        <input type="text" class="form-control" name="tingkat_pendidikan_terakhir" id="tingkat_pendidikan_terakhir" required value="<?= $gru['tingkat_pendidikan_terakhir']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="kampus_pendidikan_terakhir" class="col-sm-4 col-form-label">Kampus Pendidikan Terakhir</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="kampus_pendidikan_terakhir" id="kampus_pendidikan_terakhir" required>
+                        <input type="text" class="form-control" name="kampus_pendidikan_terakhir" id="kampus_pendidikan_terakhir" value="<?= $gru['kampus_pendidikan_terakhir']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="tahun_lulus_pendidikan_terakhir" class="col-sm-4 col-form-label">Tahun Lulus Pendidikan Terakhir</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="tahun_lulus_pendidikan_terakhir" id="tahun_lulus_pendidikan_terakhir" required>
+                        <input type="text" class="form-control" name="tahun_lulus_pendidikan_terakhir" id="tahun_lulus_pendidikan_terakhir" required value="<?= $gru['tahun_lulus_pendidikan_terakhir']; ?>">
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="tambahguru">Simpan</button>
-                    <a href="guru.php"><button type="button" class="btn btn-light">Batal</button></a>
+                    <button type="submit" class="btn btn-primary mr-2" name="ubah">Simpan</button>
+                    <a href="../guru.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>
               </div>
@@ -328,25 +331,25 @@ if (isset($_POST['tambahguru'])) {
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="../../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../../../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../../vendors/chart.js/Chart.min.js"></script>
-  <script src="../../../vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="../../../js/dataTables.select.min.js"></script>
+  <script src="../../../../vendors/chart.js/Chart.min.js"></script>
+  <script src="../../../../vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="../../../../js/dataTables.select.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="../../../js/off-canvas.js"></script>
-  <script src="../../../js/hoverable-collapse.js"></script>
-  <script src="../../../js/template.js"></script>
-  <script src="../../../js/settings.js"></script>
-  <script src="../../../js/todolist.js"></script>
+  <script src="../../../../js/off-canvas.js"></script>
+  <script src="../../../../js/hoverable-collapse.js"></script>
+  <script src="../../../../js/template.js"></script>
+  <script src="../../../../js/settings.js"></script>
+  <script src="../../../../js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="../../../js/dashboard.js"></script>
-  <script src="../../../js/Chart.roundedBarCharts.js"></script>
+  <script src="../../../../js/dashboard.js"></script>
+  <script src="../../../../js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
 
