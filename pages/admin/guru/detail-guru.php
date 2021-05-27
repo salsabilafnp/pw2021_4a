@@ -184,7 +184,7 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
                       <tr>
                         <td>Nama</td>
                         <td>:</td>
-                        <td class="text-capitalize"><?= $guru['nama']; ?></td>
+                        <td class="text-capitalize"><?= $guru['nama_lengkap']; ?></td>
                       </tr>
                       <tr>
                         <td>TTL (Tempat, Tanggal, Lahir)</td>

@@ -110,7 +110,7 @@ function ubah_mapel($data)
   $kelas = htmlspecialchars($data['kelas']);
   $jurusan = htmlspecialchars($data['jurusan']);
 
-  $query = "UPDATE mata_pelajaran SET
+  $query = "UPDATE mata_pelajaran` SET
               nama_mapel = '$nama_mapel',
               kelas = '$kelas',
               jurusan = '$jurusan'

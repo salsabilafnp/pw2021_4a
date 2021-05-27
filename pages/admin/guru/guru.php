@@ -185,7 +185,7 @@ $guru = query("SELECT * FROM guru");
                             </td>
                             <td><img src="../../../images/faces/<?= $gru["foto"]; ?>" alt="" style="width: 50px; height: auto;"></td>
                             <td><?= $gru["NIP"]; ?></td>
-                            <td class="text-capitalize"><?= $gru["nama"]; ?></td>
+                            <td class="text-capitalize"><?= $gru["nama_lengkap"]; ?></td>
                             <td>
                               <a class="text-light" href="detail-guru.php?NIP=<?= $gru['NIP'] ?>"><button type="button" class="btn btn-sm btn-info">Profil Lengkap</button></a>
                             </td>
