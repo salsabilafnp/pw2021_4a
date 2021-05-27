@@ -19,7 +19,6 @@ function query($sql)
     }
     return $rows;
 }
-<<<<<<< HEAD
 
 // Registrasi
 function registrasi($data) {
@@ -45,5 +44,3 @@ function registrasi($data) {
 
     return mysqli_affected_rows($conn);
 }
-=======
->>>>>>> 3a4b0ab50622fe359ef634944ce0d1b7911587e3
