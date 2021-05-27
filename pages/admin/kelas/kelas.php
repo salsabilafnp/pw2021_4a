@@ -1,5 +1,12 @@
 <?php
-require '../../php/functions.php';
+session_start();
+
+if (!isset($_SESSION["username"])) {
+  header("location: ../../login.php");
+  exit;
+}
+
+require 'php/functions.php';
 
 // Query Kelas
 $kelas10 = query("SELECT * FROM kelas WHERE tingkat = 10");
@@ -10,6 +17,7 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -18,7 +26,7 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -28,13 +36,14 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -55,7 +64,7 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -152,26 +161,14 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Daftar Kelas</h3>
-                </div>
-                <div class="col-12 col-xl-4">
-                 <div class="justify-content-end d-flex">
-                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                     <i class="mdi mdi-calendar"></i>Today (10 Jan 2021)
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                      <a class="dropdown-item" href="#">Last Month</a>
-                      <a class="dropdown-item" href="#">Last Week</a>
-                      <a class="dropdown-item" href="#">Yesterday</a>
-                      <a class="dropdown-item" href="#">Today</a>
-                    </div>
-                  </div>
-                 </div>
+          <div class="row mb-3">
+            <div class="col-12 col-md-8">
+              <h3 class="font-weight-bold mt-3 text-center">Daftar Kelas</h3>
+            </div>
+            <div class="col-12 col-md-4 align-self-center">
+              <div class="justify-content-center d-flex">
+                <div class="flex-xl-grow-0">
+                  <a href="php/tambah_kelas.php" class="btn btn-primary">Tambah Data</a>
                 </div>
               </div>
             </div>
@@ -181,7 +178,6 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-3">Kelas 10</p>
-                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -195,34 +191,35 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
                             </tr>
                           </thead>
                           <tbody>
-                          <?php foreach($kelas10 as $kls10) : ?>
-                            <tr>
-                              <td>
-                                <i class="mdi mdi-tooltip-edit"></i>
-                                <i class="mdi mdi-delete"></i>
-                              </td>
-                              <td class="font-weight-bold"><?= $kls10["kode_kelas"]; ?></td>
-                              <td><?= $kls10["walikelas"]; ?></td>
-                              <td>
-                                <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls10["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
-                              </td>
-                            </tr>
-                          <?php endforeach; ?>
+                            <?php foreach ($kelas10 as $kls10) : ?>
+                              <tr>
+                                <td class="w-25" style="width: fit-content;">
+                                  <!-- Ubah -->
+                                  <a href="php/ubah_kelas.php?kode_kelas=<?= $kls10['kode_kelas']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                  <!-- Hapus -->
+                                  <a href="php/hapus.php?kode_kelas=<?= $kls10['kode_kelas']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                </td>
+                                <td class="font-weight-bold"><?= $kls10["kode_kelas"]; ?></td>
+                                <td><?= $kls10["walikelas"]; ?></td>
+                                <td>
+                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls10["kode_kelas"]; ?>" class="btn btn-sm btn-info">Lihat Kelas</a>
+                                </td>
+                              </tr>
+                            <?php endforeach; ?>
                           </tbody>
-                      </table>
+                        </table>
                       </div>
                     </div>
                   </div>
-                  </div>
                 </div>
               </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-3">Kelas 11</p>
-                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -236,34 +233,33 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
                             </tr>
                           </thead>
                           <tbody>
-                          <?php foreach($kelas11 as $kls11) : ?>
-                            <tr>
-                              <td>
-                                <i class="mdi mdi-tooltip-edit"></i>
-                                <i class="mdi mdi-delete"></i>
-                              </td>
-                              <td class="font-weight-bold"><?= $kls11["kode_kelas"]; ?></td>
-                              <td><?= $kls11["walikelas"]; ?></td>
-                              <td>
-                                <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls11["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
-                              </td>
-                            </tr>
-                          <?php endforeach; ?>
+                            <?php foreach ($kelas11 as $kls11) : ?>
+                              <tr>
+                                <td class="w-25" style="width: fit-content;">
+                                  <a href="php/ubah_kelas.php?kode_kelas=<?= $kls11['kode_kelas']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                  <a href="php/hapus.php?kode_kelas=<?= $kls11['kode_kelas']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                </td>
+                                <td class="font-weight-bold"><?= $kls11["kode_kelas"]; ?></td>
+                                <td><?= $kls11["walikelas"]; ?></td>
+                                <td>
+                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls11["kode_kelas"]; ?>" class="btn btn-sm btn-info">Lihat Kelas</a>
+                                </td>
+                              </tr>
+                            <?php endforeach; ?>
                           </tbody>
-                      </table>
+                        </table>
                       </div>
                     </div>
                   </div>
-                  </div>
                 </div>
               </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-3">Kelas 12</p>
-                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -277,34 +273,34 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
                             </tr>
                           </thead>
                           <tbody>
-                          <?php foreach($kelas12 as $kls12) : ?>
-                            <tr>
-                              <td>
-                                <i class="mdi mdi-tooltip-edit"></i>
-                                <i class="mdi mdi-delete"></i>
-                              </td>
-                              <td class="font-weight-bold"><?= $kls12["kode_kelas"]; ?></td>
-                              <td><?= $kls12["walikelas"]; ?></td>
-                              <td>
-                                <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls12["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
-                              </td>
-                            </tr>
-                          <?php endforeach; ?>
+                            <?php foreach ($kelas12 as $kls12) : ?>
+                              <tr>
+                                <td class="w-25" style="width: fit-content;">
+                                  <a href="php/ubah_kelas.php?kode_kelas=<?= $kls12['kode_kelas']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                  <a href="php/hapus.php?kode_kelas=<?= $kls12['kode_kelas']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                </td>
+                                <td class="font-weight-bold"><?= $kls12["kode_kelas"]; ?></td>
+                                <td><?= $kls12["walikelas"]; ?></td>
+                                <td>
+                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls12["kode_kelas"]; ?>" class="btn btn-sm btn-info">Lihat Kelas</a>
+                                </td>
+                              </tr>
+                            <?php endforeach; ?>
                           </tbody>
-                      </table>
+                        </table>
                       </div>
                     </div>
                   </div>
-                  </div>
                 </div>
               </div>
+            </div>
           </div>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Kelompok 4A<i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>

@@ -1,3 +1,21 @@
+<?php
+require 'php/functions.php';
+
+if (isset($_POST["register"])) {
+
+  if (registrasi($_POST) > 0) {
+    echo "<script>
+                alert('Registrasi Berhasil');
+                document.location.href = 'login.php';
+            </script>";
+  } else {
+    echo "<script>
+                alert('Registrasi Gagal');
+            </script>";
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,14 +23,12 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Registrasi</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
   <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
@@ -25,33 +41,17 @@
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div class="auth-form-light text-left p-5 px-sm-5">
               <div class="brand-logo">
                 <img src="../images/logo.svg" alt="logo">
               </div>
               <h4>New here?</h4>
               <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form class="pt-3">
+              <form class="pt-1" action="" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <select class="form-control form-control-lg" id="exampleFormControlSelect2">
-                    <option>Country</option>
-                    <option>United States of America</option>
-                    <option>United Kingdom</option>
-                    <option>India</option>
-                    <option>Germany</option>
-                    <option>Argentina</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="mb-4">
+                  <input type="text" class="form-control form-control-lg" name="username" placeholder="Username" required>
+                  <input type="password" class="form-control form-control-lg my-3" name="password1" placeholder="Password" required>
+                  <input type="password" class="form-control form-control-lg my-3" name="password2" placeholder="Confirm Password" required>
                   <div class="form-check">
                     <label class="form-check-label text-muted">
                       <input type="checkbox" class="form-check-input">
@@ -59,10 +59,13 @@
                     </label>
                   </div>
                 </div>
-                <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../pages/admin.php">SIGN UP</a>
+                <div class="my-3">
+                  <button type="submit" name="register" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                 </div>
-                <div class="text-center mt-4 font-weight-light">
+                <!-- Back -->
+                <a href="../index.html" class="btn btn-block btn-outline-secondary">Back</a>
+                <!-- Login -->
+                <div class="text-center mt-3 font-weight-light">
                   Already have an account? <a href="../pages/login.php" class="text-primary">Login</a>
                 </div>
               </form>
