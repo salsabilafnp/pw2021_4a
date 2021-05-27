@@ -1,6 +1,7 @@
 <?php
 // Koneksi ke database
-function koneksi() {
+function koneksi()
+{
     $conn = mysqli_connect("localhost", "root", "");
     mysqli_select_db($conn, "sekolah");
 
@@ -8,7 +9,8 @@ function koneksi() {
 }
 
 // Melakukan Query
-function query($sql) {
+function query($sql)
+{
     $conn = koneksi();
     $result = mysqli_query($conn, $sql);
     $rows = [];
@@ -17,6 +19,7 @@ function query($sql) {
     }
     return $rows;
 }
+<<<<<<< HEAD
 
 // Registrasi
 function registrasi($data) {
@@ -42,3 +45,5 @@ function registrasi($data) {
 
     return mysqli_affected_rows($conn);
 }
+=======
+>>>>>>> 3a4b0ab50622fe359ef634944ce0d1b7911587e3

@@ -176,8 +176,8 @@ $Kegiatan = query("SELECT * FROM kegiatan");
               </div>
             </div>
           </div>
+          <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a> 
           
-          <button class="btn  mb-3 btn-sm btn-outline-primary" ><a>Tambah Data</a></button>
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
@@ -185,11 +185,15 @@ $Kegiatan = query("SELECT * FROM kegiatan");
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
+                          
                       <tr>
+                          
                         <th>
+                           
                           No.
                         </th>
                         <th>
+
                           Nama Kegiatan
                         </th>
                         <th>
@@ -203,7 +207,8 @@ $Kegiatan = query("SELECT * FROM kegiatan");
                         </th>
                         <th>
                           Penyelenggara
-                        </th>
+                        </th>                              
+                        
                       </tr>
                     </thead>
                     <tbody>
@@ -215,10 +220,12 @@ $Kegiatan = query("SELECT * FROM kegiatan");
                         <td><?= $keg["tanggal_pelaksanaan"]; ?></td>
                         <td><?= $keg["jenis_kegiatan"]; ?></td>
                         <td><?= $keg["penyelenggara"]; ?></td>
-
+                         
                       </tr>
                       <?php endforeach; ?>
                     </tbody>
+                    <a href="php/ubah.php" class="mdi mdi-transcribe"></a>
+                    <a href="php/hapus.php" class="mdi mdi-delete"></a>
                   </table>
                 </div>
               </div>

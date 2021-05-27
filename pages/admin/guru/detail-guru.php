@@ -39,8 +39,8 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -61,7 +61,7 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -168,13 +168,13 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 grid-margin">
+            <div class="col-md-8 grid-margin mx-auto">
               <div class="card py-1">
-                <div class="card-body">
-                  <img src="../../../images/faces/<?= $guru["foto"]; ?>" alt="" style="width: 125px; margin-left: px; border-radius:15%;">
+                <div class="card-body mx-auto " style="padding: 1px; margin: 40px 0px;">
+                  <img src="../../../images/faces/<?= $guru["foto"]; ?>" alt="" style="width: 140px;">
                 </div>
-                <div class="card-body pt-1">
-                  <div class="table-responsive" style="border-radius: 15px;">
+                <div class="card-body pt-0">
+                  <div class="table-responsive p-3 bg-light text-dark" style=" border-radius: 2px;">
                     <table class="expandable" style="width: 100%; font-size:14px;">
                       <tr>
                         <td style="width: 40%;">NIP</td>
@@ -184,7 +184,7 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
                       <tr>
                         <td>Nama</td>
                         <td>:</td>
-                        <td class="text-capitalize"><?= $guru['nama_lengkap']; ?></td>
+                        <td class="text-capitalize"><?= $guru['nama']; ?></td>
                       </tr>
                       <tr>
                         <td>TTL (Tempat, Tanggal, Lahir)</td>
@@ -197,7 +197,7 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
                         <td class="text-capitalize"><?= $guru['jenis_kelamin']; ?></td>
                       </tr>
                       <tr>
-                        <td>Alamat</td>
+                        <td>Alamat Lengkap</td>
                         <td>:</td>
                         <td class="text-capitalize"><?= $guru['alamat_jalan']; ?>, RT/RW <?= $guru['alamat_rt']; ?>/<?= $guru['alamat_rw']; ?></td>
                       </tr>
@@ -236,9 +236,15 @@ $guru = query("SELECT * FROM guru WHERE NIP = $NIP")[0];
                         <td>:</td>
                         <td class="text-capitalize"><?= $guru['agama']; ?></td>
                       </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="table-responsive p-3 bg-light text-dark" style=" border-radius: 2px;">
+                    <table class="expandable" style="width: 100%; font-size:14px;">
                       <tr>
-                        <td>Mapel yang dipegang </td>
-                        <td>: </td>
+                        <td style="width: 40%;">Mapel yang dipegang </td>
+                        <td style="width: 6%;">:</td>
                         <td class="text-capitalize"><?= $guru['mapel']; ?></td>
                       </tr>
                       <tr>
