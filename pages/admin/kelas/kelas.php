@@ -127,7 +127,7 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
             <div class="collapse" id="kelas">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kelas.php">Kelas</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kls.php">Mata Pelajaran</a></li>
                 <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/ujian.php">Ujian</a></li>
               </ul>
             </div>
@@ -198,15 +198,11 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
                                   <a href="php/ubah_kelas.php?kode_kelas=<?= $kls10['kode_kelas']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
                                   <!-- Hapus -->
                                   <a href="php/hapus.php?kode_kelas=<?= $kls10['kode_kelas']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
-                                  <?= $mapel["nama_mapel"]; ?>
-                                <td>
-                                  <i class="mdi mdi-tooltip-edit"></i>
-                                  <i class="mdi mdi-delete"></i>
                                 </td>
                                 <td class="font-weight-bold"><?= $kls10["kode_kelas"]; ?></td>
                                 <td><?= $kls10["walikelas"]; ?></td>
                                 <td>
-                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls10["kode_kelas"]; ?>" class="btn btn-sm btn-info">Lihat Kelas</a>
+
                                   <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls10["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
                                 </td>
                               </tr>
@@ -240,23 +236,14 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
                           <tbody>
                             <?php foreach ($kelas11 as $kls11) : ?>
                               <tr>
-                                <<<<<<< HEAD <td class="w-25" style="width: fit-content;">
+                                <td class="w-25" style="width: fit-content;">
                                   <a href="php/ubah_kelas.php?kode_kelas=<?= $kls11['kode_kelas']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
                                   <a href="php/hapus.php?kode_kelas=<?= $kls11['kode_kelas']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
-                                  =======
-                                  <td>
-                                    <i class="mdi mdi-tooltip-edit"></i>
-                                    <i class="mdi mdi-delete"></i>
-                                    >>>>>>> 3a4b0ab50622fe359ef634944ce0d1b7911587e3
-                                  </td>
-                                  <td class="font-weight-bold"><?= $kls11["kode_kelas"]; ?></td>
-                                  <td><?= $kls11["walikelas"]; ?></td>
-                                  <td>
-                                    <<<<<<< HEAD <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls11["kode_kelas"]; ?>" class="btn btn-sm btn-info">Lihat Kelas</a>
-                                      =======
-                                      <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls11["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
-                                      >>>>>>> 3a4b0ab50622fe359ef634944ce0d1b7911587e3
-                                  </td>
+                                <td class="font-weight-bold"><?= $kls11["kode_kelas"]; ?></td>
+                                <td><?= $kls11["walikelas"]; ?></td>
+                                <td>
+                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls11["kode_kelas"]; ?>" class="btn btn-sm btn-info">Lihat Kelas</a>
+                                </td>
                               </tr>
                             <?php endforeach; ?>
                           </tbody>
@@ -288,23 +275,14 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
                           <tbody>
                             <?php foreach ($kelas12 as $kls12) : ?>
                               <tr>
-                                <<<<<<< HEAD <td class="w-25" style="width: fit-content;">
+                                <td class="w-25" style="width: fit-content;">
                                   <a href="php/ubah_kelas.php?kode_kelas=<?= $kls12['kode_kelas']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
                                   <a href="php/hapus.php?kode_kelas=<?= $kls12['kode_kelas']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
-                                  =======
-                                  <td>
-                                    <i class="mdi mdi-tooltip-edit"></i>
-                                    <i class="mdi mdi-delete"></i>
-                                    >>>>>>> 3a4b0ab50622fe359ef634944ce0d1b7911587e3
-                                  </td>
-                                  <td class="font-weight-bold"><?= $kls12["kode_kelas"]; ?></td>
-                                  <td><?= $kls12["walikelas"]; ?></td>
-                                  <td>
-                                    <<<<<<< HEAD <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls12["kode_kelas"]; ?>" class="btn btn-sm btn-info">Lihat Kelas</a>
-                                      =======
-                                      <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls12["kode_kelas"]; ?>"><button class="btn btn-sm btn-info">Lihat Kelas</button></a>
-                                      >>>>>>> 3a4b0ab50622fe359ef634944ce0d1b7911587e3
-                                  </td>
+                                <td class="font-weight-bold"><?= $kls12["kode_kelas"]; ?></td>
+                                <td><?= $kls12["walikelas"]; ?></td>
+                                <td>
+                                  <a href="../../../pages/admin/kelas/detail-kelas.php?kode=<?= $kls12["kode_kelas"]; ?>" class="btn btn-sm btn-info">Lihat Kelas</a>
+                                </td>
                               </tr>
                             <?php endforeach; ?>
                           </tbody>
