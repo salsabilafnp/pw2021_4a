@@ -182,8 +182,9 @@ $prestasi = query("SELECT * FROM prestasi");
             </div>
           </div>
           <div class="row">
-            <button class="btn  mb-3 btn-sm btn-outline-primary" ><a>Tambah Data</a></button>
+            <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
             <br>
+            
             <div class="col-12 grid-margin stretch-card">
               <div class="card mb-3">
                 
@@ -229,6 +230,14 @@ $prestasi = query("SELECT * FROM prestasi");
                                 <td>Penyelenggara</td>
                                 <td>: </td>
                                 <td><?= $pre["penyelenggara"];?></td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <a href="php/ubah.php" class="mdi mdi-transcribe"></a>
+                                  <a href="php/hapus.php" class="mdi mdi-delete"></a>
+                                  
+                                </td>
+                                
                               </tr>
                             </table>
                             

@@ -1,18 +1,10 @@
 <?php
-//mengecek kode_kelas, jika tidak ada dikembalikan ke kelas.php
-if (!isset($_GET['id'])) {
-  header("location: kelas.php");
-  exit;
-}
 
 require '../../php/functions.php';
 
-// Mengambil id dari url
-$id = $_GET['id'];
+// Query SPP
+$Kegiatan = query("SELECT * FROM ekstrakurikuler");
 
-// Query Ekskul
-$ekskul = query("SELECT * FROM ekstrakurikuler WHERE id = $id")[0];
-$ang_ekskul = query("SELECT * FROM anggota_ekskul");
 
 ?>
 
@@ -180,7 +172,7 @@ $ang_ekskul = query("SELECT * FROM anggota_ekskul");
                       <a class="dropdown-item" href="#">Today</a>
                     </div>
                   </div>
-                 </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -192,7 +184,7 @@ $ang_ekskul = query("SELECT * FROM anggota_ekskul");
                   <img src="../ekskul/img/pramuka.jpeg"  style="width: 100%;" >
                   <div class="card-body">
                     <h4 class="card-title">PROFIL</h4>
-                    <h4 class="fs-30 mb-6"><?= $ekskul["nama_ekskul"]; ?></h4>
+                    <h4 class="fs-30 mb-6">PRAMUKA</h4>
                     <h5 class="my-3">VISI :</h5>
                     <h5 class="my-3">Gerakan pramuka sebagai wadah pilihan utama dan solusi handal masalah kaum muda</p>
                     <h5 class="my-3">MISI :</h5>
