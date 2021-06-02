@@ -31,7 +31,7 @@ function hapus_ekskul($id)
 }
 
 // Tambah Data Kegiatan
-function tambahekskul($data)
+function tambah_ekskul($data)
 {
   $conn = koneksi();
   $id = htmlspecialchars($data['id']);
@@ -39,7 +39,7 @@ function tambahekskul($data)
   $jabatan = htmlspecialchars($data['ketua_pelaksana']);
   $jadwal_ekskul = htmlspecialchars($data['tanggal_Pelaksana']);
   $no_induk = htmlspecialchars($data['jenis_kegiatan']);
-  
+
   $query = "INSERT INTO ekstrakurikuler VALUES
                 ('', $id', '$nama_anggota', '$jabatan', '$jadwal_ekskul', '$no_induk')";
 
@@ -49,15 +49,15 @@ function tambahekskul($data)
 }
 
 // Ubah Data Kegiatan
-function ubahekskul($data)
+function ubah_ekskul($data)
 {
-    $conn = koneksi();
-    $id = htmlspecialchars($data['id']);
-    $nama_anggota = htmlspecialchars($data['nama_anggota']);
-    $jabatan = htmlspecialchars($data['jabatan']);
-    $jadwal_ekskul = htmlspecialchars($data['jadwal_ekskul']);
-    $no_induk = htmlspecialchars($data['no_induk']);
-  
+  $conn = koneksi();
+  $id = htmlspecialchars($data['id']);
+  $nama_anggota = htmlspecialchars($data['nama_anggota']);
+  $jabatan = htmlspecialchars($data['jabatan']);
+  $jadwal_ekskul = htmlspecialchars($data['jadwal_ekskul']);
+  $no_induk = htmlspecialchars($data['no_induk']);
+
   $query = "UPDATE ekstrakurikuler SET
               
               nama_anggota = '$nama_anggota',

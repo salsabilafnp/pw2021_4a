@@ -127,7 +127,7 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
             <div class="collapse" id="kelas">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kelas.php">Kelas</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kls.php">Mata Pelajaran</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
                 <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/ujian.php">Ujian</a></li>
               </ul>
             </div>
@@ -197,7 +197,7 @@ $kelas12 = query("SELECT * FROM kelas WHERE tingkat = 12");
                                   <!-- Ubah -->
                                   <a href="php/ubah_kelas.php?kode_kelas=<?= $kls10['kode_kelas']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
                                   <!-- Hapus -->
-                                  <a href="php/hapus.php?kode_kelas=<?= $kls10['kode_kelas']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                  <a href="php/hapus_kelas.php?kode_kelas=<?= $kls10['kode_kelas']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
                                 </td>
                                 <td class="font-weight-bold"><?= $kls10["kode_kelas"]; ?></td>
                                 <td><?= $kls10["walikelas"]; ?></td>

@@ -3,7 +3,7 @@
 require 'functions.php';
 
 if (isset($_POST['tambahekskul'])) {
-  if (tambahekskul($_POST) > 0) {
+  if (tambah_ekskul($_POST) > 0) {
     echo
     "<script>
       alert('Data Berhasil Ditambahkan');
@@ -169,7 +169,7 @@ if (isset($_POST['tambahekskul'])) {
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Hapus Data Ekstrakurikuler</h3>
+                  <h3 class="font-weight-bold mt-3">Tambah Ekstrakurikuler</h3>
                 </div>
               </div>
             </div>
@@ -191,7 +191,7 @@ if (isset($_POST['tambahekskul'])) {
                         <input type="text" class="form-control" id="nama_anggota" name="nama_anggota" placeholder="Nama Anggota">
                       </div>
                     </div>
-                   
+
                     <div class="form-group row">
                       <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
                       <div class="col-sm-10">
@@ -207,11 +207,11 @@ if (isset($_POST['tambahekskul'])) {
                     <div class="form-group row">
                       <label for="no_induk" class="col-sm-2 col-form-label">No Induk</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_induk" name="no_induk" >
+                        <input type="text" class="form-control" id="no_induk" name="no_induk">
                       </div>
                     </div>
-                    
-                    
+
+
                     <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
                     <a href="../ekskul.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>

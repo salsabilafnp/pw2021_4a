@@ -196,9 +196,7 @@ $Kegiatan = query("SELECT * FROM kegiatan");
 
                           Nama Kegiatan
                         </th>
-                        <th>
-                          Ketua Pelaksana
-                        </th>
+                        
                         <th>
                           Tanggal Pelaksanaan
                         </th>
@@ -216,7 +214,6 @@ $Kegiatan = query("SELECT * FROM kegiatan");
                       <tr>
                         <td><?= $keg["id"]; ?></td>
                         <td><?= $keg["nama_kegiatan"]; ?></td>
-                        <td><?= $keg["ketua_pelaksana"]; ?></td>
                         <td><?= $keg["tanggal_pelaksanaan"]; ?></td>
                         <td><?= $keg["jenis_kegiatan"]; ?></td>
                         <td><?= $keg["penyelenggara"]; ?></td>

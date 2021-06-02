@@ -85,7 +85,7 @@ function tambah_mapel($data)
   $kelas = htmlspecialchars($data['kelas']);
   $jurusan = htmlspecialchars($data['jurusan']);
 
-  $query = "INSERT INTO mata_pelajaran VALUES ('', '$nama_mapel', $kelas, '$jurusan', 0, 0)";
+  $query = "INSERT INTO mata_pelajaran VALUES ('', '$nama_mapel', $kelas, '$jurusan',)";
 
   mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
@@ -110,11 +110,64 @@ function ubah_mapel($data)
   $kelas = htmlspecialchars($data['kelas']);
   $jurusan = htmlspecialchars($data['jurusan']);
 
-  $query = "UPDATE mata_pelajaran` SET
+  $query = "UPDATE mata_pelajaran SET
               nama_mapel = '$nama_mapel',
               kelas = '$kelas',
               jurusan = '$jurusan'
               WHERE id = $id;";
+
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
+
+// Tambah Ujian
+function tambah_ujian($data)
+{
+  $conn = koneksi();
+
+  $mapel = htmlspecialchars($data['mapel']);
+  $tgl_waktu_ujian = htmlspecialchars($data['tgl_waktu_ujian']);
+  $jenis_ujian = htmlspecialchars($data['jenis_ujian']);
+  $kode_soal = htmlspecialchars($data['kode_soal']);
+  $kode_ljk = htmlspecialchars($data['kode_ljk']);
+  $kode_ruangan = htmlspecialchars($data['kode_ruangan']);
+
+  $query = "INSERT INTO ujian VALUES ('$mapel', '$tgl_waktu_ujian', '$jenis_ujian', $kode_soal, '$kode_ljk', '$kode_ruangan')";
+
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
+
+// Hapus Ujian
+function hapus_ujian($id)
+{
+  $conn = koneksi();
+
+  mysqli_query($conn, "DELETE FROM ujian WHERE kode_ujian = $id") or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
+
+// Ubah Ujian
+function ubah_ujian($data)
+{
+  $conn = koneksi();
+
+  $kode_ujian = $data['kode_ujian'];
+  $mapel = htmlspecialchars($data['mapel']);
+  $tgl_waktu_ujian = htmlspecialchars($data['tgl_waktu_ujian']);
+  $jenis_ujian = htmlspecialchars($data['jenis_ujian']);
+  $kode_soal = htmlspecialchars($data['kode_soal']);
+  $kode_ljk = htmlspecialchars($data['kode_ljk']);
+  $kode_ruangan = htmlspecialchars($data['kode_ruangan']);
+
+  $query = "UPDATE ujian SET
+              mapel = '$mapel',
+              tgl_waktu_ujian = '$tgl_waktu_ujian',
+              jenis_ujian = '$jenis_ujian',
+              kode_soal = '$kode_soal',
+              kode_ljk = '$kode_ljk',
+              kode_ruangan = '$kode_ruangan'
+              WHERE kode_ujian = $kode_ujian;";
 
   mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
