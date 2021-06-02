@@ -1,3 +1,10 @@
+<?php
+require '../../php/functions.php';
+
+$alumni = query("SELECT * FROM alumni");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +12,11 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Daftar Alumni</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -19,13 +26,14 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -46,7 +54,7 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -156,43 +164,33 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                  <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
                   <div class="table-responsive">
                     <table class="display expandable-table" style="width: 100%;">
                       <thead>
                         <tr>
-                          <th>#</th>
-                          <th>Foto</th>
-                          <th>NIS</th>
+                          <th></th>
+                          <th>NISN</th>
                           <th>Nama</th>
                           <th>Tahun Lulus</th>
                           <th></th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr id="1">
-                          <td>1</td>
-                          <td><img src="../../../images/faces/face1.jpg" alt="" style="width: 55px; height: auto;"></td>
-                          <td>20202010</td>
-                          <td>Jajang</td>
-                          <td>2015</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.php">Profil Lengkap</a></button></td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td><img src="../../../images/faces/face2.jpg" alt="" style="width: 55px; height: auto;"></td>
-                          <td>20201010</td>
-                          <td>Esih</td>
-                          <td>2016</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.php">Profil Lengkap</a></button></td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td><img src="../../../images/faces/face3.jpg" alt="" style="width: 55px; height: auto;"></td>
-                          <td>20201010</td>
-                          <td>Esih</td>
-                          <td>2016</td>
-                          <td><button type="button" class="btn btn-info" style="width: 125px; height: 35px; padding: 10px;"><a class="small text-light" href="detail-alumni.php">Profil Lengkap</a></button></td>
-                        </tr>
+                        <?php foreach ($alumni as $alm) : ?>
+                          <tr>
+                            <td>
+                              <a href="php/ubah.php?id=<?= $alm['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
+                              <a href="php/hapus.php?id=<?= $alm['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                            </td>
+                            <td><?= $alm["NISN"]; ?></td>
+                            <td class="text-capitalize"><?= $alm["nama"]; ?></td>
+                            <td> <?= $alm['tahun_lulus']; ?></td>
+                            <td>
+                              <a class="text-light" href="detail-alumni.php?id=<?= $alm['id'] ?>"><button type="button" class="btn btn-sm btn-info">Profil Lengkap</button></a>
+                            </td>
+                          </tr>
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>
@@ -218,7 +216,7 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Kelompok 4A<i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>

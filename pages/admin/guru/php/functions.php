@@ -34,9 +34,10 @@ function hapus_guru($id)
 function tambahguru($data)
 {
   $conn = koneksi();
+
   $NIP = htmlspecialchars($data['NIP']);
   $foto = htmlspecialchars($data['foto']);
-  $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
+  $nama = htmlspecialchars($data['nama_lengkap']);
   $tempat_lahir = htmlspecialchars($data['tempat_lahir']);
   $tanggal_lahir = htmlspecialchars($data['tanggal_lahir']);
   $jenis_kelamin = htmlspecialchars($data['jenis_kelamin']);
@@ -56,7 +57,7 @@ function tambahguru($data)
   $mapel = htmlspecialchars($data['mapel']);
 
   $query = "INSERT INTO guru VALUES
-                ('', $NIP', '$foto', '$nama_lengkap', '$tempat_lahir', '$tanggal_lahir', '$jenis_kelamin', '$alamat_jalan', '$alamat_rt', '$alamat_rw', '$alamat_kecamatan', '$alamat_kab_kota', '$alamat_provinsi', '$kode_pos', '$no_hp', '$email', '$agama', '$tingkat_pendidikan_terakhir', '$kampus_pendidikan_terakhir', '$tahun_lulus_pendidikan_terakhir', '$mapel')";
+                ('', '$NIP', '$foto', '$nama', '$tempat_lahir', '$tanggal_lahir', '$jenis_kelamin', '$alamat_jalan', '$alamat_rt', '$alamat_rw', '$alamat_kecamatan', '$alamat_kab_kota', '$alamat_provinsi', '$kode_pos', '$no_hp', '$email', '$agama', '$tingkat_pendidikan_terakhir', '$kampus_pendidikan_terakhir', '$tahun_lulus_pendidikan_terakhir', '$mapel')";
 
   mysqli_query($conn, $query);
 
@@ -71,7 +72,7 @@ function ubahguru($data)
   $id = htmlspecialchars($data['id']);
   $nip = htmlspecialchars($data['NIP']);
   $foto = htmlspecialchars($data['foto']);
-  $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
+  $nama = htmlspecialchars($data['nama_lengkap']);
   $tempat_lahir = htmlspecialchars($data['tempat_lahir']);
   $tanggal_lahir = htmlspecialchars($data['tanggal_lahir']);
   $jenis_kelamin = htmlspecialchars($data['jenis_kelamin']);
@@ -93,7 +94,7 @@ function ubahguru($data)
   $query = "UPDATE guru SET
               NIP = '$nip',
               foto = '$foto',
-              nama_lengkap = '$nama_lengkap',
+              nama_lengkap = '$nama',
               tempat_lahir = '$tempat_lahir',
               tanggal_lahir = '$tanggal_lahir',
               jenis_kelamin = '$jenis_kelamin',

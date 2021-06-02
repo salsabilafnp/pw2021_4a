@@ -1,8 +1,24 @@
 <?php
 
-require '../../php/functions.php';
+require 'functions.php';
+$id = $_GET['id'];
+$lulus = query("SELECT * FROM kelulusan WHERE id = $id")[0];
 
-$siswa = query("SELECT * FROM siswa");
+if (isset($_POST['ubah'])) {
+  if (ubahkelulusan($_POST) > 0) {
+    echo
+    "<script>
+      alert('Data Berhasil Diubah');
+      document.location.href = '../kelulusan.php';
+    </script>";
+  } else {
+    echo
+    "<script>
+      alert('Data Gagal Diubah');
+      document.location.href = '../kelulusan.php';
+    </script>";
+  }
+}
 
 ?>
 
@@ -13,19 +29,19 @@ $siswa = query("SELECT * FROM siswa");
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Daftar Siswa</title>
+  <title>Ubah Data</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../../../../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../../../../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../../../vendors/mdi/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../../css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../../images/favicon.png" />
+  <link rel="shortcut icon" href="../../../../images/favicon.png" />
 </head>
 
 <body>
@@ -33,8 +49,8 @@ $siswa = query("SELECT * FROM siswa");
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -55,7 +71,7 @@ $siswa = query("SELECT * FROM siswa");
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile" />
+              <img src="../../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -84,13 +100,13 @@ $siswa = query("SELECT * FROM siswa");
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin.php">
+            <a class="nav-link" href="../../../../pages/admin.php">
               <i class="menu-icon mdi mdi-home"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/guru/guru.php">
+            <a class="nav-link" href="../../../../pages/admin/guru/guru.php">
               <i class="menu-icon mdi mdi-account"></i>
               <span class="menu-title">Guru</span>
             </a>
@@ -103,9 +119,9 @@ $siswa = query("SELECT * FROM siswa");
             </a>
             <div class="collapse" id="siswa">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/alumni.php">Alumni</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/alumni/alumni.php">Alumni</a></li>
               </ul>
             </div>
           </li>
@@ -117,32 +133,32 @@ $siswa = query("SELECT * FROM siswa");
             </a>
             <div class="collapse" id="kelas">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kelas.php">Kelas</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/ujian.php">Ujian</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/kelas.php">Kelas</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/ujian.php">Ujian</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/kegiatan/kegiatan.php">
+            <a class="nav-link" href="../../../../pages/admin/kegiatan/kegiatan.php">
               <i class="menu-icon mdi mdi-checkbox-multiple-marked-circle"></i>
               <span class="menu-title">Kegiatan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/ekskul/ekskul.php">
+            <a class="nav-link" href="../../../../pages/admin/ekskul/ekskul.php">
               <i class="menu-icon icon-grid"></i>
               <span class="menu-title">Ekstrakurikuler</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
+            <a class="nav-link" href="../../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/spp/spp.php">
+            <a class="nav-link" href="../../../../pages/admin/spp/spp.php">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">SPP</span>
             </a>
@@ -155,61 +171,59 @@ $siswa = query("SELECT * FROM siswa");
           <div class="row">
             <div class="col-md-12 grid-margin">
               <div class="row">
-                <div class="col-12 col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Daftar Siswa Aktif</h3>
+                <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
+                  <h3 class="font-weight-bold mt-3">Ubah Data Kelulusan</h3>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+            <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
-                  <div class="table-responsive">
-                    <table class="display expandable-table" style="width: 100%;">
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th>NIS</th>
-                          <th>Nama</th>
-                          <th>Jenis Kelamin</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($siswa as $swa) : ?>
-                          <tr>
-                            <td>
-                              <a href="php/ubah.php?id=<?= $swa['NIS']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
-                              <a href="php/hapus.php?id=<?= $swa['NIS']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
-                            </td>
-                            <td><?= $swa['NIS']; ?></td>
-                            <td class="text-capitalize"><?= $swa['nama_siswa']; ?></td>
-                            <td class="text-capitalize"><?= $swa['jenis_kelamin']; ?></td>
-                            <td>
-                              <a class="text-light" href="detail-siswa.php?NIS=<?= $swa['NIS'] ?>"><button type="button" class="btn btn-info btn-sm">Profil Lengkap</button></a>
-                            </td>
-                          </tr>
-                        <?php endforeach;  ?>
-                      </tbody>
-                    </table>
-                  </div>
+                  <form class="forms" action="" method="post">
+                    <input type="hidden" name="id" id="id" value="<?= $lulus['id']; ?>">
+                    <div class="form-group row">
+                      <label for="NIS" class="col-sm-2 col-form-label">NIS</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="NIS" name="NIS" required value="<?= $lulus['NIS']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="no_ijazah" class="col-sm-2 col-form-label">No Ijazah</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="no_ijazah" name="no_ijazah" value="<?= $lulus['no_ijazah']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="no_skhun" class="col-sm-2 col-form-label">No SKHUN</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="no_skhun" name="no_skhun" value="<?= $lulus['no_skhun']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nilai_ijazah" class="col-sm-2 col-form-label">Nilai Ijazah</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="nilai_ijazah" name="nilai_ijazah" value="<?= $lulus['nilai_ijazah']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nilai_skhun" class="col-sm-2 col-form-label">Nilai Skhun</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="nilai_skhun" name="nilai_skhun" value="<?= $lulus['nilai_skhun']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nilai_akhir" class="col-sm-2 col-form-label">Nilai Akhir</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" id="nilai_akhir" name="nilai_akhir" value="<?= $lulus['nilai_akhir']; ?>">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2" name="ubah">Simpan</button>
+                    <a href="../kelulusan.php"><button type="button" class="btn btn-light">Batal</button></a>
+                  </form>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-              </nav>
             </div>
           </div>
         </div>
@@ -230,25 +244,25 @@ $siswa = query("SELECT * FROM siswa");
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="../../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../../../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../../vendors/chart.js/Chart.min.js"></script>
-  <script src="../../../vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="../../../js/dataTables.select.min.js"></script>
+  <script src="../../../../vendors/chart.js/Chart.min.js"></script>
+  <script src="../../../../vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="../../../../js/dataTables.select.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="../../../js/off-canvas.js"></script>
-  <script src="../../../js/hoverable-collapse.js"></script>
-  <script src="../../../js/template.js"></script>
-  <script src="../../../js/settings.js"></script>
-  <script src="../../../js/todolist.js"></script>
+  <script src="../../../../js/off-canvas.js"></script>
+  <script src="../../../../js/hoverable-collapse.js"></script>
+  <script src="../../../../js/template.js"></script>
+  <script src="../../../../js/settings.js"></script>
+  <script src="../../../../js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="../../../js/dashboard.js"></script>
-  <script src="../../../js/Chart.roundedBarCharts.js"></script>
+  <script src="../../../../js/dashboard.js"></script>
+  <script src="../../../../js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
 

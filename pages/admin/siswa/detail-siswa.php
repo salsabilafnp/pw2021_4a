@@ -20,7 +20,7 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Profil Siswa</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
@@ -40,8 +40,8 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -62,7 +62,7 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -169,13 +169,14 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 grid-margin">
+            <div class="col-md-8 grid-margin mx-auto">
               <div class="card py-1">
-                <div class="card-body">
-                  <img src="../../../images/faces/<?= $siswa["foto"]; ?>" alt="" style="width: 125px; margin-left: px; border-radius:15%;">
+                <div class="card-body mx-auto" style="padding: 1px; margin: 40px 0px;">
+                  <img src="../../../images/faces/<?= $siswa["foto"]; ?>" alt="" style="width: 140px;">
                 </div>
-                <div class="card-body pt-1">
-                  <div class="table-responsive" style="border-radius: 15px;">
+                <div class="card-body pt-0">
+                  <p class="card-title">Data Pribadi</p>
+                  <div class="table-responsive p-3 bg-light text-dark" style="border-radius: 2px;">
                     <table class="expandable" style="width: 100%; font-size:14px;">
                       <tr>
                         <td style="width: 40%;">NIS</td>
@@ -236,7 +237,17 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
                         <td>Agama</td>
                         <td>:</td>
                         <td class="text-capitalize"><?= $siswa['agama']; ?></td>
-                        <hr>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="table-responsive p-3 bg-light text-dark" style=" border-radius: 2px;">
+                    <table class="expandable" style="width: 100%; font-size:14px;">
+                      <tr>
+                        <td style="width: 40%;">Kelas</td>
+                        <td style="width: 6%;">:</td>
+                        <td><?= $siswa['kelas']; ?></td>
                       </tr>
                       <tr>
                         <td>Asal Sekolah</td>
@@ -253,43 +264,67 @@ $siswa = query("SELECT * FROM siswa WHERE NIS = $NIS")[0];
                         <td>:</td>
                         <td><?= $siswa['tanggal_masuk']; ?></td>
                       </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-body pt-0">
+                  <p class="card-title">Data Ayah</p>
+                  <div class="table-responsive p-3 bg-light text-dark" style=" border-radius: 2px;">
+                    <table class="expandable" style="width: 100%; font-size:14px;">
                       <tr>
-                        <td>Nama Ayah</td>
-                        <td>:</td>
+                        <td style="width: 40%;">Nama</td>
+                        <td style="width: 6%;">:</td>
                         <td class="text-capitalize"><?= $siswa['nama_ayah']; ?></td>
                       </tr>
                       <tr>
-                        <td>Tangga Lahir Ayah</td>
+                        <td>Status</td>
                         <td>:</td>
-                        <td><?= $siswa['tanggal_lahir_ayah']; ?></td>
+                        <td class="text-capitalize"><?= $siswa['status_ayah']; ?></td>
                       </tr>
                       <tr>
-                        <td>Alamat Ayah</td>
+                        <td>Tanggal Lahir</td>
                         <td>:</td>
-                        <td><?= $siswa['alamat_ayah']; ?></td>
+                        <td class="text-capitalize"><?= $siswa['tanggal_lahir_ayah']; ?></td>
                       </tr>
                       <tr>
-                        <td>Pekerjaan Ayah</td>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $siswa['alamat_ayah']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Pekerjaan</td>
                         <td>:</td>
                         <td><?= $siswa['pekerjaan_ayah']; ?></td>
                       </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-body pt-0">
+                  <p class="card-title">Data Ibu</p>
+                  <div class="table-responsive p-3 bg-light text-dark" style=" border-radius: 2px;">
+                    <table class="expandable" style="width: 100%; font-size:14px;">
                       <tr>
-                        <td>Nama Ibu</td>
-                        <td>:</td>
+                        <td style="width: 40%;">Nama</td>
+                        <td style="width: 6%;">:</td>
                         <td class="text-capitalize"><?= $siswa['nama_ibu']; ?></td>
                       </tr>
                       <tr>
-                        <td>Tangga Lahir Ibu</td>
+                        <td>Status</td>
                         <td>:</td>
-                        <td><?= $siswa['tanggal_lahir_ibu']; ?></td>
+                        <td class="text-capitalize"><?= $siswa['status_ibu']; ?></td>
                       </tr>
                       <tr>
-                        <td>Alamat Ibu</td>
+                        <td>Tanggal Lahir</td>
                         <td>:</td>
-                        <td><?= $siswa['alamat_ibu']; ?></td>
+                        <td class="text-capitalize"><?= $siswa['tanggal_lahir_ibu']; ?></td>
                       </tr>
                       <tr>
-                        <td>Pekerjaan Ibu</td>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td class="text-capitalize"><?= $siswa['alamat_ibu']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Pekerjaan</td>
                         <td>:</td>
                         <td class="text-capitalize"><?= $siswa['pekerjaan_ibu']; ?></td>
                       </tr>

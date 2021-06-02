@@ -1,6 +1,6 @@
 <?php
 
-require '../../php/functions.php';
+require 'php/functions.php';
 
 $kelulusan = query("SELECT * FROM kelulusan");
 
@@ -14,7 +14,7 @@ $kelulusan = query("SELECT * FROM kelulusan");
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Daftar Kelulusan</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
@@ -34,8 +34,8 @@ $kelulusan = query("SELECT * FROM kelulusan");
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -56,7 +56,7 @@ $kelulusan = query("SELECT * FROM kelulusan");
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -166,11 +166,12 @@ $kelulusan = query("SELECT * FROM kelulusan");
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                  <a href="php/tambahkelulusan.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
                   <div class="table-responsive">
                     <table class="display expandable-table" style="width: 100%;">
                       <thead style="font-size: 5px;">
                         <tr>
-                          <th>#</th>
+                          <th></th>
                           <th>NIS</th>
                           <th>No Ijazah</th>
                           <th>No SKHUN</th>
@@ -180,10 +181,12 @@ $kelulusan = query("SELECT * FROM kelulusan");
                         </tr>
                       </thead>
                       <tbody>
-                        <?php $i = 1 ?>
                         <?php foreach ($kelulusan as $lulus) : ?>
                           <tr>
-                            <td><?= $i; ?></td>
+                            <td>
+                              <a href="php/ubahkelulusan.php?id=<?= $lulus['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
+                              <a href="php/hapuskelulusan.php?id=<?= $lulus['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                            </td>
                             <td><?= $lulus['NIS']; ?></td>
                             <td><?= $lulus['no_ijazah']; ?></td>
                             <td><?= $lulus['no_skhun']; ?></td>
@@ -191,7 +194,6 @@ $kelulusan = query("SELECT * FROM kelulusan");
                             <td><?= $lulus['nilai_skhun']; ?></td>
                             <td><?= $lulus['nilai_akhir']; ?></td>
                           </tr>
-                          <?php $i++ ?>
                         <?php endforeach; ?>
                       </tbody>
                     </table>

@@ -27,7 +27,7 @@ if (isset($_POST['tambahguru'])) {
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Tambah Data</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../../vendors/ti-icons/css/themify-icons.css">
@@ -189,7 +189,7 @@ if (isset($_POST['tambahguru'])) {
                     <div class="form-group row">
                       <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap">
+                        <input type="text" class="form-control" id="nama" name="nama_lengkap" placeholder="Nama Lengkap">
                       </div>
                     </div>
                     <div class="form-group">
@@ -200,7 +200,7 @@ if (isset($_POST['tambahguru'])) {
                         </div>
                         <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-3">
-                          <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                          <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required placeholder="yyyy-mm-dd">
                         </div>
                       </div>
                     </div>
@@ -232,9 +232,9 @@ if (isset($_POST['tambahguru'])) {
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="foto" class="col-sm-2 col-form-label">foto</label>
+                      <label for="foto" class="col-sm-2 col-form-label">Foto</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="foto" name="foto" required>
+                        <input type="text" class="form-control" id="foto" name="foto">
                       </div>
                     </div>
                     <p class="card-title">Alamat</p>
@@ -242,15 +242,15 @@ if (isset($_POST['tambahguru'])) {
                       <div class="row">
                         <label for="alamat_jalan" class="col-sm-2 col-form-label">Jalan</label>
                         <div class="col-sm-4">
-                          <input type="text" class="form-control" id="alamat_jalan" name="alamat_jalan" required>
+                          <input type="text" class="form-control" id="alamat_jalan" name="alamat_jalan" placeholder="Jalan.Kenangan" required>
                         </div>
                         <label for="alamat_rt" class="col-form-label">RT</label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" name="alamat_rt" id="alamat_rt" required>
+                          <input type="text" class="form-control" name="alamat_rt" id="alamat_rt" placeholder="000" required>
                         </div>
                         <label for="alamat_rw" class="col-form-label">RW</label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" name="alamat_rw" id="alamat_rw" required>
+                          <input type="text" class="form-control" name="alamat_rw" id="alamat_rw" placeholder="000" required>
                         </div>
                       </div>
                     </div>
