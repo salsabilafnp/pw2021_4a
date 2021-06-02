@@ -183,44 +183,44 @@ if (isset($_POST['ubahprestasi'])) {
                     <div class="form-group row">
                       <label for="id" class="col-sm-2 col-form-label">ID</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" required>
+                        <input type="text" class="form-control" id="id" name="id" value="<?= $pre['id']; ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="nama_acara" class="col-sm-2 col-form-label">Nama Acara</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_acara" name="nama_acara" placeholder="Nama Acara">
+                        <input type="text" class="form-control" id="nama_acara" name="nama_acara" placeholder="Nama Acara" value="<?= $pre['nama_acara']; ?>">
                       </div>
                     </div>
                    
                     <div class="form-group row">
                       <label for="tahun_acara" class="col-sm-2 col-form-label">Tahun Acara</label>
                       <div class="col-sm-10">
-                        <input type="tahun_acara" class="form-control" id="tahun_acara" name="tahun_acara" placeholder="tanggal/bulan/tahun" required>
+                        <input type="tahun_acara" class="form-control" id="tahun_acara" name="tahun_acara" placeholder="tanggal/bulan/tahun" value="<?= $pre['tahun_acara']; ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="peringkat" class="col-sm-2 col-form-label">Peringkat</label>
                       <div class="col-sm-10">
-                        <input type="peringkat" class="form-control" id="peringkat" name="peringkat" required>
+                        <input type="peringkat" class="form-control" id="peringkat" name="peringkat"  value="<?= $pre['peringkat']; ?>"required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="jenis_prestasi" class="col-sm-2 col-form-label">jenis Prestasi</label>
                       <div class="col-sm-10">
-                        <input type="jenis_prestasi" class="form-control" id="jenis_prestasi" name="jenis_preastasi" >
+                        <input type="jenis_prestasi" class="form-control" id="jenis_prestasi" name="jenis_preastasi" value="<?= $pre['jenis_acara']; ?>" >
                       </div>
                     </div>
                     <div class="form-group row">
                     <label for="jenis_prestasi" class="col-sm-2 col-form-label">Penyelenggara</label>
                       <div class="col-sm-10">
-                        <input type="penyelenggara" class="form-control" id="penyelenggara" name="penyelenggara" required>
+                        <input type="penyelenggara" class="form-control" id="penyelenggara" name="penyelenggara" value="<?= $pre['penyelenggara']; ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="img" class="col-sm-2 col-form-label">image</label>
+                      <label for="img" class="col-sm-2 col-form-label">Gambar</label>
                       <div class="col-sm-10">
-                        <input type="img" class="form-control" id="img" name="img" required>
+                        <input type="img" class="form-control" id="img" name="img" value="<?= $pre['img']; ?>"  required>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2" name="ubahprestasi">Simpan</button>

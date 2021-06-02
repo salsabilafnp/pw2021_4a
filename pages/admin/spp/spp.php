@@ -178,7 +178,7 @@ $pembayaran_spp = query("SELECT * FROM pembayaran_spp");
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
+                <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -201,10 +201,10 @@ $pembayaran_spp = query("SELECT * FROM pembayaran_spp");
                                 <td><?= $spp["NIS"]; ?></td>
                                 <td><?= $spp["total_bayar"]; ?></td>
                                 <td><?= $spp["sisa_bayar"]; ?></td>
-                                <td>
-                                  <i class="mdi mdi-tooltip-edit"></i>
-                                  <i class="mdi mdi-delete"></i>
-                                </td>
+                                <td class="w-25" style="width: fit-content;">
+                                  <a href="php/ubah.php?NIS=<?= $spp['NIS']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                  <a href="php/hapus.php?NIS=<?= $spp['NIS']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                <td class="font-weight-bold"></td>
                               </tr>
                             <?php endforeach; ?>
                           </tbody>

@@ -1,19 +1,21 @@
 <?php
 
 require 'functions.php';
+$NIS = $_GET['NIS'];
+$spp = query("SELECT * FROM pembayaran_spp WHERE NIS = $NIS")[0];
 
-if (isset($_POST['tambah'])) {
-  if (tambahprestasi($_POST) > 0) {
+if (isset($_POST['ubah'])) {
+  if (ubahpembayaran_spp($_POST) > 0) {
     echo
     "<script>
-      alert('Data Berhasil Ditambahkan');
-      document.location.href = '../prestasi.php';
+      alert('Data Berhasil Diubah');
+      document.location.href = '../spp.php';
     </script>";
   } else {
     echo
     "<script>
-      alert('Data Gagal Ditambahkan');
-      document.location.href = '../prestasi.php';
+      alert('Data Gagal Diubah');
+      document.location.href = '../spp.php';
     </script>";
   }
 }
@@ -170,7 +172,7 @@ if (isset($_POST['tambah'])) {
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Tambah Data Prestasi</h3>
+                  <h3 class="font-weight-bold mt-3">Ubah Data Pembayaran</h3>
                 </div>
               </div>
             </div>
@@ -180,51 +182,50 @@ if (isset($_POST['tambah'])) {
               <div class="card">
                 <div class="card-body">
                   <form class="forms" action="" method="post">
+                    
                     <div class="form-group row">
-                      <label for="id" class="col-sm-2 col-form-label">ID</label>
+                      <label for="NIS" class="col-sm-2 col-form-label">NIS</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" placeholder="ID Prestasi" required>
+                        <input type="text" class="form-control" id="NIS" name="NIS" required value="<?= $spp['NIS']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="nama_acara" class="col-sm-2 col-form-label">Nama Acara</label>
+                      <label for="tahun_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_acara" name="nama_acara" placeholder="Nama Acara">
+                        <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Tahun Masuk" value="<?= $spp['tahun_masuk']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      
+                        <label for="kode_struk" class="col-sm-2 col-form-label">Kode Struk</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="kode_struk" name="kode_struk"  required value="<?= $spp['kode_struk']; ?>">
+                        </div>
+                        
+                      
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label for="tgl_bayar" class="col-sm-2 col-form-label">Tanggal Bayar</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="tgl_bayar" name="tgl_bayar" required value="<?= $spp['tgl_bayar']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="total_bayar" class="col-sm-2 col-form-label">Total Bayar</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="total_bayar" name="total_bayar" value="<?= $spp['total_bayar']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="sisa_bayar" class="col-sm-2 col-form-label">Sisa Bayar</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="sisa_bayar" name="sisa_bayar" required value="<?= $spp['sisa_bayar']; ?>">
                       </div>
                     </div>
                    
-                    <div class="form-group row">
-                      <label for="tahun_acara" class="col-sm-2 col-form-label">Tahun Acara</label>
-                      <div class="col-sm-10">
-                        <input type="tahun_acara" class="form-control" id="tahun_acara" name="tahun_acara" placeholder="tanggal/bulan/tahun" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="peringkat" class="col-sm-2 col-form-label">Peringkat</label>
-                      <div class="col-sm-10">
-                        <input type="peringkat" class="form-control" id="peringkat" name="peringkat" placeholder="Peringkat ke -" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="jenis_prestasi" class="col-sm-2 col-form-label">jenis Prestasi</label>
-                      <div class="col-sm-10">
-                        <input type="jenis_prestasi" class="form-control" id="jenis_prestasi" name="jenis_preastasi" placeholder="Jenis Prestasi" >
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                    <label for="jenis_prestasi" class="col-sm-2 col-form-label">Penyelenggara</label>
-                      <div class="col-sm-10">
-                        <input type="penyelenggara" class="form-control" id="penyelenggara" name="penyelenggara" placeholder="Diselenggarakan oleh" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="img" class="col-sm-2 col-form-label">image</label>
-                      <div class="col-sm-10">
-                        <input type="img" class="form-control" id="img" name="img" placeholder="jpeg"required>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
-                    <a href="../prestasi.php"><button type="button" class="btn btn-light">Batal</button></a>
+                    <button type="submit" class="btn btn-primary mr-2" name="ubah">Simpan</button>
+                    <a href="../spp.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>
               </div>

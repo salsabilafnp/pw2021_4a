@@ -1,19 +1,24 @@
 <?php
+session_start();
 
+if (!isset($_SESSION["username"])) {
+  header("location: ../../../login.php");
+  exit;
+}
 require 'functions.php';
 
 if (isset($_POST['tambah'])) {
-  if (tambahprestasi($_POST) > 0) {
+  if (tambahpembayaran_spp($_POST) > 0) {
     echo
     "<script>
       alert('Data Berhasil Ditambahkan');
-      document.location.href = '../prestasi.php';
+      document.location.href = '../spp.php';
     </script>";
   } else {
     echo
     "<script>
       alert('Data Gagal Ditambahkan');
-      document.location.href = '../prestasi.php';
+      document.location.href = '../spp.php';
     </script>";
   }
 }
@@ -170,7 +175,7 @@ if (isset($_POST['tambah'])) {
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Tambah Data Prestasi</h3>
+                  <h3 class="font-weight-bold mt-3">Tambah Data Pembayaran</h3>
                 </div>
               </div>
             </div>
@@ -181,50 +186,56 @@ if (isset($_POST['tambah'])) {
                 <div class="card-body">
                   <form class="forms" action="" method="post">
                     <div class="form-group row">
-                      <label for="id" class="col-sm-2 col-form-label">ID</label>
+                      <label for="NIS" class="col-sm-2 col-form-label">NIS</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" placeholder="ID Prestasi" required>
+                        <input type="text" class="form-control" id="NIS" name="NIS" placeholder="Nomor Induk Siswa" autofocus required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="nama_acara" class="col-sm-2 col-form-label">Nama Acara</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_acara" name="nama_acara" placeholder="Nama Acara">
+                      <label for="tahun_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
+                      
+                      <div class="col-sm-3">
+                        <select class="form-control" id="tahun_masuk" name="tahun_masuk" required>
+                          <option disabled selected>Angkatan </option>
+                          <option value="2018">2018</option>
+                          <option value="2019">2019</option>
+                          <option value="2020">2020</option>
+                          <option value="2021">2021</option>
+                          <option value="2022">2022</option>
+                          <option value="2023">2023</option>
+                          <option value="2024">2024</option>
+                          <option value="2025">2025</option>
+                        </select>
                       </div>
                     </div>
                    
                     <div class="form-group row">
-                      <label for="tahun_acara" class="col-sm-2 col-form-label">Tahun Acara</label>
+                      <label for="kode_struk" class="col-sm-2 col-form-label">Kode Struk</label>
                       <div class="col-sm-10">
-                        <input type="tahun_acara" class="form-control" id="tahun_acara" name="tahun_acara" placeholder="tanggal/bulan/tahun" required>
+                        <input type="text" class="form-control" id="kode_struk" name="kode_struk" placeholder="Kode Struk" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="peringkat" class="col-sm-2 col-form-label">Peringkat</label>
+                      <label for="tgl_bayar" class="col-sm-2 col-form-label">Tanggal Bayar</label>
                       <div class="col-sm-10">
-                        <input type="peringkat" class="form-control" id="peringkat" name="peringkat" placeholder="Peringkat ke -" required>
+                        <input type="text" class="form-control" id="tgl_bayar" name="tgl_bayar" placeholder="0000-00-00" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="jenis_prestasi" class="col-sm-2 col-form-label">jenis Prestasi</label>
+                      <label for="total_bayar" class="col-sm-2 col-form-label">Total Bayar</label>
                       <div class="col-sm-10">
-                        <input type="jenis_prestasi" class="form-control" id="jenis_prestasi" name="jenis_preastasi" placeholder="Jenis Prestasi" >
+                        <input type="text" class="form-control" id="total_bayar" name="total_bayar" placeholder="Rp. -" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                    <label for="jenis_prestasi" class="col-sm-2 col-form-label">Penyelenggara</label>
+                      <label for="sisa_bayar" class="col-sm-2 col-form-label">Sisa Bayar</label>
                       <div class="col-sm-10">
-                        <input type="penyelenggara" class="form-control" id="penyelenggara" name="penyelenggara" placeholder="Diselenggarakan oleh" required>
+                        <input type="text" class="form-control" id="sisa_bayar" name="sisa_bayar" placeholder="Rp. -" required>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="img" class="col-sm-2 col-form-label">image</label>
-                      <div class="col-sm-10">
-                        <input type="img" class="form-control" id="img" name="img" placeholder="jpeg"required>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
-                    <a href="../prestasi.php"><button type="button" class="btn btn-light">Batal</button></a>
+                   
+                    <button type="submit" class="btn btn-primary mr-2" name="tambah">Simpan</button>
+                    <a href="../spp.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>
               </div>

@@ -1,11 +1,10 @@
 <?php
 require '../../php/functions.php';
 
-// Query SPP
+// Query 
 $prestasi = query("SELECT * FROM prestasi");
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -232,11 +231,10 @@ $prestasi = query("SELECT * FROM prestasi");
                                 <td><?= $pre["penyelenggara"];?></td>
                               </tr>
                               <tr>
-                                <td>
-                                  <a href="php/ubah.php" class="mdi mdi-transcribe"></a>
-                                  <a href="php/hapus.php" class="mdi mdi-delete"></a>
-                                  
-                                </td>
+                                <td class="w-25" style="width: fit-content;">
+                                  <a href="php/ubah.php?id=<?= $pre['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                  <a href="php/hapus.php?id=<?= $pre['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                <td class="font-weight-bold"></td>
                                 
                               </tr>
                             </table>

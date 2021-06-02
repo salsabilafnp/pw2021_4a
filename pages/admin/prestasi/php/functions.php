@@ -43,7 +43,7 @@ function tambahprestasi($data)
   $penyelenggara = htmlspecialchars($data['penyelenggara']);
   
   $query = "INSERT INTO prestasi VALUES
-                ('', $id', '$img', '$nama_acara', '$tahun_acara', '$peringkat', '$jenis_prestasi', '$penyelenggara')";
+                ('$id', '$img', '$nama_acara', '$tahun_acara', '$peringkat', '$jenis_prestasi', '$penyelenggara')";
 
   mysqli_query($conn, $query);
 
@@ -70,9 +70,9 @@ function ubahprestasi($data)
               tahun_acara = '$tahun_acara',
               peringkat = '$peringkat',
               jenis_prestasi = '$jenis_prestasi',
-              penyelenggara = '$penyelenggara',
-              WHERE id = '$id'
-              ";
+              penyelenggara = '$penyelenggara'
+              WHERE id = '$id'";
+              
 
   mysqli_query($conn, $query);
 

@@ -1,16 +1,17 @@
 <?php
 
 require "functions.php";
-$id = $_GET['id'];
+$NIS = $_GET['NIS'];
 
-if (hapus_prestasi($id) > 0) {
+
+if (hapuspembayaran_spp($NIS) > 0) {
   echo "<script>
           alert('Data Berhasil dihapus!');
-          document.location.href = '../prestasi.php';
+          document.location.href = '../spp.php';
         </script>";
 } else {
   echo "<script>
           alert('Data Gagal dihapus!');
-          document.location.href = '../prestasi.php';
+          document.location.href = '../spp.php';
         </script>";
 }
