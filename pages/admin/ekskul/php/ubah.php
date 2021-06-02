@@ -1,19 +1,21 @@
 <?php
 
 require 'functions.php';
+$id = $_GET['id'];
+$ekskul = query("SELECT * FROM ekstrakurikuler WHERE id = $id")[0];
 
-if (isset($_POST['ubahekskul'])) {
+if (isset($_POST['ubah'])) {
   if (ubahekskul($_POST) > 0) {
     echo
     "<script>
       alert('Data Berhasil Ditambahkan');
-      document.location.href = '../detail-ekskul.php';
+      document.location.href = '../ekskul.php';
     </script>";
   } else {
     echo
     "<script>
       alert('Data Gagal Ditambahkan');
-      document.location.href = '../detail-ekskul.php';
+      document.location.href = '../ekskul.php';
     </script>";
   }
 }

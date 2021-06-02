@@ -61,7 +61,7 @@ function ubahkegiatan($data)
     $penyelenggara = htmlspecialchars($data['penyelenggara']);
     
   $query = "UPDATE kegiatan SET
-              id = '$id',
+              
               nama_kegiatan = '$nama_kegiatan',
               ketua_pelaksana = '$ketua_pelaksana',
               tanggal_pelaksana = '$tanggal_pelaksana',

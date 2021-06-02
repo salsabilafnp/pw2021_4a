@@ -1,4 +1,10 @@
+<?php
 
+require '../../php/functions.php';
+
+$ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -168,61 +174,29 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 grid-margin transparent">
-              <div class="row">
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">PRAMUKA (Praja Muda Karana)</p>
-                      <a href="../../../pages/ekskul/detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">more info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">PMR (Palang Merah Remaja)</p>
-                      <a href="../../../pages/admin/ekskul/detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">more info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">KIR (Kelompok Ilmiah Remaja) </p>
-                      <a href="../../../pages/admin/ekskul/detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">more info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">PASKIBRA (Pasukan Pengibar Bendera)</p>
-                      <a href="../../../pages/admin/ekskul/detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">more info</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">PADUS (Paduan Suara)</p>
-                      <a href="../../../pages/admin/ekskul/detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">more info</button>
-                      </a>
-                    </div>
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  
+                  <div class="table-responsive">
+                    <table class="display expandable-table" style="width: 100%;">
+                      
+                      <tbody>
+                        <?php foreach ($ekstrakurikuler as $ekskul) : ?>
+                          <tr>
+                            <td class="text-capitalize"><?= $ekskul["nama_ekskul"]; ?></td>
+                            <td>
+                              <a class="text-light" href="detail-ekskul.php?NIP=<?= $ekskul['id'] ?>"><button type="button" class="btn btn-sm btn-info">more info</button></a>
+                            </td>
+                          </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
-          </div>        
+          </div>       
         </div>
       
         <!-- content-wrapper ends -->

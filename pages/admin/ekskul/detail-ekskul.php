@@ -3,7 +3,7 @@
 require '../../php/functions.php';
 
 // Query SPP
-$Kegiatan = query("SELECT * FROM ekstrakurikuler");
+$anggota_ekskul = query("SELECT * FROM anggota_ekskul");
 
 
 ?>
@@ -246,6 +246,7 @@ $Kegiatan = query("SELECT * FROM ekstrakurikuler");
                         <table class="display expandable-table" style="width:100%">
                           <thead>
                             <tr>
+                              <th></th>
                               <th>Id Anggota</th>
                               <th>Nama Anggota</th>
                               <th>Jabatan Kepengurusan</th>
@@ -253,8 +254,12 @@ $Kegiatan = query("SELECT * FROM ekstrakurikuler");
                             </tr>
                           </thead>
                           <tbody>
-                          <?php foreach($ang_ekskul as $anggota) : ?>
+                          <?php foreach($anggota_ekskul as $anggota) : ?>
                             <tr>
+                              <td>
+                                <a href="php/ubah.php?id=<?= $ekskul['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
+                                <a href="php/hapus.php?id=<?= $ekskul['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                              </td>
                               <td><?= $anggota["no_induk"]; ?></td>
                               <td><?= $anggota["nama_anggota"]; ?></td>
                               <td><?= $anggota["jabatan"]; ?></td>
