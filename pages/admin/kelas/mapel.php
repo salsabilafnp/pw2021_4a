@@ -186,7 +186,7 @@ $matapel = query("SELECT * FROM mata_pelajaran");
                                   <!-- Ubah -->
                                   <a href="php/ubah_mapel.php?id=<?= $mapel['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
                                   <!-- Hapus -->
-                                  <a href="php/hapus.php?id=<?= $mapel['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                  <a href="php/hapus_mapel.php?id=<?= $mapel['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
                                 </td>
                                 <td class="text-center"><?= $mapel['id']; ?></td>
                                 <td class="font-weight-bold"><?= $mapel["nama_mapel"]; ?></td>

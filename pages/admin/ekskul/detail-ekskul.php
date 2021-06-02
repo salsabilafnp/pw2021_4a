@@ -1,6 +1,6 @@
 <?php
 
-require '../../php/functions.php';
+require 'php/functions.php';
 
 // Query SPP
 $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
@@ -19,7 +19,7 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -29,13 +29,14 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -56,7 +57,7 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -154,47 +155,28 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 col-xl-8 my-3 mb-xl-0">
-                  <h3 class="font-weight-bold">INFO EKSTRAKURIKULER</h3>
-                </div>
-                <div class="col-12 col-xl-4">
-                 <div class="justify-content-end d-flex">
-                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                     <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                      <a class="dropdown-item" href="#">Last Month</a>
-                      <a class="dropdown-item" href="#">Last Week</a>
-                      <a class="dropdown-item" href="#">Yesterday</a>
-                      <a class="dropdown-item" href="#">Today</a>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
+            <div class="col-12 grid-margin col-xl-8 my-3 mb-xl-0">
+              <h3 class="font-weight-bold text-center">INFO EKSTRAKURIKULER</h3>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
                 <div class="card-people mt-auto">
-                  <img src="../ekskul/img/pramuka.jpeg"  style="width: 100%;" >
+                  <img src="../ekskul/img/pramuka.jpeg" style="width: 100%;">
                   <div class="card-body">
                     <h4 class="card-title">PROFIL</h4>
                     <h4 class="fs-30 mb-6">PRAMUKA</h4>
                     <h5 class="my-3">VISI :</h5>
                     <h5 class="my-3">Gerakan pramuka sebagai wadah pilihan utama dan solusi handal masalah kaum muda</p>
-                    <h5 class="my-3">MISI :</h5>
-                    <h5 class="my-3">Memberikan ilmu  kepramukaan terhadap kaum muda
-                      Membina anggota yang dimana memiliki jiwa dan watak pramuka, berlandaskan iman dan taqwa, serta selalu mengikuti perkembangan ilmu pengetahuan dan teknologi</p>
-                      <h5 class="my-3">
-                        <button type="button" class="btn btn-social-icon btn-outline-facebook"><i class="ti-facebook"></i></button>
-                        <button type="button" class="btn btn-social-icon btn-outline-youtube"><i class="ti-youtube"></i></button>
+                      <h5 class="my-3">MISI :</h5>
+                      <h5 class="my-3">Memberikan ilmu kepramukaan terhadap kaum muda
+                        Membina anggota yang dimana memiliki jiwa dan watak pramuka, berlandaskan iman dan taqwa, serta selalu mengikuti perkembangan ilmu pengetahuan dan teknologi</p>
+                        <h5 class="my-3">
+                          <button type="button" class="btn btn-social-icon btn-outline-facebook"><i class="ti-facebook"></i></button>
+                          <button type="button" class="btn btn-social-icon btn-outline-youtube"><i class="ti-youtube"></i></button>
+                        </h5>
                       </h5>
-                    </h5>
                   </div>
                 </div>
               </div>
@@ -231,7 +213,7 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                     </div>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -254,33 +236,33 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                             </tr>
                           </thead>
                           <tbody>
-                          <?php foreach($anggota_ekskul as $anggota) : ?>
-                            <tr>
-                              <td>
-                                <a href="php/ubah.php?id=<?= $ekskul['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
-                                <a href="php/hapus.php?id=<?= $ekskul['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
-                              </td>
-                              <td><?= $anggota["no_induk"]; ?></td>
-                              <td><?= $anggota["nama_anggota"]; ?></td>
-                              <td><?= $anggota["jabatan"]; ?></td>
-                              <td></td>
-                            </tr>
-                          <?php endforeach; ?>
+                            <?php foreach ($anggota_ekskul as $anggota) : ?>
+                              <tr>
+                                <td>
+                                  <a href="php/ubah.php?id=<?= $ekskul['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
+                                  <a href="php/hapus.php?id=<?= $ekskul['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                                </td>
+                                <td><?= $anggota["no_induk"]; ?></td>
+                                <td><?= $anggota["nama_anggota"]; ?></td>
+                                <td><?= $anggota["jabatan"]; ?></td>
+                                <td></td>
+                              </tr>
+                            <?php endforeach; ?>
                           </tbody>
-                      </table>
+                        </table>
                       </div>
                     </div>
                   </div>
-                  </div>
                 </div>
               </div>
+            </div>
           </div>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Kelompok 4A<i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>

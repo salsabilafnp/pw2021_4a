@@ -194,25 +194,19 @@ if (isset($_POST["ubah"])) {
                       <div class="col-sm-3">
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="kelas" value="10" checked autofocus>
-                            10
-                          </label>
+                            <input type="radio" class="form-check-input" name="kelas" value="10" checked autofocus>10</label>
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="kelas" value="11">
-                            11
-                          </label>
+                            <input type="radio" class="form-check-input" name="kelas" value="11">11</label>
                         </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="kelas" value="12">
-                            12
-                          </label>
+                            <input type="radio" class="form-check-input" name="kelas" value="12">12</label>
                         </div>
                       </div>
                     </div>

@@ -9,15 +9,18 @@ if (!isset($_SESSION["username"])) {
 require 'functions.php';
 
 if (isset($_POST["tambah"])) {
-  if (tambah_kelas($_POST) > 0) {
+  if (tambah_ujian($_POST) > 0) {
     echo "<script>
             alert('Data Berhasil ditambahkan!');
-            document.location.href = 'admin.php';
+            document.location.href = 'ujian.php';
           </script>";
   } else {
     echo "<script>
             alert('Data Gagal ditambahkan!');
-            document.location.href = 'admin.php';
+            document.location.href = 'ujian.php';
           </script>";
   }
 }
+
+?>
+
