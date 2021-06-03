@@ -1,22 +1,36 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["username"])) {
+  header("location: ../../../login.php");
+  exit;
+}
+
+// jika tidak ada id di url
+if (!isset($_GET['id'])) {
+  header("Location: ../prestasi.php");
+  exit;
+}
 
 require 'functions.php';
 $id = $_GET['id'];
 $pre = query("SELECT * FROM prestasi WHERE id = $id")[0];
 
-if (isset($_POST['ubah'])) {
-  if (ubahprestasi($_POST) > 0) {
-    echo
-    "<script>
-      alert('Data Berhasil Diubah !');
-      document.location.href = '../prestasi.php';
-    </script>";
+$id = $_GET['id'];
+
+$prestasi = query("SELECT * FROM prestasi WHERE id = $id");
+
+if (isset($_POST["ubah"])) {
+  if (ubah_prestasi($_POST) > 0) {
+    echo "<script>
+            alert('Data Berhasil Diubah!');
+            document.location.href = '../prestasi.php';
+          </script>";
   } else {
-    echo
-    "<script>
-      alert('Data Gagal Diubah !');
-      document.location.href = '../prestasi.php';
-    </script>";
+    echo "<script>
+            alert('Data Gagal Diubah!');
+            document.location.href = '../prestasi.php';
+          </script>";
   }
 }
 
@@ -181,51 +195,45 @@ if (isset($_POST['ubah'])) {
             <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms" action="" method="post">
-                    <div class="form-group row">
-                      <label for="id" class="col-sm-2 col-form-label">ID</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" value="<?= $pre['id']; ?>" required>
-                      </div>
-                    </div>
+                  <form action="" method="post">
+                    <input type="hidden" class="form-control" name="id" value="<?= $prestasi['id']; ?>">
                     <div class="form-group row">
                       <label for="nama_acara" class="col-sm-2 col-form-label">Nama Acara</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_acara" name="nama_acara" placeholder="Nama Acara" value="<?= $pre['nama_acara']; ?>">
+                        <input type="text" class="form-control" name="nama_acara" placeholder="Nama Acara" value="<?= $prestasi['nama_acara'] ?>">
                       </div>
                     </div>
-                   
                     <div class="form-group row">
                       <label for="tahun_acara" class="col-sm-2 col-form-label">Tahun Acara</label>
                       <div class="col-sm-10">
-                        <input type="tahun_acara" class="form-control" id="tahun_acara" name="tahun_acara" placeholder="tanggal/bulan/tahun" value="<?= $pre['tahun_acara']; ?>" required>
+                        <input type="text" class="form-control" name="tahun_acara" placeholder="Tahun Acara" value="<?= $prestasi['tahun_acara'] ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="peringkat" class="col-sm-2 col-form-label">Peringkat</label>
                       <div class="col-sm-10">
-                        <input type="peringkat" class="form-control" id="peringkat" name="peringkat"  value="<?= $pre['peringkat']; ?>" required>
+                        <input type="number" class="form-control" name="peringkat" value="<?= $prestasi['peringkat']; ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="jenis_prestasi" class="col-sm-2 col-form-label">jenis Prestasi</label>
                       <div class="col-sm-10">
-                        <input type="jenis_prestasi" class="form-control" id="jenis_prestasi" name="jenis_preastasi" value="<?= $pre['jenis_acara']; ?>" >
+                        <input type="text" class="form-control" name="jenis_prestasi" value="<?= $prestasi['jenis_prestasi']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
-                    <label for="jenis_prestasi" class="col-sm-2 col-form-label">Penyelenggara</label>
+                      <label for="jenis_prestasi" class="col-sm-2 col-form-label">Penyelenggara</label>
                       <div class="col-sm-10">
-                        <input type="penyelenggara" class="form-control" id="penyelenggara" name="penyelenggara" value="<?= $pre['penyelenggara']; ?>" required>
+                        <input type="text" class="form-control" name="penyelenggara" value="<?= $prestasi['penyelenggara']; ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="img" class="col-sm-2 col-form-label">Gambar</label>
                       <div class="col-sm-10">
-                        <input type="img" class="form-control" id="img" name="img" value="<?= $pre['img']; ?>"  required>
+                        <input type="text" class="form-control" id="img" name="img" value="<?= $prestasi['img']; ?>" required>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="ubahprestasi">Simpan</button>
+                    <button type="submit" class="btn btn-primary mr-2" name="ubah">Simpan</button>
                     <a href="../prestasi.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>

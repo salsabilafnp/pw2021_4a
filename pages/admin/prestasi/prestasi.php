@@ -21,7 +21,7 @@ if (isset($_POST['cari'])) {
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -31,13 +31,14 @@ if (isset($_POST['cari'])) {
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -61,7 +62,7 @@ if (isset($_POST['cari'])) {
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -72,7 +73,7 @@ if (isset($_POST['cari'])) {
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a href="../../php/logout.php" class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -163,22 +164,6 @@ if (isset($_POST['cari'])) {
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">Prestasi</h3>
-                  <h6 class="font-weight-normal mb-0">Silakan cek notifikasi, kamu memiliki <span class="text-primary">3 pemberitahuan belum terbaca!</span></h6>
-                </div>
-                <div class="col-12 col-xl-4">
-                 <div class="justify-content-end d-flex">
-                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                     <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                      <a class="dropdown-item" href="#">Last Month</a>
-                      <a class="dropdown-item" href="#">Last Week</a>
-                      <a class="dropdown-item" href="#">Yesterday</a>
-                      <a class="dropdown-item" href="#">Today</a>
-                    </div>
-                  </div>
-                 </div>
                 </div>
               </div>
             </div>
@@ -186,67 +171,61 @@ if (isset($_POST['cari'])) {
           <div class="row">
             <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
             <br>
-            
+
             <div class="col-12 grid-margin stretch-card">
               <div class="card mb-3">
-                
+
                 <div class="card-body pt-0">
-                  <div class=" card card-outline-primary">  
+                  <div class=" card card-outline-primary">
                     <div class="row">
-                      <?php foreach($prestasi as $pre) : ?>
-                      <div class="col-md-4 pl-5 m-auto" >
-                        <div class="card-body text-center">
-                          <img src="../prestasi/img/<?= $pre["img"];?>" alt="" style="width: 300px;">
+                      <?php foreach ($prestasi as $pre) : ?>
+                        <div class="col-md-4 pl-5 m-auto">
+                          <div class="card-body text-center">
+                            <img src="../prestasi/img/<?= $pre["img"]; ?>" alt="" style="width: 300px;">
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-md-8" style="margin:auto;">
-                        <div class="card-body">
-                          <div class="table-responsive" style="border-radius: 15px;">
-                            <table class="expandable-table table-primary" style="width: 100%;">
-                              <tr>
-                                <td style="width: 40%;">id</td>
-                                <td>:</td>
-                                <td><?= $pre["id"];?></td>
-                              </tr>
-                              <tr>
-                                <td>Acara</td>
-                                <td>:</td>
-                                <td><?= $pre["nama_acara"];?></td>
-                              </tr>
-                              <tr>
-                                <td>Waktu</td>
-                                <td>:</td>
-                                <td><?= $pre["tahun_acara"];?></td>
-                              </tr>
-                              <tr>
-                                <td>Peringkat</td>
-                                <td>:</td>
-                                <td><?= $pre["peringkat"];?></td>
-                              </tr>
-                              <tr>
-                                <td>Jenis Prestasi</td>
-                                <td>:</td>
-                                <td><?= $pre["jenis_prestasi"];?></td>
-                              </tr>
-                              <tr>
-                                <td>Penyelenggara</td>
-                                <td>: </td>
-                                <td><?= $pre["penyelenggara"];?></td>
-                              </tr>
-                              <tr>
-                                <td class="w-25" style="width: fit-content;">
-                                  <a href="php/ubah.php?id=<?= $pre['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
-                                  <a href="php/hapus.php?id=<?= $pre['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
-                                <td class="font-weight-bold"></td>
-                                
-                              </tr>
-                            </table>
-                            
-                          </div> 
+                        <div class="col-md-8" style="margin:auto;">
+                          <div class="card-body">
+                            <div class="table-responsive" style="border-radius: 15px;">
+                              <table class="expandable-table table-primary" style="width: 100%;">
+                                <tr>
+                                  <td>Acara</td>
+                                  <td>:</td>
+                                  <td><?= $pre["nama_acara"]; ?></td>
+                                </tr>
+                                <tr>
+                                  <td>Waktu</td>
+                                  <td>:</td>
+                                  <td><?= $pre["tahun_acara"]; ?></td>
+                                </tr>
+                                <tr>
+                                  <td>Peringkat</td>
+                                  <td>:</td>
+                                  <td><?= $pre["peringkat"]; ?></td>
+                                </tr>
+                                <tr>
+                                  <td>Jenis Prestasi</td>
+                                  <td>:</td>
+                                  <td><?= $pre["jenis_prestasi"]; ?></td>
+                                </tr>
+                                <tr>
+                                  <td>Penyelenggara</td>
+                                  <td>: </td>
+                                  <td><?= $pre["penyelenggara"]; ?></td>
+                                </tr>
+                                <tr>
+                                  <td class="w-25" style="width: fit-content;">
+                                    <a href="php/ubah.php?id=<?= $pre['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                    <a href="php/hapus.php?id=<?= $pre['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                  <td class="font-weight-bold"></td>
+                                </tr>
+                              </table>
+
+                            </div>
+                          </div>
+
                         </div>
-                        
-                      </div>
-                      
+
                       <?php endforeach; ?>
                     </div>
                   </div>
@@ -259,7 +238,7 @@ if (isset($_POST['cari'])) {
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Kelompok 4A<i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>
