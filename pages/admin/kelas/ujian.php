@@ -1,13 +1,15 @@
 <?php
 require '../../php/functions.php';
 
-// Query Ujian
+// Query
+$jadwal_ujian = query("SELECT * FROM agenda WHERE jenis_agenda = 'ujian'");
 $ujian = query("SELECT * FROM ujian");
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -16,7 +18,7 @@ $ujian = query("SELECT * FROM ujian");
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -26,13 +28,14 @@ $ujian = query("SELECT * FROM ujian");
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -53,7 +56,7 @@ $ujian = query("SELECT * FROM ujian");
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -151,12 +154,8 @@ $ujian = query("SELECT * FROM ujian");
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Jadwal Ujian</h3>
-                </div>
-              </div>
+            <div class="col-12 grid-margin col-xl-8 mb-3 mb-xl-0">
+              <h3 class="font-weight-bold mt-3">Jadwal Ujian</h3>
             </div>
           </div>
           <div class="row">
@@ -170,29 +169,15 @@ $ujian = query("SELECT * FROM ujian");
                         <tr>
                           <th>Nama Kegiatan</th>
                           <th class="text-center">Tanggal</th>
-                        </tr>  
+                        </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Ujian Tengah Semester Genap</td>
-                          <td class="font-weight-bold text-center"> 18 - 25 Maret 2021</td>
-                        </tr>
-                        <tr>
-                          <td>Ujian Sekolah</td>
-                          <td class="font-weight-bold text-center">25 Mar 2021 - 05 Apr 2021</td>
-                        </tr>
-                        <tr>
-                          <td>Ujian Praktikum</td>
-                          <td class="font-weight-bold text-center">08 - 15 April 2021</td>
-                        </tr>
-                        <tr>
-                          <td>Ujian Nasional</td>
-                          <td class="font-weight-bold text-center">22 - 25 April 2021</td>
-                        </tr>
-                        <tr>
-                          <td>Ujian Akhir Semester Genap</td>
-                          <td class="font-weight-bold text-center">22 - 29 Mei 2021</td>
-                        </tr>
+                        <?php foreach ($jadwal_ujian as $jadwal) : ?>
+                          <tr>
+                            <td><?= $jadwal['nama_agenda']; ?></td>
+                            <td class="font-weight-bold text-center"><?= $jadwal['tanggal_awal']; ?> - <?= $jadwal['tanggal_akhir']; ?></td>
+                          </tr>
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>
@@ -200,7 +185,7 @@ $ujian = query("SELECT * FROM ujian");
               </div>
             </div>
           </div>
-          <div class="row">
+          <!--<div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -217,7 +202,7 @@ $ujian = query("SELECT * FROM ujian");
                               <th>Mata Pelajaran</th>
                               <th>Ruangan</th>
                               <th>Pengawas</th>
-                            </tr>  
+                            </tr>
                           </thead>
                           <tbody>
                             <tr>
@@ -226,23 +211,23 @@ $ujian = query("SELECT * FROM ujian");
                               <td></td>
                               <td></td>
                               <td></td>
-                              <td>Dewi Siska, S.Pd, M.Pd</td>
+                              <td></td>
                             </tr>
                           </tbody>
-                      </table>
+                        </table>
                       </div>
                     </div>
                   </div>
-                  </div>
                 </div>
               </div>
-          </div>
+            </div>
+          </div>-->
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Kelompok 4A<i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>

@@ -9,23 +9,23 @@ if (!isset($_SESSION["username"])) {
 require 'functions.php';
 
 // jika tidak ada id di url
-if (!isset($_GET['kode_kelas'])) {
-  header("Location: ../kelas.php");
+if (!isset($_GET['id'])) {
+  header("Location: ../kegiatan.php");
   exit;
 }
 
 // ID
-$kode_kelas = $_GET['kode_kelas'];
+$id = $_GET['id'];
 
-// Hapus Kelas
-if (hapus_kelas($kode_kelas) > 0) {
+// Hapus Kegiatan
+if (hapus_kegiatan($id) > 0) {
   echo "<script>
           alert('Data Berhasil dihapus!');
-          document.location.href = '../kelas.php';
+          document.location.href = '../kegiatan.php';
         </script>";
 } else {
   echo "<script>
           alert('Data Gagal dihapus!');
-          document.location.href = '../kelas.php';
+          document.location.href = '../kegiatan.php';
         </script>";
 }

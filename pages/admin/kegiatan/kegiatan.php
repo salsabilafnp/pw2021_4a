@@ -1,3 +1,11 @@
+<?php
+
+require 'php/functions.php';
+
+$kegiatan = query("SELECT * FROM kegiatan");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,80 +152,53 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 col-xl-8 my-3 mb-xl-0">
-                  <h3 class="font-weight-bold">Daftar Kegiatan</h3>
-                </div>
-                <div class="col-12 col-xl-4">
-                  <div class="justify-content-end d-flex">
-                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                      <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="#">Last Month</a>
-                        <a class="dropdown-item" href="#">Last Week</a>
-                        <a class="dropdown-item" href="#">Yesterday</a>
-                        <a class="dropdown-item" href="#">Today</a>
-                      </div>
-                    </div>
-                  </div>
+          <div class="row mb-3">
+            <div class="col-12 col-md-8">
+              <h3 class="font-weight-bold mt-3 text-center">Kegiatan</h3>
+            </div>
+            <div class="col-12 col-md-4 align-self-center">
+              <div class="justify-content-center d-flex">
+                <div class="flex-xl-grow-0">
+                  <a href="php/tambah_kegiatan.php" class="btn btn-primary">Tambah Data</a>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 grid-margin transparent">
-              <div class="row">
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">EKSTRAKURIKULER</p>
-                      <a href="../../../pages/admin/ekskul/detail-ekskul.php">
-                        <button class="btn btn-inverse-primary">Detail Kegiatan</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">KEGIATAN SEKOLAH</p>
-                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.php">
-                        <button class="btn btn-inverse-primary">Detail Kegiatan</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">KEGIATAN ANTAR KELAS</p>
-                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.php">
-                        <button class="btn btn-inverse-primary">Detail Kegiatan</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">kEGIATAN ANTAR SISWA</p>
-                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.php">
-                        <button class="btn btn-inverse-primary">Detail Kegiatan</button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body">
-                      <p class="mb-4">KEGIATAN ANTAR LUAR SEKOLAH</p>
-                      <a href="../../../pages/admin/kegiatan/detail-kegiatan.php">
-                        <button class="btn btn-inverse-primary">Detail Kegiatan</button>
-                      </a>
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Nama Kegiatan</th>
+                              <th>Tanggal Kegiatan</th>
+                              <th>Jenis Kegiatan</th>
+                              <th>Penyelenggara</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php foreach ($kegiatan as $keg) : ?>
+                              <tr>
+                                <td>
+                                  <!-- Ubah -->
+                                  <a href="php/ubah_kegiatan.php?id=<?= $keg['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i></a>
+                                  <!-- Hapus -->
+                                  <a href="php/hapus_kegiatan.php?id=<?= $keg['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i></a>
+                                </td>
+                                <td class="font-weight-bold w-25"><?= $keg['nama_kegiatan']; ?></td>
+                                <td><?= $keg["tanggal_pelaksanaan"]; ?></td>
+                                <td><?= $keg['jenis_kegiatan']; ?></td>
+                                <td><?= $keg['penyelenggara']; ?></td>
+                              </tr>
+                            <?php endforeach; ?>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>

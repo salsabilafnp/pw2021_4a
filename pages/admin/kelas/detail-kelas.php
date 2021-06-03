@@ -14,7 +14,7 @@ $kode = $_GET['kode'];
 $kelas = query("SELECT * FROM kelas WHERE kode_kelas = '$kode'");
 $walikelas = query("SELECT guru.nama_lengkap FROM guru, kelas WHERE guru.NIP = kelas.walikelas AND kode_kelas = '$kode'");
 $jadwal_pelajaran = query("SELECT * FROM jadwal_pelajaran WHERE kelas = '$kode'");
-$siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas AND kelas = '$kode'");
+//$siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas AND kelas = '$kode'");
 
 ?>
 
@@ -174,7 +174,7 @@ $siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas 
           <div class="row">
             <div class="col-md-12 grid-margin transparent">
               <div class="row">
-                <div class="col-md-5 mb-4 stretch-card transparent">
+                <div class="col-md-5 col-sm-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">Wali kelas</p>
@@ -182,7 +182,7 @@ $siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas 
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 mb-4 stretch-card transparent">
+                <div class="col-md-4 col-sm-6 mb-4 stretch-card transparent">
                   <div class="card card-dark-blue">
                     <div class="card-body">
                       <p class="mb-4">Total Siswa</p>
@@ -222,11 +222,11 @@ $siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas 
                                   <!-- Hapus -->
                                   <a href="" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
                                 </td>
-                                <td class="font-weight-bold"><?= $jadpel["hari"]; ?></td>
-                                <td><?= $jadpel["waktu_awal"]; ?> - <?= $jadpel["waktu_akhir"]; ?></td>
-                                <td class="font-weight-bold"><?= $jadpel["mapel"]; ?></td>
+                                <td class="font-weight-bold"><?= $jadpel['hari']; ?></td>
+                                <td></td>
+                                <td class="font-weight-bold"></td>
                                 <td>
-                                  <a href="../../../pages/admin/siswa/detail-siswa.php?mapel=<?= $jadpel["mapel"]; ?>" class="btn btn-sm btn-info">Lihat Siswa</button></a>
+                                  <a href="../../../pages/admin/siswa/detail-siswa.php?id=<?= $jadpel['id']; ?>" class="btn btn-sm btn-info">Lihat Detail</button></a>
                                 </td>
                               </tr>
                             <?php endforeach; ?>
@@ -244,7 +244,6 @@ $siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas 
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-3">Daftar Siswa</p>
-                  <button class="btn btn-sm btn-primary"><a>Tambah Data</a></button>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -252,27 +251,23 @@ $siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas 
                           <thead>
                             <tr>
                               <th>No.</th>
-                              <th>Opsi</th>
                               <th>NIS</th>
                               <th>Nama Siswa</th>
                               <th></th>
                             </tr>
                           </thead>
                           <tbody>
+                            <?php $no = 1; ?>
                             <?php foreach ($siswa as $stud) : ?>
                               <tr>
-                                <td class="w-25" style="width: fit-content;">
-                                  <!-- Ubah -->
-                                  <a href="" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
-                                  <!-- Hapus -->
-                                  <a href="" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
-                                </td>
+                                <td><?= $no; ?></td>
                                 <td class="font-weight-bold"><?= $stud["NIS"]; ?></td>
                                 <td><?= $stud["nama_lengkap"]; ?></td>
                                 <td>
                                   <a href="../../../pages/admin/siswa/detail-siswa.php?NIS=<?= $stud["NIS"]; ?>" class="btn btn-sm btn-info">Lihat Siswa</button></a>
                                 </td>
                               </tr>
+                              <?php $no++; ?>
                             <?php endforeach; ?>
                           </tbody>
                         </table>

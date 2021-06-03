@@ -1,19 +1,27 @@
 <?php
+session_start();
 
-require "functions.php";
-$id = $_GET['id'];
-
-if (hapus_guru($id) > 0) {
-  echo "<script>
-          alert('Data Berhasil dihapus!');
-          document.location.href = '../detail-kegiatan.php';
-        </script>";
-} else {
-  echo "<script>
-          alert('Data Gagal dihapus!');
-          document.location.href = '../detail-kegiatan.php';
-        </script>";
+if (!isset($_SESSION["username"])) {
+  header("location: ../../../login.php");
+  exit;
 }
+
+require 'functions.php';
+
+if (isset($_POST["tambah"])) {
+  if (tambah_kegiatan($_POST) > 0) {
+    echo "<script>
+            alert('Data Berhasil ditambahkan!');
+            document.location.href = '../kegiatan.php';
+          </script>";
+  } else {
+    echo "<script>
+            alert('Data Gagal ditambahkan!');
+            document.location.href = '../kegiatan.php';
+          </script>";
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -23,15 +31,13 @@ if (hapus_guru($id) > 0) {
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Tambah Kelas</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
   <!-- endinject -->
@@ -162,60 +168,38 @@ if (hapus_guru($id) > 0) {
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Hapus Data Prestasi</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-10 grid-margin mx-auto">
+          <div class="row justify-content-center">
+            <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms" action="" method="post">
-                    <div class="form-group row">
-                      <label for="id" class="col-sm-2 col-form-label">ID</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" required>
-                      </div>
+                  <h3 class="font-weight-bold text-center my-3">Tambah Kegiatan</h3>
+                  <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="nama_kegiatan">Nama Kegiatan</label>
+                      <input type="text" class="form-control" name="nama_kegiatan" placeholder="MPLS 2021 - 2022" autofocus>
                     </div>
-                    <div class="form-group row">
-                      <label for="nama_kegiatan" class="col-sm-2 col-form-label">Nama kegiatan</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan" placeholder="Nama kegiatan">
-                      </div>
+                    <div class="form-group">
+                      <label for="tanggal_pelaksanaan">Tanggal Kegiatan</label>
+                      <input type="text" class="form-control" name="tanggal_pelaksanaan" placeholder="15 Juni 2021">
                     </div>
-                   
-                    <div class="form-group row">
-                      <label for="ketua_pelaksana" class="col-sm-2 col-form-label">Ketua Pelaksana</label>
-                      <div class="col-sm-10">
-                        <input type="ketua_pelaksana" class="form-control" id="ketua_pelaksana" name="ketua_pelaksana" placeholder="Nama ketua pelaksana" required>
-                      </div>
+                    <div class="form-group">
+                      <label for="jenis_kegiatan">Jenis Kegiatan</label>
+                      <select class="form-control" name="jenis_kegiatan">
+                        <option disabled selected>Pilih Jenis Kegiatan</option>
+                        <option value="Internal">Internal</option>
+                        <option value="Umum">Umum</option>
+                        <option value="Antar Kelas">Antar Kelas</option>
+                        <option value="Antar Siswa">Antar Siswa</option>
+                        <option value="Luar Sekolah">Luar Sekolah</option>
+                      </select>
                     </div>
-                    <div class="form-group row">
-                      <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">Tanggal Pelaksanaan</label>
-                      <div class="col-sm-10">
-                        <input type="tanggal_pelaksanaan" class="form-control" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" placeholder="Hari, tanggal/bulan/tahun" required>
-                      </div>
+                    <div class="form-group">
+                      <label for="penyelenggara">Penyelenggara</label>
+                      <input type="text" class="form-control" name="penyelenggara" placeholder="OSIS SMA ABCD Bandung">
                     </div>
-                    <div class="form-group row">
-                      <label for="jenis_kegiatan" class="col-sm-2 col-form-label">jenis Kegiatan</label>
-                      <div class="col-sm-10">
-                        <input type="jenis_kegiatan" class="form-control" id="jenis_kegiatan" name="jenis_kegiatan" >
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="penyelenggara" class="col-sm-2 col-form-label">Penyelenggara</label>
-                      <div class="col-sm-10">
-                        <input type="penyelenggara" class="form-control" id="penyelenggara" name="penyelenggara" required>
-                      </div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
-                    <a href="../kegiatan.php"><button type="button" class="btn btn-light">Batal</button></a>
+                    <!-- Tambah & Kembali -->
+                    <button type="submit" name="tambah" class="btn btn-primary mr-2">Submit</button>
+                    <a href="../kegiatan.php" class="btn btn-light">Cancel</a>
                   </form>
                 </div>
               </div>
@@ -242,11 +226,8 @@ if (hapus_guru($id) > 0) {
   <script src="../../../../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../../../vendors/chart.js/Chart.min.js"></script>
-  <script src="../../../../vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="../../../../js/dataTables.select.min.js"></script>
-
+  <script src="../../../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+  <script src="../../../../vendors/select2/select2.min.js"></script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../../../../js/off-canvas.js"></script>
@@ -256,8 +237,9 @@ if (hapus_guru($id) > 0) {
   <script src="../../../../js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="../../../../js/dashboard.js"></script>
-  <script src="../../../../js/Chart.roundedBarCharts.js"></script>
+  <script src="../../../../js/file-upload.js"></script>
+  <script src="../../../../js/typeahead.js"></script>
+  <script src="../../../../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
 

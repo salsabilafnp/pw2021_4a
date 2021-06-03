@@ -2,7 +2,7 @@
 require '../../php/functions.php';
 
 // Query SPP
-$Kegiatan = query("SELECT * FROM kegiatan");
+$kegiatan = query("SELECT * FROM kegiatan");
 
 ?>
 
@@ -17,7 +17,7 @@ $Kegiatan = query("SELECT * FROM kegiatan");
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -27,13 +27,14 @@ $Kegiatan = query("SELECT * FROM kegiatan");
   <!-- endinject -->
   <link rel="shortcut icon" href="../../../images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -54,7 +55,7 @@ $Kegiatan = query("SELECT * FROM kegiatan");
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile"/>
+              <img src="../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -156,47 +157,47 @@ $Kegiatan = query("SELECT * FROM kegiatan");
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">Detail Kegiatan Sekolah</h3>
-                  <h6 class="font-weight-normal mb-0">Silakan cek notifikasi, kamu memiliki <span class="text-primary">3 pemberitahuan belum terbaca!</span></h6>
+                  <a href="php/tambah_kegiatan.php" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <div class="col-12 col-xl-4">
-                 <div class="justify-content-end d-flex">
-                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                     <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                      <a class="dropdown-item" href="#">Last Month</a>
-                      <a class="dropdown-item" href="#">Last Week</a>
-                      <a class="dropdown-item" href="#">Yesterday</a>
-                      <a class="dropdown-item" href="#">Today</a>
+                  <div class="justify-content-end d-flex">
+                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                      <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                        <a class="dropdown-item" href="#">Last Month</a>
+                        <a class="dropdown-item" href="#">Last Week</a>
+                        <a class="dropdown-item" href="#">Yesterday</a>
+                        <a class="dropdown-item" href="#">Today</a>
+                      </div>
                     </div>
                   </div>
-                 </div>
                 </div>
               </div>
             </div>
           </div>
-          <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a> 
-          
+          <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
+
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                
+
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
-                          
+
                       <tr>
-                          
+
                         <th>
-                           
+
                           No.
                         </th>
                         <th>
 
                           Nama Kegiatan
                         </th>
-                        
+
                         <th>
                           Tanggal Pelaksanaan
                         </th>
@@ -205,20 +206,20 @@ $Kegiatan = query("SELECT * FROM kegiatan");
                         </th>
                         <th>
                           Penyelenggara
-                        </th>                              
-                        
+                        </th>
+
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach($Kegiatan as $keg) : ?>
-                      <tr>
-                        <td><?= $keg["id"]; ?></td>
-                        <td><?= $keg["nama_kegiatan"]; ?></td>
-                        <td><?= $keg["tanggal_pelaksanaan"]; ?></td>
-                        <td><?= $keg["jenis_kegiatan"]; ?></td>
-                        <td><?= $keg["penyelenggara"]; ?></td>
-                         
-                      </tr>
+                      <?php foreach ($kegiatan as $keg) : ?>
+                        <tr>
+                          <td><?= $keg["id"]; ?></td>
+                          <td><?= $keg["nama_kegiatan"]; ?></td>
+                          <td><?= $keg["tanggal_pelaksanaan"]; ?></td>
+                          <td><?= $keg["jenis_kegiatan"]; ?></td>
+                          <td><?= $keg["penyelenggara"]; ?></td>
+
+                        </tr>
                       <?php endforeach; ?>
                     </tbody>
                     <a href="php/ubah.php" class="mdi mdi-transcribe"></a>
@@ -228,13 +229,13 @@ $Kegiatan = query("SELECT * FROM kegiatan");
               </div>
             </div>
           </div>
-         
+
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Kelompok 4A<i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>
