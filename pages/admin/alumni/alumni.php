@@ -1,5 +1,5 @@
 <?php
-require '../../php/functions.php';
+require 'php/functions.php';
 
 $alumni = query("SELECT * FROM alumni");
 
@@ -183,8 +183,8 @@ $alumni = query("SELECT * FROM alumni");
                               <a href="php/ubah.php?id=<?= $alm['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
                               <a href="php/hapus.php?id=<?= $alm['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
                             </td>
-                            <td><?= $alm["NISN"]; ?></td>
-                            <td class="text-capitalize"><?= $alm["nama"]; ?></td>
+                            <td><?= $alm['NISN']; ?></td>
+                            <td class="text-capitalize"><?= $alm['nama']; ?></td>
                             <td> <?= $alm['tahun_lulus']; ?></td>
                             <td>
                               <a class="text-light" href="detail-alumni.php?id=<?= $alm['id'] ?>"><button type="button" class="btn btn-sm btn-info">Profil Lengkap</button></a>

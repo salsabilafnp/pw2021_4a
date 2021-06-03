@@ -4,7 +4,7 @@ if (!isset($_GET['NIP'])) {
   header("location: guru.php");
 }
 
-require '../../php/functions.php';
+require 'php/functions.php';
 
 $NIP = $_GET['NIP'];
 

@@ -4,7 +4,7 @@ if (!isset($_GET['id'])) {
   header("location: alumni.php");
 }
 
-require '../../php/functions.php';
+require 'php/functions.php';
 
 $id = $_GET['id'];
 

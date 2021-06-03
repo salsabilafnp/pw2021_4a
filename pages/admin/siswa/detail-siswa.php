@@ -4,7 +4,7 @@ if (!isset($_GET['NIS'])) {
   header("location: siswa.php");
 }
 
-require '../../php/functions.php';
+require 'php/functions.php';
 
 $NIS = $_GET['NIS'];
 

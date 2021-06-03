@@ -1,6 +1,6 @@
 <?php
 
-require '../../php/functions.php';
+require 'php/functions.php';
 
 $siswa = query("SELECT * FROM siswa");
 
