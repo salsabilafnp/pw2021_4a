@@ -4,6 +4,10 @@ require 'php/functions.php';
 
 $kegiatan = query("SELECT * FROM kegiatan");
 
+if (isset($_POST['cari'])) {
+  $kegiatan = cari_kegiatan($_POST['keyword']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -42,14 +46,16 @@ $kegiatan = query("SELECT * FROM kegiatan");
         </button>
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
+            <form action="" method="POST">
+              <div class="input-group">
+                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                  <span class="input-group-text" id="search">
+                    <button class="btn" type="submit" name="cari"><i class="icon-search"></i></button>
+                  </span>
+                </div>
+                <input type="text" class="form-control" id="navbar-search-input" name="keyword" placeholder="Cari Kegiatan" aria-label="search" aria-describedby="search" autocomplete="off" autofocus>
               </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
+            </form>
           </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
@@ -66,7 +72,7 @@ $kegiatan = query("SELECT * FROM kegiatan");
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a href="../../php/logout.php" class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>

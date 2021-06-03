@@ -28,6 +28,27 @@ function query($sql)
   return $rows;
 }
 
+// Cari Kegiatan
+function cari_kegiatan($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM kegiatan
+            WHERE nama_kegiatan LIKE '%$keyword%' OR
+            tanggal_pelaksanaan LIKE '%$keyword%' OR
+            jenis_kegiatan LIKE '%$keyword%' OR
+            penyelenggara LIKE '%$keyword%'";
+
+  $result = mysqli_query($conn, $query);
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}
+
 // Hapus Data kegiatan
 function hapus_kegiatan($id)
 {

@@ -27,6 +27,27 @@ function query($sql)
   return $rows;
 }
 
+// Cari Kelas
+function cari_kelas($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM kelas
+            WHERE kode_kelas LIKE '%$keyword%' OR
+            tingkat LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%' OR
+            rombel LIKE '%$keyword%'";
+
+  $result = mysqli_query($conn, $query);
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}
+
 // Tambah Kelas
 function tambah_kelas($data)
 {
@@ -76,6 +97,26 @@ function ubah_kelas($data)
   return mysqli_affected_rows($conn);
 }
 
+// Cari Mapel
+function cari_mapel($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM mata_pelajaran
+            WHERE nama_mapel LIKE '%$keyword%' OR
+            kelas LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%'";
+
+  $result = mysqli_query($conn, $query);
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}
+
 // Tambah Mapel
 function tambah_mapel($data)
 {
@@ -118,6 +159,27 @@ function ubah_mapel($data)
 
   mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
+}
+
+// Cari Ujian
+function cari_ujian($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM ujian
+            WHERE kode_ujian LIKE '%$keyword%' OR
+            mapel LIKE '%$keyword%' OR
+            kode_ruangan LIKE '%$keyword%' OR
+            tgl_waktu_ujian LIKE '%$keyword%'";
+
+  $result = mysqli_query($conn, $query);
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
 }
 
 // Tambah Ujian

@@ -53,6 +53,27 @@ function registrasi($data)
     return mysqli_affected_rows($conn);
 }
 
+// Cari Agenda
+function cari_agenda($keyword)
+{
+    $conn = koneksi();
+
+    $query = "SELECT * FROM agenda
+            WHERE nama_agenda LIKE '%$keyword%' OR
+            tanggal_awal LIKE '%$keyword%' OR
+            tanggal_akhir LIKE '%$keyword%' OR
+            jenis_agenda LIKE '%$keyword%'";
+
+    $result = mysqli_query($conn, $query);
+
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+
+    return $rows;
+}
+
 // Tambah Data Agenda
 function tambah_agenda($data)
 {

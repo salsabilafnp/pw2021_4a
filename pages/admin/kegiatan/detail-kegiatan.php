@@ -1,5 +1,5 @@
 <?php
-require '../../php/functions.php';
+require 'php/functions.php';
 
 // Query SPP
 $kegiatan = query("SELECT * FROM kegiatan");
@@ -66,7 +66,7 @@ $kegiatan = query("SELECT * FROM kegiatan");
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a href="../../php/logout.php" class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -159,55 +159,22 @@ $kegiatan = query("SELECT * FROM kegiatan");
                   <h3 class="font-weight-bold">Detail Kegiatan Sekolah</h3>
                   <a href="php/tambah_kegiatan.php" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
-                <div class="col-12 col-xl-4">
-                  <div class="justify-content-end d-flex">
-                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                      <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                        <a class="dropdown-item" href="#">Last Month</a>
-                        <a class="dropdown-item" href="#">Last Week</a>
-                        <a class="dropdown-item" href="#">Yesterday</a>
-                        <a class="dropdown-item" href="#">Today</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
           <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
-
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
-
                       <tr>
-
-                        <th>
-
-                          No.
-                        </th>
-                        <th>
-
-                          Nama Kegiatan
-                        </th>
-
-                        <th>
-                          Tanggal Pelaksanaan
-                        </th>
-                        <th>
-                          Jenis Kegiatan
-                        </th>
-                        <th>
-                          Penyelenggara
-                        </th>
-
+                        <th>No.</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Tanggal Pelaksanaan</th>
+                        <th>Jenis Kegiatan</th>
+                        <th>Penyelenggara</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -218,7 +185,6 @@ $kegiatan = query("SELECT * FROM kegiatan");
                           <td><?= $keg["tanggal_pelaksanaan"]; ?></td>
                           <td><?= $keg["jenis_kegiatan"]; ?></td>
                           <td><?= $keg["penyelenggara"]; ?></td>
-
                         </tr>
                       <?php endforeach; ?>
                     </tbody>

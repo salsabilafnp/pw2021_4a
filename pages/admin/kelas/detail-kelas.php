@@ -76,7 +76,7 @@ $jadwal_pelajaran = query("SELECT * FROM jadwal_pelajaran WHERE kelas = '$kode'"
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a href="../../php/logout.php" class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
