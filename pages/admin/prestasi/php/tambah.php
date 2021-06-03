@@ -3,7 +3,7 @@
 require 'functions.php';
 
 if (isset($_POST['tambah'])) {
-  if (tambahprestasi($_POST) > 0) {
+  if (tambah_prestasi($_POST) > 0) {
     echo
     "<script>
       alert('Data Berhasil Ditambahkan');
@@ -179,51 +179,44 @@ if (isset($_POST['tambah'])) {
             <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms" action="" method="post">
-                    <div class="form-group row">
-                      <label for="id" class="col-sm-2 col-form-label">ID</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" placeholder="ID Prestasi" required>
-                      </div>
-                    </div>
+                  <form action="" method="post">
                     <div class="form-group row">
                       <label for="nama_acara" class="col-sm-2 col-form-label">Nama Acara</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="nama_acara" name="nama_acara" placeholder="Nama Acara">
                       </div>
                     </div>
-                   
                     <div class="form-group row">
                       <label for="tahun_acara" class="col-sm-2 col-form-label">Tahun Acara</label>
                       <div class="col-sm-10">
-                        <input type="tahun_acara" class="form-control" id="tahun_acara" name="tahun_acara" placeholder="tanggal/bulan/tahun" required>
+                        <input type="text" class="form-control" id="tahun_acara" name="tahun_acara" placeholder="Tahun Acara" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="peringkat" class="col-sm-2 col-form-label">Peringkat</label>
                       <div class="col-sm-10">
-                        <input type="peringkat" class="form-control" id="peringkat" name="peringkat" placeholder="Peringkat ke -" required>
+                        <input type="number" class="form-control" id="peringkat" name="peringkat" placeholder="Peringkat ke -" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="jenis_prestasi" class="col-sm-2 col-form-label">jenis Prestasi</label>
                       <div class="col-sm-10">
-                        <input type="jenis_prestasi" class="form-control" id="jenis_prestasi" name="jenis_preastasi" placeholder="Jenis Prestasi" >
+                        <input type="text" class="form-control" id="jenis_prestasi" name="jenis_preastasi" placeholder="Jenis Prestasi">
                       </div>
                     </div>
                     <div class="form-group row">
-                    <label for="jenis_prestasi" class="col-sm-2 col-form-label">Penyelenggara</label>
+                      <label for="jenis_prestasi" class="col-sm-2 col-form-label">Penyelenggara</label>
                       <div class="col-sm-10">
-                        <input type="penyelenggara" class="form-control" id="penyelenggara" name="penyelenggara" placeholder="Diselenggarakan oleh" required>
+                        <input type="text" class="form-control" id="penyelenggara" name="penyelenggara" placeholder="Diselenggarakan oleh" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="img" class="col-sm-2 col-form-label">Gambar</label>
                       <div class="col-sm-10">
-                        <input type="img" class="form-control" id="img" name="img" placeholder="jpeg"required>
+                        <input type="text" class="form-control" id="img" name="img" placeholder="jpeg" required>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
+                    <button type="submit" class="btn btn-primary mr-2" name="tambah">Simpan</button>
                     <a href="../prestasi.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>
