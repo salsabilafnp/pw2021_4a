@@ -49,7 +49,7 @@ if (isset($_POST['cari'])) {
                     <button class="btn" type="submit" name="cari"><i class="icon-search"></i></button>
                   </span>
                 </div>
-                <input type="text" class="form-control" id="navbar-search-input" name="keyword" placeholder="Cari Kode Struk / NIS" aria-label="search" aria-describedby="search" autocomplete="off" autofocus>
+                <input type="text" class="form-control" id="navbar-search-input" name="keyword" placeholder="Cari " aria-label="search" aria-describedby="search" autocomplete="off" autofocus>
               </div>
             </form>
           </li>

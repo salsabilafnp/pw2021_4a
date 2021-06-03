@@ -229,21 +229,24 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                           <thead>
                             <tr>
                               <th></th>
+                              <th></th>
                               <th>ekskul</th>
                               <th>Id Anggota</th>
                               <th>Nama Anggota</th>
                               <th>Jabatan Kepengurusan</th>
                               
-                              <th></th>
+                              
                             </tr>
                           </thead>
                           <tbody>
                             <?php foreach ($anggota_ekskul as $anggota) : ?>
                               <tr>
-                                <td>
-                                  <a href="php/ubah.php?NIS=<?= $anggota['NIS']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
-                                  <a href="php/hapus.php?NIS=<?= $anggota['NIS']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
-                                </td>
+                                
+                                <td class="w-25" style="width: fit-content;">
+                                  <a href="php/ubah.php?NIS=<?= $anggota['NIS']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                  <a href="php/hapus.php?NIS=<?= $anggota['NIS']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                <td class="font-weight-bold"></td>
+                                
                                 <td><?= $anggota["ekskul"]; ?></td>
                                 <td><?= $anggota["NIS"]; ?></td>
                                 <td><?= $anggota["nama_anggota"]; ?></td>
