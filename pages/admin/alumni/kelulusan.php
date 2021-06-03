@@ -4,6 +4,9 @@ require 'php/functions.php';
 
 $kelulusan = query("SELECT * FROM kelulusan");
 
+if (isset($_POST['carikelulusan'])) {
+  $kelulusan = carikelulusan($_POST['keyword']);
+}
 ?>
 
 
@@ -43,14 +46,16 @@ $kelulusan = query("SELECT * FROM kelulusan");
         </button>
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
+            <form action="" method="POST">
+              <div class="input-group">
+                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                  <span class="input-group-text" id="search">
+                    <button class="btn" type="submit" name="carikelulusan"><i class="icon-search"></i></button>
+                  </span>
+                </div>
+                <input type="text" class="form-control" id="navbar-search-input" name="keyword" placeholder="Cari NIS" aria-label="search" aria-describedby="search" autocomplete="off" autofocus>
               </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
+            </form>
           </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
@@ -180,12 +185,19 @@ $kelulusan = query("SELECT * FROM kelulusan");
                           <th>Nilai Akhir</th>
                         </tr>
                       </thead>
+                      <?php if (empty($kelulusan)) : ?>
+                        <tr>
+                          <td colspan="7">
+                            <p class="text-center" style="font-style: italic; font-size:18px; color:red;">data tidak ditemukan!</p>
+                          </td>
+                        </tr>
+                      <?php endif; ?>
                       <tbody>
                         <?php foreach ($kelulusan as $lulus) : ?>
                           <tr>
                             <td>
-                              <a href="php/ubahkelulusan.php?id=<?= $lulus['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
-                              <a href="php/hapuskelulusan.php?id=<?= $lulus['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                              <a href="php/ubahkelulusan.php?id=<?= $lulus['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                              <a href="php/hapuskelulusan.php?id=<?= $lulus['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
                             </td>
                             <td><?= $lulus['NIS']; ?></td>
                             <td><?= $lulus['no_ijazah']; ?></td>

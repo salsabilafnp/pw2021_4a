@@ -149,3 +149,20 @@ function ubahsiswa($data)
 
   return mysqli_affected_rows($conn);
 }
+
+function cari($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM siswa 
+            WHERE 
+              nama_siswa LIKE '%$keyword%' OR
+              NIS LIKE '%$keyword%' ";
+
+  $result = mysqli_query($conn, $query);
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+  return $rows;
+}

@@ -161,3 +161,37 @@ function ubahalumni($data)
 
   return mysqli_affected_rows($conn);
 }
+
+function carikelulusan($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM kelulusan 
+            WHERE 
+              NIS LIKE '%$keyword%' ";
+
+  $result = mysqli_query($conn, $query);
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+  return $rows;
+}
+
+function carialumni($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM alumni 
+            WHERE 
+              NISN LIKE '%$keyword%' OR 
+              nama LIKE '%$keyword%'
+              ";
+
+  $result = mysqli_query($conn, $query);
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+  return $rows;
+}

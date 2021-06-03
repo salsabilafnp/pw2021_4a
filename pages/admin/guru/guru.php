@@ -3,6 +3,9 @@ require 'php/functions.php';
 
 $guru = query("SELECT * FROM guru");
 
+if (isset($_POST['cari'])) {
+  $guru = cari($_POST['keyword']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,14 +44,16 @@ $guru = query("SELECT * FROM guru");
         </button>
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
+            <form action="" method="POST">
+              <div class="input-group">
+                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                  <span class="input-group-text" id="search">
+                    <button class="btn" type="submit" name="cari"><i class="icon-search"></i></button>
+                  </span>
+                </div>
+                <input type="text" class="form-control" id="navbar-search-input" name="keyword" placeholder="Cari NIP/Nama" aria-label="search" aria-describedby="search" autocomplete="off" autofocus>
               </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
+            </form>
           </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
@@ -176,12 +181,19 @@ $guru = query("SELECT * FROM guru");
                           <th></th>
                         </tr>
                       </thead>
+                      <?php if (empty($guru)) : ?>
+                        <tr>
+                          <td colspan="5">
+                            <p class="text-center" style="font-style: italic; font-size:18px; color:red;">data tidak ditemukan!</p>
+                          </td>
+                        </tr>
+                      <?php endif; ?>
                       <tbody>
                         <?php foreach ($guru as $gru) : ?>
                           <tr>
                             <td>
-                              <a href="php/ubah.php?id=<?= $gru['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
-                              <a href="php/hapus.php?id=<?= $gru['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                              <a href="php/ubah.php?id=<?= $gru['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                              <a href="php/hapus.php?id=<?= $gru['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
                             </td>
                             <td><img src="../../../images/faces/<?= $gru["foto"]; ?>" alt="" style="width: 50px; height: auto;"></td>
                             <td><?= $gru["NIP"]; ?></td>
