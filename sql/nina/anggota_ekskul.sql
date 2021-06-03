@@ -39,9 +39,7 @@ CREATE TABLE `anggota_ekskul` (
 --
 
 INSERT INTO `anggota_ekskul` (`ekskul`, `NIS`, `nama_anggota`, `jabatan`) VALUES
-(1, 203030, 'Rangga Dwiguna', 'Ketua Putra'),
 (1, 203030, 'Rangga Dwiguna', 'Ketua Putra');
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
