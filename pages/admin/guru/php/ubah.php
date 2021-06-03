@@ -181,7 +181,7 @@ if (isset($_POST['ubah'])) {
             <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms" action="" method="post">
+                  <form class="forms" action="" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" id="id" value="<?= $gru['id']; ?>">
                     <div class="form-group row">
                       <label for="NIP" class="col-sm-2 col-form-label">NIP</label>
@@ -235,9 +235,10 @@ if (isset($_POST['ubah'])) {
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="foto" class="col-sm-2 col-form-label">foto</label>
+                      <input type="hidden" name="gambar_lama" value="<?= $gru['foto']; ?>">
+                      <label for="foto" class="col-sm-2 col-form-label">Foto</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="foto" name="foto" required value="<?= $gru['foto']; ?>">
+                        <input type="file" class="form-control" id="foto" name="foto" value="<?= $gru['foto']; ?>">
                       </div>
                     </div>
                     <p class="card-title">Alamat</p>

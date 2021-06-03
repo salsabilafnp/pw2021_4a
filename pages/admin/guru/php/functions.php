@@ -25,9 +25,62 @@ function query($sql)
 function hapus_guru($id)
 {
   $conn = koneksi();
+
+  $guru = query("SELECT * FROM guru WHERE id = $id")[0];
+  if ($guru['foto'] != 0) {
+    unlink('../../../../images/faces/' . $guru['foto']);
+  }
+
   mysqli_query($conn, "DELETE FROM guru WHERE id = $id")[0];
 
   return mysqli_affected_rows($conn);
+}
+
+function upload()
+{
+  $nama_file = $_FILES['foto']['name'];
+  $tipe_file = $_FILES['foto']['type'];
+  $ukuran_file = $_FILES['foto']['size'];
+  $error = $_FILES['foto']['error'];
+  $tmp_file = $_FILES['foto']['tmp_name'];
+
+  if ($error == 4) {
+    echo "<script>
+						alert('pilih gambar terlebih dahulu!');
+					</script>";
+    return false;
+  }
+
+  $daftar_gambar = ['jpg', 'jpeg', 'png'];
+  $ekstensi_file = explode('.', $nama_file);
+  $ekstensi_file = strtolower(end($ekstensi_file));
+  if (!in_array($ekstensi_file, $daftar_gambar)) {
+    echo "<script>
+						alert('yang anda pilih bukan gambar!');
+					</script>";
+    return false;
+  }
+
+  if ($tipe_file != 'image/jpeg' && $tipe_file != 'image/png') {
+    echo "<script>
+						alert('yang anda pilih bukan gambar!');
+					</script>";
+    return false;
+  }
+
+  if ($ukuran_file > 5000000) {
+    echo "<script>
+						alert('size gambar terlalu besar');
+					</script>";
+    return false;
+  }
+
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= '.';
+  $nama_file_baru .= $ekstensi_file;
+  move_uploaded_file($tmp_file, '../../../../../pw2021_4a_sekolah/images/faces/' . $nama_file_baru);
+
+  return $nama_file_baru;
 }
 
 // Tambah Data Guru
@@ -36,7 +89,6 @@ function tambahguru($data)
   $conn = koneksi();
 
   $NIP = htmlspecialchars($data['NIP']);
-  $foto = htmlspecialchars($data['foto']);
   $nama = htmlspecialchars($data['nama_lengkap']);
   $tempat_lahir = htmlspecialchars($data['tempat_lahir']);
   $tanggal_lahir = htmlspecialchars($data['tanggal_lahir']);
@@ -55,6 +107,11 @@ function tambahguru($data)
   $kampus_pendidikan_terakhir = htmlspecialchars($data['kampus_pendidikan_terakhir']);
   $tahun_lulus_pendidikan_terakhir = htmlspecialchars($data['tahun_lulus_pendidikan_terakhir']);
   $mapel = htmlspecialchars($data['mapel']);
+
+  $foto = upload();
+  if (!$foto) {
+    return false;
+  }
 
   $query = "INSERT INTO guru VALUES
                 ('', '$NIP', '$foto', '$nama', '$tempat_lahir', '$tanggal_lahir', '$jenis_kelamin', '$alamat_jalan', '$alamat_rt', '$alamat_rw', '$alamat_kecamatan', '$alamat_kab_kota', '$alamat_provinsi', '$kode_pos', '$no_hp', '$email', '$agama', '$tingkat_pendidikan_terakhir', '$kampus_pendidikan_terakhir', '$tahun_lulus_pendidikan_terakhir', '$mapel')";
@@ -71,7 +128,7 @@ function ubahguru($data)
 
   $id = htmlspecialchars($data['id']);
   $nip = htmlspecialchars($data['NIP']);
-  $foto = htmlspecialchars($data['foto']);
+  $gambar_lama = htmlspecialchars($data['gambar_lama']);
   $nama = htmlspecialchars($data['nama_lengkap']);
   $tempat_lahir = htmlspecialchars($data['tempat_lahir']);
   $tanggal_lahir = htmlspecialchars($data['tanggal_lahir']);
@@ -90,6 +147,15 @@ function ubahguru($data)
   $kampus_pendidikan_terakhir = htmlspecialchars($data['kampus_pendidikan_terakhir']);
   $tahun_lulus_pendidikan_terakhir = htmlspecialchars($data['tahun_lulus_pendidikan_terakhir']);
   $mapel = htmlspecialchars($data['mapel']);
+
+  $foto = upload();
+  if (!$foto) {
+    return false;
+  }
+
+  if ($foto == 0) {
+    $foto = $gambar_lama;
+  }
 
   $query = "UPDATE guru SET
               NIP = '$nip',

@@ -4,6 +4,10 @@ require 'php/functions.php';
 
 $ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
 
+if (isset($_POST['cari'])) {
+  $ekstrakurikuler = cari($_POST['keyword']);
+  
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,16 +46,19 @@ $ekstrakurikuler = query("SELECT * FROM ekstrakurikuler");
         </button>
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
+            <form action="" method="POST">
+              <div class="input-group">
+                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                  <span class="input-group-text" id="search">
+                    <button class="btn" type="submit" name="cari"><i class="icon-search"></i></button>
+                  </span>
+                </div>
+                <input type="text" class="form-control" id="navbar-search-input" name="keyword" placeholder="Cari " aria-label="search" aria-describedby="search" autocomplete="off" autofocus>
               </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
+            </form>
           </li>
         </ul>
+        
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
