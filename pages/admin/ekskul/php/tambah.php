@@ -1,9 +1,14 @@
 <?php
+session_start();
 
+if (!isset($_SESSION["username"])) {
+  header("location: ../../../login.php");
+  exit;
+}
 require 'functions.php';
 
-if (isset($_POST['tambahekskul'])) {
-  if (tambah_ekskul($_POST) > 0) {
+if (isset($_POST['tambah'])) {
+  if (tambah_anggota_ekskul($_POST) > 0) {
     echo
     "<script>
       alert('Data Berhasil Ditambahkan');
@@ -169,7 +174,7 @@ if (isset($_POST['tambahekskul'])) {
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Tambah Ekstrakurikuler</h3>
+                  <h3 class="font-weight-bold mt-3">Tambah Data Anggota</h3>
                 </div>
               </div>
             </div>
@@ -180,10 +185,27 @@ if (isset($_POST['tambahekskul'])) {
                 <div class="card-body">
                   <form class="forms" action="" method="post">
                     <div class="form-group row">
-                      <label for="id" class="col-sm-2 col-form-label">ID</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" required>
+                      <label for="ekskul" class="col-sm-2 col-form-label">Ekskul</label>
+                      
+                      <div class="col-sm-3">
+                        <select class="form-control" id="ekskul" name="ekskul" placeholder="Kode Ekskul" required>
+                          <option disabled selected>Kode Ekskul </option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          
+                        </select>
                       </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="id" class="col-sm-2 col-form-label">NIS</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="NIS" name="NIS" placeholder="Nomor Induk Siswa" required>
+                      </div>
+                      
                     </div>
                     <div class="form-group row">
                       <label for="nama_anggota" class="col-sm-2 col-form-label">Nama Anggota</label>
@@ -198,22 +220,11 @@ if (isset($_POST['tambahekskul'])) {
                         <input type="text" class="form-control" id="Jabatan" name="Jabatan" placeholder="Jabatan Diekskul" required>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="jadwal_latihan" class="col-sm-2 col-form-label">Jadwal Latihan</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="jadwal_latihan" name="jadwal_latihan" placeholder="tanggal/bulan/tahun" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="no_induk" class="col-sm-2 col-form-label">No Induk</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_induk" name="no_induk">
-                      </div>
-                    </div>
+                    
 
 
                     <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
-                    <a href="../ekskul.php"><button type="button" class="btn btn-light">Batal</button></a>
+                    <a href="../detail-ekskul.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>
               </div>

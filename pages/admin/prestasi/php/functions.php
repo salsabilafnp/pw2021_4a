@@ -22,7 +22,7 @@ function query($sql)
 }
 
 // Hapus Data Prestasi
-function hapus_prestasi($id)
+function hapusprestasi($id)
 {
   $conn = koneksi();
   mysqli_query($conn, "DELETE FROM prestasi WHERE id = $id")[0];
@@ -71,7 +71,7 @@ function ubahprestasi($data)
               peringkat = '$peringkat',
               jenis_prestasi = '$jenis_prestasi',
               penyelenggara = '$penyelenggara'
-              WHERE id = '$id'";
+              WHERE id = '$id';";
               
 
   mysqli_query($conn, $query);

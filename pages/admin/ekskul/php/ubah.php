@@ -1,21 +1,21 @@
 <?php
 
 require 'functions.php';
-$id = $_GET['id'];
-$ekskul = query("SELECT * FROM ekstrakurikuler WHERE id = $id")[0];
+$NIS = $_GET['NIS'];
+$anggota_ekskul = query("SELECT * FROM anggota_ekskul WHERE NIS = $NIS")[0];
 
 if (isset($_POST['ubah'])) {
-  if (ubah_ekskul($_POST) > 0) {
+  if (ubah_anggota_ekskul($_POST) > 0) {
     echo
     "<script>
       alert('Data Berhasil Ditambahkan');
-      document.location.href = '../ekskul.php';
+      document.location.href = '../detail-ekskul.php';
     </script>";
   } else {
     echo
     "<script>
       alert('Data Gagal Ditambahkan');
-      document.location.href = '../ekskul.php';
+      document.location.href = '../detail-ekskul.php';
     </script>";
   }
 }
@@ -171,7 +171,7 @@ if (isset($_POST['ubah'])) {
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Ubah Data Ekstrakurikuler</h3>
+                  <h3 class="font-weight-bold mt-3">Ubah Data Anggota</h3>
                 </div>
               </div>
             </div>
@@ -182,40 +182,45 @@ if (isset($_POST['ubah'])) {
                 <div class="card-body">
                   <form class="forms" action="" method="post">
                     <div class="form-group row">
-                      <label for="id" class="col-sm-2 col-form-label">ID</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" required>
+                      <label for="ekskul" class="col-sm-2 col-form-label">Ekskul</label>
+                      
+                      <div class="col-sm-3">
+                        <select class="form-control" id="tahun_masuk" name="tahun_masuk" value="<?= $anggota['ekskul']; ?>" required>
+                          <option disabled selected>Kode Ekskul </option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          
+                        </select>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="nama_anggota" class="col-sm-2 col-form-label">Nama Anggota</label>
+                      <label for="NIS" class="col-sm-2 col-form-label">NIS</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_anggota" name="nama_anggota" placeholder="Nama Anggota">
+                        <input type="text" class="form-control" id="NIS" name="NIS" placeholder="Nomor induk Siswa" value="<?= $anggota['NIS']; ?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nama_aggota" class="col-sm-2 col-form-label">Nama Anggota</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama_anggota" name="nama_anggota" placeholder="Nama Anggota" value="<?= $anggota['nama_anggota']; ?>">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="Jabatan" name="Jabatan" placeholder="Jabatan Diekskul" required>
+                        <input type="text" class="form-control" id="Jabatan" name="Jabatan" placeholder="Jabatan Diekskul" value="<?= $anggota['jabatan']; ?>" required>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="jadwal_latihan" class="col-sm-2 col-form-label">Jadwal Latihan</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="jadwal_latihan" name="jadwal_latihan" placeholder="tanggal/bulan/tahun" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="no_induk" class="col-sm-2 col-form-label">No Induk</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_induk" name="no_induk">
-                      </div>
-                    </div>
+                    
 
 
                     <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
-                    <a href="../ekskul.php"><button type="button" class="btn btn-light">Batal</button></a>
+                    <a href="../detail-ekskul.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>
               </div>

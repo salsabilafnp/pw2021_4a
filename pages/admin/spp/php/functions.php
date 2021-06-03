@@ -77,3 +77,21 @@ function ubahpembayaran_spp($data)
 
   return mysqli_affected_rows($conn);
 }
+
+function carispp($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM pembayaran_spp 
+            WHERE 
+              kode_struk LIKE '%$keyword%' OR
+              NIS LIKE '%$keyword%' ";
+
+  $result = mysqli_query($conn, $query);
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+  return $rows;
+}
+

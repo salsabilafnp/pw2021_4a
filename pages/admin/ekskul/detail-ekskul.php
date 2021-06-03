@@ -2,7 +2,7 @@
 
 require 'php/functions.php';
 
-// Query SPP
+// Query 
 $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
 
 
@@ -221,7 +221,7 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <button class="btn btn-sm btn-outline-primary"><a>Tambah Data</a></button>
+                <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -229,9 +229,11 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                           <thead>
                             <tr>
                               <th></th>
+                              <th>ekskul</th>
                               <th>Id Anggota</th>
                               <th>Nama Anggota</th>
                               <th>Jabatan Kepengurusan</th>
+                              
                               <th></th>
                             </tr>
                           </thead>
@@ -239,13 +241,15 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                             <?php foreach ($anggota_ekskul as $anggota) : ?>
                               <tr>
                                 <td>
-                                  <a href="php/ubah.php?id=<?= $ekskul['id']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
-                                  <a href="php/hapus.php?id=<?= $ekskul['id']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
+                                  <a href="php/ubah.php?NIS=<?= $anggota['NIS']; ?>"><i class="mdi mdi-tooltip-edit" style="color: black;"></i></a>
+                                  <a href="php/hapus.php?NIS=<?= $anggota['NIS']; ?>" onclick="return confirm('Hapus Data??')"><i class="mdi mdi-delete" style="color: black;"></i></a>
                                 </td>
-                                <td><?= $anggota["no_induk"]; ?></td>
+                                <td><?= $anggota["ekskul"]; ?></td>
+                                <td><?= $anggota["NIS"]; ?></td>
                                 <td><?= $anggota["nama_anggota"]; ?></td>
                                 <td><?= $anggota["jabatan"]; ?></td>
                                 <td></td>
+                                
                               </tr>
                             <?php endforeach; ?>
                           </tbody>

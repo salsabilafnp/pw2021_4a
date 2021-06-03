@@ -2,7 +2,7 @@
 
 require 'functions.php';
 
-if (isset($_POST['ubahprestasi'])) {
+if (isset($_POST['ubah'])) {
   if (ubahprestasi($_POST) > 0) {
     echo
     "<script>
@@ -202,7 +202,7 @@ if (isset($_POST['ubahprestasi'])) {
                     <div class="form-group row">
                       <label for="peringkat" class="col-sm-2 col-form-label">Peringkat</label>
                       <div class="col-sm-10">
-                        <input type="peringkat" class="form-control" id="peringkat" name="peringkat"  value="<?= $pre['peringkat']; ?>"required>
+                        <input type="peringkat" class="form-control" id="peringkat" name="peringkat"  value="<?= $pre['peringkat']; ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">

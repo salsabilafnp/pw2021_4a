@@ -218,7 +218,7 @@ if (isset($_POST['tambah'])) {
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="img" class="col-sm-2 col-form-label">image</label>
+                      <label for="img" class="col-sm-2 col-form-label">Gambar</label>
                       <div class="col-sm-10">
                         <input type="img" class="form-control" id="img" name="img" placeholder="jpeg"required>
                       </div>

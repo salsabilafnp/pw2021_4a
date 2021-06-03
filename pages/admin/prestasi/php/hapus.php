@@ -3,7 +3,7 @@
 require "functions.php";
 $id = $_GET['id'];
 
-if (hapus_prestasi($id) > 0) {
+if (hapusprestasi($id) > 0) {
   echo "<script>
           alert('Data Berhasil dihapus!');
           document.location.href = '../prestasi.php';

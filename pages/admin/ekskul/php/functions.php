@@ -21,51 +21,49 @@ function query($sql)
   return $rows;
 }
 
-// Hapus Data kegiatan
-function hapus_ekskul($id)
+// Hapus
+function hapus_anggota_ekskul($NIS)
 {
   $conn = koneksi();
-  mysqli_query($conn, "DELETE FROM ekstrakurikuler WHERE id = $id")[0];
+  mysqli_query($conn, "DELETE FROM anggota_ekskul WHERE NIS = $NIS")[0];
 
   return mysqli_affected_rows($conn);
 }
 
-// Tambah Data Kegiatan
-function tambah_ekskul($data)
+// Tambah 
+function tambah_anggota_ekskul($data)
 {
   $conn = koneksi();
-  $id = htmlspecialchars($data['id']);
-  $nama_anggota = htmlspecialchars($data['nama_kegiatan']);
-  $jabatan = htmlspecialchars($data['ketua_pelaksana']);
-  $jadwal_ekskul = htmlspecialchars($data['tanggal_Pelaksana']);
-  $no_induk = htmlspecialchars($data['jenis_kegiatan']);
+  $ekskul = htmlspecialchars($data['ekskul']);
+  $NIS = htmlspecialchars($data['NIS']);
+  $nama_anggota = htmlspecialchars($data['nama_anggota']);
+  $jabatan = htmlspecialchars($data['jabatan']);
+  
 
-  $query = "INSERT INTO ekstrakurikuler VALUES
-                ('', $id', '$nama_anggota', '$jabatan', '$jadwal_ekskul', '$no_induk')";
+  $query = "INSERT INTO aggota_ekskul VALUES
+                ('$ekskul', '$NIS', '$nama_anggota', '$jabatan')";
 
   mysqli_query($conn, $query);
 
   return mysqli_affected_rows($conn);
 }
 
-// Ubah Data Kegiatan
-function ubah_ekskul($data)
+// Ubah
+function ubah_anggota_ekskul($data)
 {
   $conn = koneksi();
-  $id = htmlspecialchars($data['id']);
+  $ekskul = htmlspecialchars($data['ekskul']);
+  $NIS = htmlspecialchars($data['NIS']);
   $nama_anggota = htmlspecialchars($data['nama_anggota']);
   $jabatan = htmlspecialchars($data['jabatan']);
-  $jadwal_ekskul = htmlspecialchars($data['jadwal_ekskul']);
-  $no_induk = htmlspecialchars($data['no_induk']);
 
-  $query = "UPDATE ekstrakurikuler SET
+  $query = "UPDATE anggota_ekskul SET
               
+              ekskul = '$ekskul',
+              NIS = '$NIS',
               nama_anggota = '$nama_anggota',
-              jabatan = '$jabatan',
-              jadwal_ekskul = '$jadwal_ekskul',
-              no_induk = '$no_induk',
-              
-              WHERE id = '$id'
+              jabatan = '$jabatan'
+              WHERE ekskul = '$ekskul'
               ";
 
   mysqli_query($conn, $query);
