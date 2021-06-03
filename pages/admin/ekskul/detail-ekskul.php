@@ -1,9 +1,22 @@
 <?php
+//mengecek id, jika tidak ada dikembalikan ke ekskul.php
+if (!isset($_GET['id'])) {
+  header("location: ekskul.php");
+  exit;
+}
 
 require 'php/functions.php';
 
-// Query 
-$anggota_ekskul = query("SELECT * FROM anggota_ekskul");
+// Mengambil id dari url
+$id = $_GET['id'];
+
+// Query
+$ekskul = query("SELECT * FROM ekstrakurikuler WHERE id = $id");
+$anggota_ekskul = query("SELECT * FROM anggota_ekskul WHERE ekskul = $id");
+
+if (isset($_POST['cari'])) {
+  $anggota_ekskul = cari_anggota_ekskul($_POST['keyword']);
+}
 
 
 ?>
@@ -44,14 +57,16 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
         </button>
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
+            <form action="" method="POST">
+              <div class="input-group">
+                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                  <span class="input-group-text" id="search">
+                    <button class="btn" type="submit" name="cari"><i class="icon-search"></i></button>
+                  </span>
+                </div>
+                <input type="text" class="form-control" id="navbar-search-input" name="keyword" placeholder="Cari Keyword" aria-label="search" aria-describedby="search" autocomplete="off" autofocus>
               </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
+            </form>
           </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
@@ -68,7 +83,7 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a href="../../php/logout.php" class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -154,42 +169,40 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-12 grid-margin col-xl-8 my-3 mb-xl-0">
-              <h3 class="font-weight-bold text-center">INFO EKSTRAKURIKULER</h3>
+          <div class="row mb-3">
+            <div class="col-12 col-md-8">
+              <h3 class="font-weight-bold text-center">Detail Ekstrakurikuler</h3>
+            </div>
+            <div class="col-12 col-md-4 align-self-center">
+              <div class="justify-content-center d-flex">
+                <div class="flex-xl-grow-0">
+                  <!-- Ubah -->
+                  <a href="php/ubah_ekskul.php?id=<?= $ekskul['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i></a>
+                  <!-- Hapus -->
+                  <a href="php/hapus_ekskul.php?id=<?= $ekskul['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i></a>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
                 <div class="card-people mt-auto">
-                  <img src="../ekskul/img/pramuka.jpeg" style="width: 100%;">
                   <div class="card-body">
-                    <h4 class="card-title">PROFIL</h4>
-                    <h4 class="fs-30 mb-6">PRAMUKA</h4>
-                    <h5 class="my-3">VISI :</h5>
-                    <h5 class="my-3">Gerakan pramuka sebagai wadah pilihan utama dan solusi handal masalah kaum muda</p>
-                      <h5 class="my-3">MISI :</h5>
-                      <h5 class="my-3">Memberikan ilmu kepramukaan terhadap kaum muda
-                        Membina anggota yang dimana memiliki jiwa dan watak pramuka, berlandaskan iman dan taqwa, serta selalu mengikuti perkembangan ilmu pengetahuan dan teknologi</p>
-                        <h5 class="my-3">
-                          <button type="button" class="btn btn-social-icon btn-outline-facebook"><i class="ti-facebook"></i></button>
-                          <button type="button" class="btn btn-social-icon btn-outline-youtube"><i class="ti-youtube"></i></button>
-                        </h5>
-                      </h5>
+                    <h4 class="fs-30 mb-6 text-uppercase"><?= $ekskul['nama_ekskul']; ?></h4>
+                    <h5 class="my-3">Pembina Ekskul : <?= $ekskul['pembina']; ?></h5>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6 grid-margin transparent">
-              <h4 class="card-title">KEANGGOTAAN</h4>
+              <h4 class="card-title text-center">KEANGGOTAAN</h4>
               <div class="row">
-                <div class="col-md-6 mb-4 mb-lg-0     stretch-card transparent">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                   <div class="card card-light-blue">
                     <div class="card-body">
                       <p class="mb-4">Anggota (2021)</p>
-                      <p class="fs-30 mb-2">12</p>
-                      <p>anggota</p>
+                      <p class="fs-30 mb-2">12 anggota</p>
                     </div>
                   </div>
                 </div>
@@ -197,8 +210,7 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                   <div class="card card-light-blue">
                     <div class="card-body">
                       <p class="mb-4">Anggota (2022)</p>
-                      <p class="fs-30 mb-2">13</p>
-                      <p>anggota</p>
+                      <p class="fs-30 mb-2">13 anggota</p>
                     </div>
                   </div>
                 </div>
@@ -208,12 +220,10 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                   <div class="card card-light-blue">
                     <div class="card-body">
                       <p class="mb-4">Anggota (2023)</p>
-                      <p class="fs-30 mb-2">10</p>
-                      <p>anggota</p>
+                      <p class="fs-30 mb-2">10 anggota</p>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -221,7 +231,7 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                <a href="php/tambah.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
+                  <a href="php/tambah_anggota.php" class="text-dark"><button class="btn btn-sm btn-outline-primary mb-2">Tambah Data</button></a>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -229,30 +239,23 @@ $anggota_ekskul = query("SELECT * FROM anggota_ekskul");
                           <thead>
                             <tr>
                               <th></th>
-                              <th></th>
-                              <th>ekskul</th>
-                              <th>Id Anggota</th>
+                              <th>Ekskul</th>
+                              <th>ID Anggota</th>
                               <th>Nama Anggota</th>
                               <th>Jabatan Kepengurusan</th>
-                              
-                              
                             </tr>
                           </thead>
                           <tbody>
                             <?php foreach ($anggota_ekskul as $anggota) : ?>
                               <tr>
-                                
                                 <td class="w-25" style="width: fit-content;">
-                                  <a href="php/ubah.php?NIS=<?= $anggota['NIS']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
-                                  <a href="php/hapus.php?NIS=<?= $anggota['NIS']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
-                                <td class="font-weight-bold"></td>
-                                
+                                  <a href="php/ubah_anggota.php?id=<?= $anggota['id_anggota']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                  <a href="php/hapus_anggota.php?id=<?= $anggota['id_anggota']; ?>" onclick="return confirm('Anda yakin ingin menghapus?');" class=" btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                </td>
                                 <td><?= $anggota["ekskul"]; ?></td>
+                                <td><?= $anggota["id_anggota"]; ?></td>
                                 <td><?= $anggota["NIS"]; ?></td>
-                                <td><?= $anggota["nama_anggota"]; ?></td>
                                 <td><?= $anggota["jabatan"]; ?></td>
-                                <td></td>
-                                
                               </tr>
                             <?php endforeach; ?>
                           </tbody>

@@ -5,25 +5,25 @@ if (!isset($_SESSION["username"])) {
   header("location: ../../../login.php");
   exit;
 }
+
 require 'functions.php';
 
-if (isset($_POST['tambah'])) {
-  if (tambah_anggota_ekskul($_POST) > 0) {
-    echo
-    "<script>
-      alert('Data Berhasil Ditambahkan');
-      document.location.href = '../detail-ekskul.php';
-    </script>";
+if (isset($_POST["tambah"])) {
+  if (tambah_ekskul($_POST) > 0) {
+    echo "<script>
+            alert('Data Berhasil ditambahkan!');
+            document.location.href = '../ekskul.php';
+          </script>";
   } else {
-    echo
-    "<script>
-      alert('Data Gagal Ditambahkan');
-      document.location.href = '../detail-ekskul.php';
-    </script>";
+    echo "<script>
+            alert('Data Gagal ditambahkan!');
+            document.location.href = '../ekskul.php';
+          </script>";
   }
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,15 +31,13 @@ if (isset($_POST['tambah'])) {
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Tambah Kelas</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../../../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../../../../vendors/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
   <!-- endinject -->
@@ -170,61 +168,27 @@ if (isset($_POST['tambah'])) {
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 cl-col-xl-8 mb-3 mb-xl-0">
-                  <h3 class="font-weight-bold mt-3">Tambah Data Anggota</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-10 grid-margin mx-auto">
+          <div class="row justify-content-center">
+            <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms" action="" method="post">
-                    <div class="form-group row">
-                      <label for="ekskul" class="col-sm-2 col-form-label">Ekskul</label>
-                      
-                      <div class="col-sm-3">
-                        <select class="form-control" id="ekskul" name="ekskul" placeholder="Kode Ekskul" required>
-                          <option disabled selected>Kode Ekskul </option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          
-                        </select>
-                      </div>
+                  <h3 class="font-weight-bold text-center my-3">Tambah Ekstrakurikuler</h3>
+                  <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="nama_ekskul">Nama Ekskul</label>
+                      <input type="text" class="form-control" name="nama_ekskul" placeholder="Palang Merah Remaja" autofocus>
                     </div>
-                    <div class="form-group row">
-                      <label for="id" class="col-sm-2 col-form-label">NIS</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="NIS" name="NIS" placeholder="Nomor Induk Siswa" required>
-                      </div>
-                      
+                    <div class="form-group">
+                      <label for="jadwal_ekskul">Jadwal Ekskul</label>
+                      <input type="text" class="form-control" name="jadwal_ekskul" placeholder="Senin">
                     </div>
-                    <div class="form-group row">
-                      <label for="nama_anggota" class="col-sm-2 col-form-label">Nama Anggota</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_anggota" name="nama_anggota" placeholder="Nama Anggota">
-                      </div>
+                    <div class="form-group">
+                      <label for="pembina">NIP Pembina</label>
+                      <input type="text" class="form-control" name="pembina" placeholder="NIP Pembina">
                     </div>
-
-                    <div class="form-group row">
-                      <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="Jabatan" name="Jabatan" placeholder="Jabatan Diekskul" required>
-                      </div>
-                    </div>
-                    
-
-
-                    <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
-                    <a href="../detail-ekskul.php"><button type="button" class="btn btn-light">Batal</button></a>
+                    <!-- Tambah & Kembali -->
+                    <button type="submit" name="tambah" class="btn btn-primary mr-2">Submit</button>
+                    <a href="../ekskul.php" class="btn btn-light">Cancel</a>
                   </form>
                 </div>
               </div>
@@ -251,11 +215,8 @@ if (isset($_POST['tambah'])) {
   <script src="../../../../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../../../vendors/chart.js/Chart.min.js"></script>
-  <script src="../../../../vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="../../../../js/dataTables.select.min.js"></script>
-
+  <script src="../../../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+  <script src="../../../../vendors/select2/select2.min.js"></script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->
   <script src="../../../../js/off-canvas.js"></script>
@@ -265,7 +226,10 @@ if (isset($_POST['tambah'])) {
   <script src="../../../../js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="../../../../js/dashboard.js"></script>
-  <script src="../../../../js/Chart.roundedBarCharts.js"></script>
+  <script src="../../../../js/file-upload.js"></script>
+  <script src="../../../../js/typeahead.js"></script>
+  <script src="../../../../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
+
+</html>

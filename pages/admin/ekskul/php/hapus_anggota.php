@@ -1,9 +1,9 @@
 <?php
-
 require "functions.php";
-$NIS = $_GET['NIS'];
 
-if (hapus_anggota_ekskul($NIS) > 0) {
+$id_anggota = $_GET['id_anggota'];
+
+if (hapus_anggota_ekskul($id_anggota) > 0) {
   echo "<script>
           alert('Data Berhasil dihapus!');
           document.location.href = '../detail-ekskul.php';
