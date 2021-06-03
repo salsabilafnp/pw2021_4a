@@ -14,7 +14,7 @@ if (!isset($_GET['id'])) {
 
 require 'functions.php';
 $id = $_GET['id'];
-$pre = query("SELECT * FROM prestasi WHERE id = $id")[0];
+$prestasi = query("SELECT * FROM prestasi WHERE id = $id")[0];
 
 $id = $_GET['id'];
 
@@ -195,7 +195,7 @@ if (isset($_POST["ubah"])) {
             <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <form action="" method="post">
+                  <form class="forms" action="" method="post" enctype="multipart/form-data">
                     <input type="hidden" class="form-control" name="id" value="<?= $prestasi['id']; ?>">
                     <div class="form-group row">
                       <label for="nama_acara" class="col-sm-2 col-form-label">Nama Acara</label>
@@ -227,10 +227,12 @@ if (isset($_POST["ubah"])) {
                         <input type="text" class="form-control" name="penyelenggara" value="<?= $prestasi['penyelenggara']; ?>" required>
                       </div>
                     </div>
+                    
                     <div class="form-group row">
+                      <input type="hidden" name="gambar_lama" value="<?= $prestasi['img']; ?>">
                       <label for="img" class="col-sm-2 col-form-label">Gambar</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="img" name="img" value="<?= $prestasi['img']; ?>" required>
+                        <input type="file" class="form-control" id="img" name="img" value="<?= $prestasi['img']; ?>">
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2" name="ubah">Simpan</button>

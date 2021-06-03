@@ -41,14 +41,15 @@ function hapus_prestasi($id)
 function tambah_prestasi($data)
 {
   $conn = koneksi();
-
-  $img = htmlspecialchars($data['img']);
   $nama_acara = htmlspecialchars($data['nama_acara']);
   $tahun_acara = htmlspecialchars($data['tahun_acara']);
   $peringkat = htmlspecialchars($data['peringkat']);
   $jenis_prestasi = htmlspecialchars($data['jenis_prestasi']);
   $penyelenggara = htmlspecialchars($data['penyelenggara']);
-
+  $img = upload();
+  if (!$img) {
+    return false;
+  }
   $query = "INSERT INTO prestasi VALUES ('', '$img', '$nama_acara', $tahun_acara, $peringkat, '$jenis_prestasi', '$penyelenggara')";
 
   mysqli_query($conn, $query);
@@ -62,16 +63,25 @@ function ubah_prestasi($data)
   $conn = koneksi();
 
   $id = $data['id'];
-  $img = htmlspecialchars($data['img']);
+  $gambar_lama = htmlspecialchars($data['gambar_lama']);
   $nama_acara = htmlspecialchars($data['nama_acara']);
   $tahun_acara = htmlspecialchars($data['tahun_acara']);
   $peringkat = htmlspecialchars($data['peringkat']);
   $jenis_prestasi = htmlspecialchars($data['jenis_prestasi']);
   $penyelenggara = htmlspecialchars($data['penyelenggara']);
+  $img = upload();
+  if (!$img) {
+    return false;
+  }
+
+  if ($img == 0) {
+    $img = $gambar_lama;
+  }
 
 
   $query = "UPDATE prestasi SET
               img = '$img',
+              gambar_lama = '$gambar_lama',
               nama_acara = '$nama_acara',
               tahun_acara = $tahun_acara,
               peringkat = $peringkat,
@@ -102,4 +112,51 @@ function cari($keyword)
   }
 
   return $rows;
+}
+
+function upload()
+{
+  $nama_file = $_FILES['img']['name'];
+  $tipe_file = $_FILES['img']['type'];
+  $ukuran_file = $_FILES['img']['size'];
+  $error = $_FILES['img']['error'];
+  $tmp_file = $_FILES['img']['tmp_name'];
+
+  if ($error == 4) {
+    echo "<script>
+						alert('pilih gambar terlebih dahulu!');
+					</script>";
+    return false;
+  }
+
+  $daftar_gambar = ['jpg', 'jpeg', 'png'];
+  $ekstensi_file = explode('.', $nama_file);
+  $ekstensi_file = strtolower(end($ekstensi_file));
+  if (!in_array($ekstensi_file, $daftar_gambar)) {
+    echo "<script>
+						alert('yang anda pilih bukan gambar!');
+					</script>";
+    return false;
+  }
+
+  if ($tipe_file != 'image/jpeg' && $tipe_file != 'image/png') {
+    echo "<script>
+						alert('yang anda pilih bukan gambar!');
+					</script>";
+    return false;
+  }
+
+  if ($ukuran_file > 5000000) {
+    echo "<script>
+						alert('size gambar terlalu besar');
+					</script>";
+    return false;
+  }
+
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= '.';
+  $nama_file_baru .= $ekstensi_file;
+  move_uploaded_file($tmp_file, '../../../../../pw2021_4a_sekolah/pages/admin/prestasi/img' . $nama_file_baru);
+
+  return $nama_file_baru;
 }

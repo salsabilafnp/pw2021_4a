@@ -179,7 +179,7 @@ if (isset($_POST['tambah'])) {
             <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <form action="" method="post">
+                  <form class="forms" action="" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                       <label for="nama_acara" class="col-sm-2 col-form-label">Nama Acara</label>
                       <div class="col-sm-10">
@@ -199,7 +199,7 @@ if (isset($_POST['tambah'])) {
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="jenis_prestasi" class="col-sm-2 col-form-label">jenis Prestasi</label>
+                      <label for="jenis_prestasi" class="col-sm-2 col-form-label">Jenis Prestasi</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="jenis_prestasi" name="jenis_preastasi" placeholder="Jenis Prestasi">
                       </div>
@@ -213,7 +213,7 @@ if (isset($_POST['tambah'])) {
                     <div class="form-group row">
                       <label for="img" class="col-sm-2 col-form-label">Gambar</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="img" name="img" placeholder="jpeg" required>
+                        <input type="file" class="form-control" id="img" name="img" placeholder="jpeg" required>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2" name="tambah">Simpan</button>
