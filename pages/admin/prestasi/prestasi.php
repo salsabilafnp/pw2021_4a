@@ -88,13 +88,8 @@ $prestasi = query("SELECT * FROM prestasi");
             </a>
           </li>
           <li class="nav-item">
-<<<<<<< HEAD:pages/admin/alumni/detail-alumni.html
-            <a class="nav-link" href="../../../pages/admin/guru/guru.html">
-              <i class="icon-grid menu-icon"></i>
-=======
             <a class="nav-link" href="../../../pages/admin/guru/guru.php">
               <i class="menu-icon mdi mdi-account"></i>
->>>>>>> 56302801224b4394d34ff9334f382d623abbe40e:pages/admin/prestasi/prestasi.php
               <span class="menu-title">Guru</span>
             </a>
           </li>
