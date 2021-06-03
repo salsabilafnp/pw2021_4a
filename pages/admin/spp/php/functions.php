@@ -84,8 +84,12 @@ function carispp($keyword)
 
   $query = "SELECT * FROM pembayaran_spp 
             WHERE 
+              NIS LIKE '%$keyword%' OR
+              tahun_masuk LIKE '%$keyword%' OR
               kode_struk LIKE '%$keyword%' OR
-              NIS LIKE '%$keyword%' ";
+              tgl_bayar LIKE '%$keyword%' OR
+              total_bayar LIKE '%$keyword%' OR
+              sisa_bayar LIKE '%$keyword%'";
 
   $result = mysqli_query($conn, $query);
   $rows = [];

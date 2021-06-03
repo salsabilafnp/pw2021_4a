@@ -1,8 +1,10 @@
 <?php
 
+
+
 require 'functions.php';
 $NIS = $_GET['NIS'];
-$anggota_ekskul = query("SELECT * FROM anggota_ekskul WHERE NIS = $NIS")[0];
+$anggota = query("SELECT * FROM anggota_ekskul WHERE NIS = $NIS")[0];
 
 if (isset($_POST['ubah'])) {
   if (ubah_anggota_ekskul($_POST) > 0) {

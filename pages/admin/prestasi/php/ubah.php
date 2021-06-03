@@ -1,6 +1,8 @@
 <?php
 
 require 'functions.php';
+$id = $_GET['id'];
+$pre = query("SELECT * FROM prestasi WHERE id = $id")[0];
 
 if (isset($_POST['ubah'])) {
   if (ubahprestasi($_POST) > 0) {
