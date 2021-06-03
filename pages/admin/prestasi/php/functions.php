@@ -78,3 +78,23 @@ function ubahprestasi($data)
 
   return mysqli_affected_rows($conn);
 }
+//cari
+function cari($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM prestasi
+            WHERE nama_acara LIKE '%$keyword%' OR
+            tahun_acara LIKE '%$keyword%' OR
+            jenis_prestasi LIKE '%$keyword%' OR
+            penyelenggara LIKE '%$keyword%'";
+
+  $result = mysqli_query($conn, $query);
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}

@@ -70,3 +70,21 @@ function ubah_anggota_ekskul($data)
 
   return mysqli_affected_rows($conn);
 }
+//cari
+function cari($keyword)
+{
+  $conn = koneksi();
+
+  $query = "SELECT * FROM ektrakurikuler
+            WHERE id LIKE '%$keyword%' OR
+            nama_ekskul LIKE '%$keyword%'";
+
+  $result = mysqli_query($conn, $query);
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}
