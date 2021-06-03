@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jun 2021 pada 18.50
+-- Waktu pembuatan: 03 Jun 2021 pada 05.10
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sekolah`
+-- Database: `tugaspbd`
 --
 
 -- --------------------------------------------------------
@@ -56,8 +56,11 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id`, `NIP`, `foto`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `alamat_jalan`, `alamat_rt`, `alamat_rw`, `alamat_kecamatan`, `alamat_kab_kota`, `alamat_provinsi`, `kode_pos`, `no_hp`, `email`, `agama`, `tingkat_pendidikan_terakhir`, `kampus_pendidikan_terakhir`, `tahun_lulus_pendidikan_terakhir`, `mapel`) VALUES
-(1, 123456789, 'face2.jpg', 'Dewi Sandra, S.Pd, M.Pd', 'Garut', '1980-06-06', 'laki-laki', 'Jl. Dr. Setiabudi No.193', '010', '001', 'Sukasari', 'Kota Bandung', 'Jawa Barat', 40153, '081123456789', 'dewisiska@mail.com', 'Islam', 'S2', 'Universitas XYZ', 2015, 2),
-(2, 987654321, 'face1.jpg', 'Budi Setiawan, S.Pd, M.Pd', 'Garut', '1980-12-11', 'laki-laki', 'Jl. Ciwastra No.2', '02', '08', 'Buahbatu', 'Kota Bandung', 'Jawa Barat', 40287, '089765448776', 'budisetiawan@mail.com', 'Islam', 'S2', 'UPI', 2014, 1);
+(1, 196809271, 'face1.jpg', 'Hariyanto Fajar ', 'Surabaya', '1997-01-05', 'Laki-Laki', 'Jl.Sersan Toyib A No.32 ', '004', '002', 'Rungkut', 'Kota Surabaya', 'Jawa Timur', 40924, '081359337645', 'hariyanto155@gmail.com', 'Islam', 'S1', 'Universitas Brawijaya', 2016, 1),
+(2, 196203395, 'face3.jpg', 'Sri Mulyani', 'Semarang', '1995-02-08', 'Perempuan', 'Jl.Porgo No.121 A', '001', '003', 'Pedurungan', 'Kota Semarang', 'Jawa Tengah', 40535, '089513772395', 'srimulyani220@gmail.com', 'Islam', 'S3', 'Universitas Diponegoro', 2014, 2),
+(3, 199301342, 'face4.jpg', 'Asep Damar', 'Bandung', '1993-07-08', 'Laki-Laki', 'Jl.Binong Tengah No.20', '005', '001', 'Batununggal', 'Kota Bandung', 'Jawa Barat', 40275, '087341663341', 'asepganteng220@gmail.com', 'Islam', 'S2', 'Universitas Padjadjaran', 2015, 1),
+(4, 196303164, 'face5.jpg', 'Agus Sopandi', 'Bandung', '1998-09-09', 'Laki-Laki', 'Jl.Ahmad Yani No.10 A', '008', '002', 'Kiaracondong', 'Kota Bandung', 'Jawa Barat', 40825, '081397137622', 'agussehat35@gmail.com', 'Islam', 'S2', 'Universitas Indonesia', 2016, 2),
+(5, 1923613491, 'face7.jpg', 'Lilis Sumiati', 'Padang', '1997-08-01', 'Perempuan', 'Jl.Bagindo Aziz No.199 A', '005', '002', 'Kuranji', 'Kota Padang', 'Sumatera Barat', 40193, '089518171521', 'Lilisgelis55@gmail.com', 'Islam', 'S1', 'Universitas Padjadjaran', 2017, 1);
 
 --
 -- Indexes for dumped tables
@@ -77,7 +80,7 @@ ALTER TABLE `guru`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
