@@ -181,7 +181,7 @@ if (isset($_POST['ubahsiswa'])) {
             <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms" action="" method="post">
+                  <form class="forms" action="" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" id="id" value="<?= $swa['id']; ?>">
                     <p class="card-title">Data Pribadi</p>
                     <div class="form-group row">
@@ -237,9 +237,10 @@ if (isset($_POST['ubahsiswa'])) {
                       </div>
                     </div>
                     <div class="form-group row">
+                      <input type="hidden" name="gambar_lama" value="<?= $swa['foto']; ?>">
                       <label for="foto" class="col-sm-2 col-form-label">Foto</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="foto" name="foto" value="<?= $swa['foto']; ?>">
+                        <input type="file" class="form-control" id="foto" name="foto" value="<?= $swa['foto']; ?>">
                       </div>
                     </div>
                     <hr>

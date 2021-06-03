@@ -25,9 +25,61 @@ function query($sql)
 function hapus_siswa($id)
 {
   $conn = koneksi();
+  $siswa = query("SELECT * FROM siswa WHERE NIS = $id")[0];
+  if ($siswa['foto'] != 0) {
+    unlink('../../../../images/faces/' . $siswa['foto']);
+  }
   mysqli_query($conn, "DELETE FROM siswa WHERE NIS = $id")[0];
 
   return mysqli_affected_rows($conn);
+}
+
+// Upload Foto Siswa
+function upload()
+{
+  $nama_file = $_FILES['foto']['name'];
+  $tipe_file = $_FILES['foto']['type'];
+  $ukuran_file = $_FILES['foto']['size'];
+  $error = $_FILES['foto']['error'];
+  $tmp_file = $_FILES['foto']['tmp_name'];
+
+  if ($error == 4) {
+    echo "<script>
+						alert('pilih gambar terlebih dahulu!');
+					</script>";
+    return false;
+  }
+
+  $daftar_gambar = ['jpg', 'jpeg', 'png'];
+  $ekstensi_file = explode('.', $nama_file);
+  $ekstensi_file = strtolower(end($ekstensi_file));
+  if (!in_array($ekstensi_file, $daftar_gambar)) {
+    echo "<script>
+						alert('yang anda pilih bukan gambar!');
+					</script>";
+    return false;
+  }
+
+  if ($tipe_file != 'image/jpeg' && $tipe_file != 'image/png') {
+    echo "<script>
+						alert('yang anda pilih bukan gambar!');
+					</script>";
+    return false;
+  }
+
+  if ($ukuran_file > 5000000) {
+    echo "<script>
+						alert('size gambar terlalu besar');
+					</script>";
+    return false;
+  }
+
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= '.';
+  $nama_file_baru .= $ekstensi_file;
+  move_uploaded_file($tmp_file, '../../../../../pw2021_4a_sekolah/images/faces/' . $nama_file_baru);
+
+  return $nama_file_baru;
 }
 
 // Tambah Data Guru
@@ -36,7 +88,6 @@ function tambahsiswa($data)
   $conn = koneksi();
 
   $NIS = htmlspecialchars($data['NIS']);
-  $foto = htmlspecialchars($data['foto']);
   $nama_siswa = htmlspecialchars($data['nama_siswa']);
   $tempat_lahir = htmlspecialchars($data['tempat_lahir']);
   $tanggal_lahir = htmlspecialchars($data['tanggal_lahir']);
@@ -65,6 +116,11 @@ function tambahsiswa($data)
   $alamat_ibu = htmlspecialchars($data['alamat_ibu']);
   $pekerjaan_ibu = htmlspecialchars($data['pekerjaan_ibu']);
   $kelas = htmlspecialchars($data['kelas']);
+
+  $foto = upload();
+  if (!$foto) {
+    return false;
+  }
 
   $query = "INSERT INTO siswa VALUES
                 ('', '$NIS', '$foto', '$nama_siswa', '$tempat_lahir', '$tanggal_lahir', '$jenis_kelamin', '$alamat_jalan', '$alamat_rt', '$alamat_rw', '$alamat_kecamatan', '$alamat_kab_kota', '$alamat_provinsi', '$kode_pos', '$no_hp', '$email', '$agama', '$asal_sekolah', '$no_ijazah', '$tanggal_masuk', '$nama_ayah', '$status_ayah', '$tanggal_lahir_ayah', '$alamat_ayah', '$pekerjaan_ayah','$nama_ibu', '$status_ibu', '$tanggal_lahir_ibu', '$alamat_ibu', '$pekerjaan_ibu', '$kelas')";
@@ -81,7 +137,7 @@ function ubahsiswa($data)
 
   $id = htmlspecialchars($data['id']);
   $NIS = htmlspecialchars($data['NIS']);
-  $foto = htmlspecialchars($data['foto']);
+  $gambar_lama = htmlspecialchars($data['gambar_lama']);
   $nama_siswa = htmlspecialchars($data['nama_siswa']);
   $tempat_lahir = htmlspecialchars($data['tempat_lahir']);
   $tanggal_lahir = htmlspecialchars($data['tanggal_lahir']);
@@ -110,6 +166,15 @@ function ubahsiswa($data)
   $alamat_ibu = htmlspecialchars($data['alamat_ibu']);
   $pekerjaan_ibu = htmlspecialchars($data['pekerjaan_ibu']);
   $kelas = htmlspecialchars($data['kelas']);
+
+  $foto = upload();
+  if (!$foto) {
+    return false;
+  }
+
+  if ($foto == 0) {
+    $foto = $gambar_lama;
+  }
 
   $query = "UPDATE siswa SET
               NIS = '$NIS',
