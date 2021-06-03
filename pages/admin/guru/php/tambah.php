@@ -179,7 +179,7 @@ if (isset($_POST['tambahguru'])) {
             <div class="col-md-10 grid-margin mx-auto">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms" action="" method="post">
+                  <form class="forms" action="" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                       <label for="NIP" class="col-sm-2 col-form-label">NIP</label>
                       <div class="col-sm-10">
@@ -234,7 +234,7 @@ if (isset($_POST['tambahguru'])) {
                     <div class="form-group row">
                       <label for="foto" class="col-sm-2 col-form-label">Foto</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="foto" name="foto">
+                        <input type="file" class="form-control" id="foto" name="foto">
                       </div>
                     </div>
                     <p class="card-title">Alamat</p>
