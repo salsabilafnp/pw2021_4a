@@ -85,7 +85,7 @@ function tambah_mapel($data)
   $kelas = htmlspecialchars($data['kelas']);
   $jurusan = htmlspecialchars($data['jurusan']);
 
-  $query = "INSERT INTO mata_pelajaran VALUES ('', '$nama_mapel', $kelas, '$jurusan',)";
+  $query = "INSERT INTO mata_pelajaran VALUES ('', '$nama_mapel', $kelas, '$jurusan')";
 
   mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
