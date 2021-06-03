@@ -41,7 +41,7 @@ function tambah_anggota_ekskul($data)
   
 
   $query = "INSERT INTO aggota_ekskul VALUES
-                ('$ekskul', '$NIS', '$nama_anggota', '$jabatan')";
+                ('','$ekskul', '$NIS', '$nama_anggota', '$jabatan')";
 
   mysqli_query($conn, $query);
 

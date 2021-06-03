@@ -187,7 +187,7 @@ if (isset($_POST['ubah'])) {
                       <label for="ekskul" class="col-sm-2 col-form-label">Ekskul</label>
                       
                       <div class="col-sm-3">
-                        <select class="form-control" id="tahun_masuk" name="tahun_masuk" value="<?= $anggota['ekskul']; ?>" required>
+                        <select class="form-control"  name="ekskul" value="<?= $anggota['ekskul']; ?>" required>
                           <option disabled selected>Kode Ekskul </option>
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -202,26 +202,26 @@ if (isset($_POST['ubah'])) {
                     <div class="form-group row">
                       <label for="NIS" class="col-sm-2 col-form-label">NIS</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="NIS" name="NIS" placeholder="Nomor induk Siswa" value="<?= $anggota['NIS']; ?>">
+                        <input type="text" class="form-control" name="NIS" placeholder="Nomor induk Siswa" value="<?= $anggota['NIS']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="nama_aggota" class="col-sm-2 col-form-label">Nama Anggota</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_anggota" name="nama_anggota" placeholder="Nama Anggota" value="<?= $anggota['nama_anggota']; ?>">
+                        <input type="text" class="form-control" name="nama_anggota" placeholder="Nama Anggota" value="<?= $anggota['nama_anggota']; ?>">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="Jabatan" name="Jabatan" placeholder="Jabatan Diekskul" value="<?= $anggota['jabatan']; ?>" required>
+                        <input type="text" class="form-control" name="jabatan" placeholder="Jabatan Diekskul" value="<?= $anggota['jabatan']; ?>" required>
                       </div>
                     </div>
                     
 
 
-                    <button type="submit" class="btn btn-primary mr-2" name="tambahprestasi">Simpan</button>
+                    <button type="submit" class="btn btn-primary mr-2" name="tambah">Simpan</button>
                     <a href="../detail-ekskul.php"><button type="button" class="btn btn-light">Batal</button></a>
                   </form>
                 </div>
