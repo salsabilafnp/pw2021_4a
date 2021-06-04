@@ -50,7 +50,7 @@ function tambah_prestasi($data)
   if (!$img) {
     return false;
   }
-  $query = "INSERT INTO prestasi VALUES ('', '$img', '$nama_acara', $tahun_acara, $peringkat, '$jenis_prestasi', '$penyelenggara')";
+  $query = "INSERT INTO prestasi VALUES ('', '$img', '$nama_acara', '$tahun_acara', '$peringkat', '$jenis_prestasi', '$penyelenggara')";
 
   mysqli_query($conn, $query);
 
@@ -83,8 +83,8 @@ function ubah_prestasi($data)
               img = '$img',
               gambar_lama = '$gambar_lama',
               nama_acara = '$nama_acara',
-              tahun_acara = $tahun_acara,
-              peringkat = $peringkat,
+              tahun_acara = '$tahun_acara',
+              peringkat = '$peringkat',
               jenis_prestasi = '$jenis_prestasi',
               penyelenggara = '$penyelenggara'
               WHERE id = $id;";
