@@ -12,9 +12,9 @@ $kode = $_GET['kode'];
 
 // Melakukan Query
 $kelas = query("SELECT * FROM kelas WHERE kode_kelas = '$kode'");
-$walikelas = query("SELECT guru.nama_lengkap FROM guru, kelas WHERE guru.NIP = kelas.walikelas AND kode_kelas = '$kode'");
-$jadwal_pelajaran = query("SELECT * FROM jadwal_pelajaran WHERE kelas = '$kode'");
-//$siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas AND kelas = '$kode'");
+$walikelas = query("SELECT * FROM guru, kelas WHERE guru.NIP = kelas.walikelas AND kode_kelas = '$kode'");
+$jadwal = query("SELECT * FROM jadwal_pelajaran, mata_pelajaran, kelas WHERE jadwal_pelajaran.mapel = mata_pelajaran.id AND jadwal_pelajaran.kelas = kelas.kode_kelas AND jadwal_pelajaran.kelas = '$kode'");
+$siswa = query("SELECT * FROM siswa, kelas WHERE siswa.kelas = kelas.kode_kelas AND kelas = '$kode'");
 
 ?>
 
@@ -178,7 +178,7 @@ $jadwal_pelajaran = query("SELECT * FROM jadwal_pelajaran WHERE kelas = '$kode'"
                   <div class="card card-tale">
                     <div class="card-body">
                       <p class="mb-4">Wali kelas</p>
-                      <p class="fs-30 mb-2"><?= $walikelas["nama_lengkap"]; ?></p>
+                      <p class="fs-30 mb-2"><?= $walikelas['nama_lengkap']; ?></p>
                     </div>
                   </div>
                 </div>
@@ -199,7 +199,7 @@ $jadwal_pelajaran = query("SELECT * FROM jadwal_pelajaran WHERE kelas = '$kode'"
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-3">Jadwal Pelajaran</p>
-                  <button class="btn btn-sm btn-primary"><a>Tambah Data</a></button>
+                  <a href="php/tambah_jadpel.php" class="btn btn-sm btn-primary">Tambah Data</a>
                   <div class="row mt-3">
                     <div class="col-12">
                       <div class="table-responsive">
@@ -214,19 +214,19 @@ $jadwal_pelajaran = query("SELECT * FROM jadwal_pelajaran WHERE kelas = '$kode'"
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($jadwal_pelajaran as $jadpel) : ?>
+                            <?php foreach ($jadwal as $jadpel) : ?>
                               <tr>
                                 <td class="w-25" style="width: fit-content;">
                                   <!-- Ubah -->
-                                  <a href="" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
+                                  <a href="php/ubah_jadpel.php?id=<?= $jadwal['id']; ?>" class="btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
                                   <!-- Hapus -->
-                                  <a href="" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
+                                  <a href="php/hapus_jadpel.php?id=<?= $jadwal['id']; ?>" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
                                 </td>
-                                <td class="font-weight-bold"><?= $jadpel['hari']; ?></td>
-                                <td></td>
-                                <td class="font-weight-bold"></td>
+                                <td class="font-weight-bold"><?= $jadwal['hari'] ?></td>
+                                <td><?= $jadwal['waktu_awal']; ?> - <?= $jadwal['waktu_akhir']; ?></td>
+                                <td><?= $jadwal['nama_mapel']; ?></td>
                                 <td>
-                                  <a href="../../../pages/admin/siswa/detail-siswa.php?id=<?= $jadpel['id']; ?>" class="btn btn-sm btn-info">Lihat Detail</button></a>
+                                  <a href="../../../pages/admin/kelas/detail-mapel.php?id=<?= $jadwal['id']; ?>" class="btn btn-sm btn-info">Lihat Detail</a>
                                 </td>
                               </tr>
                             <?php endforeach; ?>

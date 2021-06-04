@@ -1,18 +1,36 @@
 <?php
-//mengecek kode_kelas, jika tidak ada dikembalikan ke kelas.php
-if (!isset($_GET['id'])) {
-  header("location: mapel.php");
+session_start();
+
+if (!isset($_SESSION["username"])) {
+  header("location: ../../../login.php");
   exit;
 }
 
-require 'php/functions.php';
+// jika tidak ada id di url
+if (!isset($_GET['id'])) {
+  header("Location: ../kelas.php");
+  exit;
+}
 
-// Mengambil id dari url
+require 'functions.php';
+
 $id = $_GET['id'];
 
-// Melakukan Query
-$mapel = query("SELECT * FROM mata_pelajaran WHERE id = $id");
-$guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_pelajaran.id AND mapel = $id");
+$jadpel = query("SELECT * FROM jadwal_pelajaran WHERE id = $id");
+
+if (isset($_POST["ubah"])) {
+  if (ubah_jadpel($_POST) > 0) {
+    echo "<script>
+            alert('Data Berhasil Diubah!');
+            document.location.href = '../kelas.php';
+          </script>";
+  } else {
+    echo "<script>
+            alert('Data Gagal Diubah!');
+            document.location.href = '../kelas.php';
+          </script>";
+  }
+}
 
 ?>
 
@@ -23,17 +41,17 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Detail Mata Pelajaran</title>
+  <title>Ubah Mata Pelajaran</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../../vendors/mdi/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../../../../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../../../../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../../../vendors/mdi/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../../css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="../../../../css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../../images/favicon.png" />
+  <link rel="shortcut icon" href="../../../../images/favicon.png" />
 </head>
 
 <body>
@@ -41,8 +59,8 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../images/logo.svg" class="mr-2" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo mr-5" href=""><img src="../../../../images/logo.svg" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href=""><img src="../../../../images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -63,7 +81,7 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../../images/faces/face28.jpg" alt="profile" />
+              <img src="../../../../images/faces/face28.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -74,7 +92,7 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a href="../../php/logout.php" class="dropdown-item">
+              <a class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -92,13 +110,13 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin.php">
+            <a class="nav-link" href="../../../../pages/admin.php">
               <i class="menu-icon mdi mdi-home"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/guru/guru.php">
+            <a class="nav-link" href="../../../../pages/admin/guru/guru.php">
               <i class="menu-icon mdi mdi-account"></i>
               <span class="menu-title">Guru</span>
             </a>
@@ -111,9 +129,9 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
             </a>
             <div class="collapse" id="siswa">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
-                <li class="nav-item"><a class="nav-link" href="../../../pages/admin/alumni/alumni.php">Alumni</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/siswa/siswa.php">Siswa Aktif</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/alumni/kelulusan.php">Kelulusan</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../../../pages/admin/alumni/alumni.php">Alumni</a></li>
               </ul>
             </div>
           </li>
@@ -125,32 +143,32 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
             </a>
             <div class="collapse" id="kelas">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/kelas.php">Kelas</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../../pages/admin/kelas/ujian.php">Ujian</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/kelas.php">Kelas</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/mapel.php">Mata Pelajaran</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../../../pages/admin/kelas/ujian.php">Ujian</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/kegiatan/kegiatan.php">
+            <a class="nav-link" href="../../../../pages/admin/kegiatan/kegiatan.php">
               <i class="menu-icon mdi mdi-checkbox-multiple-marked-circle"></i>
               <span class="menu-title">Kegiatan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/ekskul/ekskul.php">
+            <a class="nav-link" href="../../../../pages/admin/ekskul/ekskul.php">
               <i class="menu-icon icon-grid"></i>
               <span class="menu-title">Ekstrakurikuler</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/prestasi/prestasi.php">
+            <a class="nav-link" href="../../../../pages/admin/prestasi/prestasi.php">
               <i class="menu-icon mdi mdi-bookmark"></i>
               <span class="menu-title">Prestasi</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../../pages/admin/spp/spp.php">
+            <a class="nav-link" href="../../../../pages/admin/spp/spp.php">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">SPP</span>
             </a>
@@ -160,54 +178,37 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 col-xl-8 my-3 mb-xl-0">
-                  <h3 class="font-weight-bold"><?= $mapel['nama_mapel']; ?></h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+          <div class="row justify-content-center">
+            <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title mb-3">Daftar Pengajar <?= $mapel["nama_mapel"]; ?></p>
-                  <a href="../../../pages/admin/guru/php/tambah.php" class="btn btn-sm btn-outline-primary">Tambah Data</a>
-                  <div class="row mt-3">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>NIP</th>
-                              <th>Nama Guru</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php foreach ($guru_mapel as $guru) : ?>
-                              <tr>
-                                <td class="w-25" style="width: fit-content;">
-                                  <!-- Ubah -->
-                                  <a href="../../../pages/admin/guru/php/ubah.php?id=<?= $guru['id']; ?>" class=" btn btn-sm btn-outline-info px-3 my-1 mx-2"><i class="mdi mdi-tooltip-edit"></i> Edit</a>
-                                  <!-- Hapus -->
-                                  <a href="../../../pages/admin/guru/php/hapus.php?id=<?= $guru['id']; ?>" class="btn btn-sm btn-outline-danger px-3 my-1 mx-2"><i class="mdi mdi-delete"></i> Delete</a>
-                                </td>
-                                <td><?= $guru['NIP']; ?></td>
-                                <td><?= $guru['nama_lengkap']; ?></td>
-                                <td>
-                                  <a href="../../../pages/admin/guru/detail-guru.php?id=<?= $guru['id']; ?>"><button class="btn btn-sm btn-info">Lihat Guru</button></a>
-                                </td>
-                              </tr>
-                            <?php endforeach; ?>
-                          </tbody>
-                        </table>
-                      </div>
+                  <h3 class="font-weight-bold text-center my-3">Ubah Jadwal Pelajaran</h3>
+                  <form action="" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?= $jadpel['id']; ?>">
+                    <div class="form-group">
+                      <label for="mapel">Mata Pelajaran</label>
+                      <input type="text" class="form-control" name="mapel" placeholder="1 (Kode Mapel)" autofocus required value="<?= $jadpel['mapel']; ?>">
                     </div>
-                  </div>
+                    <div class="form-group">
+                      <label for="kelas">Kelas</label>
+                      <input type="text" class="form-control" name="kelas" placeholder="10-MIA-1" required value="<?= $jadpel['kelas']; ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="hari">Hari</label>
+                      <input type="text" class="form-control" name="hari" placeholder="Senin" required value="<?= $jadpel['hari']; ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="waktu_awal">Waktu Mulai</label>
+                      <input type="text" class="form-control" name="waktu_awal" placeholder="07:00" required value="<?= $jadpel['waktu_awal']; ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="waktu_akhir">Waktu Akhir</label>
+                      <input type="text" class="form-control" name="waktu_akhir" placeholder="09:00" required value="<?= $jadpel['waktu_akhir']; ?>">
+                    </div>
+                    <!-- Ubah & Kembali -->
+                    <button type="submit" name="ubah" class="btn btn-primary mr-2">Edit</button>
+                    <a href="../mapel.php" class="btn btn-light">Cancel</a>
+                  </form>
                 </div>
               </div>
             </div>
@@ -230,25 +231,23 @@ $guru_mapel = query("SELECT * FROM guru, mata_pelajaran WHERE guru.mapel = mata_
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="../../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../../../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../../vendors/chart.js/Chart.min.js"></script>
-  <script src="../../../vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="../../../js/dataTables.select.min.js"></script>
-
+  <script src="../../../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+  <script src="../../../../vendors/select2/select2.min.js"></script>
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="../../../js/off-canvas.js"></script>
-  <script src="../../../js/hoverable-collapse.js"></script>
-  <script src="../../../js/template.js"></script>
-  <script src="../../../js/settings.js"></script>
-  <script src="../../../js/todolist.js"></script>
+  <script src="../../../../js/off-canvas.js"></script>
+  <script src="../../../../js/hoverable-collapse.js"></script>
+  <script src="../../../../js/template.js"></script>
+  <script src="../../../../js/settings.js"></script>
+  <script src="../../../../js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="../../../js/dashboard.js"></script>
-  <script src="../../../js/Chart.roundedBarCharts.js"></script>
+  <script src="../../../../js/file-upload.js"></script>
+  <script src="../../../../js/typeahead.js"></script>
+  <script src="../../../../js/select2.js"></script>
   <!-- End custom js for this page-->
 </body>
 

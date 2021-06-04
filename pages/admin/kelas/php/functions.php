@@ -234,3 +234,54 @@ function ubah_ujian($data)
   mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 }
+
+
+// Tambah Mapel
+function tambah_jadpel($data)
+{
+  $conn = koneksi();
+
+  $mapel = htmlspecialchars($data['mapel']);
+  $kelas = htmlspecialchars($data['kelas']);
+  $hari = htmlspecialchars($data['hari']);
+  $waktu_awal = htmlspecialchars($data['waktu_awal']);
+  $waktu_akhir = htmlspecialchars($data['waktu_akhir']);
+
+  $query = "INSERT INTO jadwal_pelajaran VALUES ('', '$kelas', '$mapel', '$hari', '$waktu_awal', '$waktu_akhir')";
+
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
+
+// Hapus Mapel
+function hapus_jadpel($id)
+{
+  $conn = koneksi();
+
+  mysqli_query($conn, "DELETE FROM jadwal_pelajaran WHERE id = $id") or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
+
+// Ubah Mapel
+function ubah_jadpel($data)
+{
+  $conn = koneksi();
+
+  $id = $data['id'];
+  $mapel = htmlspecialchars($data['mapel']);
+  $kelas = htmlspecialchars($data['kelas']);
+  $hari = htmlspecialchars($data['hari']);
+  $waktu_awal = htmlspecialchars($data['waktu_awal']);
+  $waktu_akhir = htmlspecialchars($data['waktu_akhir']);
+
+  $query = "UPDATE jadwal_pelajaran SET
+              kelas = '$kelas',
+              mapel = '$mapel',
+              hari = '$hari',
+              waktu_awal = '$waktu_awal',
+              waktu_akhir = '$waktu_akhir'
+              WHERE id = $id;";
+
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
