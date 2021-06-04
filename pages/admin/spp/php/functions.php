@@ -78,19 +78,18 @@ function ubahpembayaran_spp($data)
   return mysqli_affected_rows($conn);
 }
 
-function carispp($keyword)
+function cari($keyword)
 {
   $conn = koneksi();
 
   $query = "SELECT * FROM pembayaran_spp 
             WHERE 
-              NIS LIKE '%$keyword%' OR
-              tahun_masuk LIKE '%$keyword%' OR
-              kode_struk LIKE '%$keyword%' OR
               tgl_bayar LIKE '%$keyword%' OR
+              kode_struk LIKE '%$keyword%' OR
+              NIS LIKE '%$keyword%' OR
               total_bayar LIKE '%$keyword%' OR
               sisa_bayar LIKE '%$keyword%'";
-
+              
   $result = mysqli_query($conn, $query);
   $rows = [];
   while ($row = mysqli_fetch_assoc($result)) {

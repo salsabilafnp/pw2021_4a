@@ -1,13 +1,12 @@
 <?php
-require '../../php/functions.php';
+require 'php/functions.php';
 
 // Query 
 $prestasi = query("SELECT * FROM prestasi");
+
 if (isset($_POST['cari'])) {
   $prestasi = cari($_POST['keyword']);
-  
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -58,7 +57,6 @@ if (isset($_POST['cari'])) {
             </form>
           </li>
         </ul>
-        
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
@@ -73,7 +71,7 @@ if (isset($_POST['cari'])) {
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a href="../../php/logout.php" class="dropdown-item">
+              <a class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>

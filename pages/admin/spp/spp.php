@@ -1,10 +1,10 @@
 <?php
-require '../../php/functions.php';
+require 'php/functions.php';
 
 // Query SPP
 $pembayaran_spp = query("SELECT * FROM pembayaran_spp");
 if (isset($_POST['cari'])) {
-  $pembayaran_spp = carispp($_POST['keyword']);
+  $pembayaran_spp = cari($_POST['keyword']);
 }
 ?>
 
