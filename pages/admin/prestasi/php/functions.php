@@ -156,7 +156,7 @@ function upload()
   $nama_file_baru = uniqid();
   $nama_file_baru .= '.';
   $nama_file_baru .= $ekstensi_file;
-  move_uploaded_file($tmp_file, '../../../../../pw2021_4a_sekolah/pages/admin/prestasi/img' . $nama_file_baru);
+  move_uploaded_file($tmp_file, '../../../../../pw2021_4a_sekolah/pages/admin/prestasi/img/' . $nama_file_baru);
 
   return $nama_file_baru;
 }
